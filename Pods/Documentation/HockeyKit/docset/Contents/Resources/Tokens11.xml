@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/BWHockeyManagerDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/BWHockeyManagerDelegate</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>BWHockeyManager.h</DeclaredIn>
+			
+			<NodeRef refid="11"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/BWHockeyManagerDelegate/customDeviceIdentifier</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>BWHockeyManager.h</DeclaredIn>			
+			
+			<Declaration>- (NSString *)customDeviceIdentifier</Declaration>
+			
+			
+			<Anchor>//api/name/customDeviceIdentifier</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/BWHockeyManagerDelegate/connectionOpened</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>BWHockeyManager.h</DeclaredIn>			
+			
+			<Declaration>- (void)connectionOpened</Declaration>
+			
+			
+			<Anchor>//api/name/connectionOpened</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/BWHockeyManagerDelegate/connectionClosed</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>BWHockeyManager.h</DeclaredIn>			
+			
+			<Declaration>- (void)connectionClosed</Declaration>
+			
+			
+			<Anchor>//api/name/connectionClosed</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/BWHockeyManagerDelegate/viewControllerForHockeyController:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>BWHockeyManager.h</DeclaredIn>			
+			
+			<Declaration>- (UIViewController *)viewControllerForHockeyController:(BWHockeyManager *)hockeyController</Declaration>
+			
+			
+			<Anchor>//api/name/viewControllerForHockeyController:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/iVersionDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/iVersionDelegate</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>iVersion.h</DeclaredIn>
+			
+			<NodeRef refid="3"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/iVersionDelegate/iVersionShouldCheckForNewVersion</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>iVersion.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)iVersionShouldCheckForNewVersion</Declaration>
+			
+			
+			<Anchor>//api/name/iVersionShouldCheckForNewVersion</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/iVersionDelegate/iVersionDidNotDetectNewVersion</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>iVersion.h</DeclaredIn>			
+			
+			<Declaration>- (void)iVersionDidNotDetectNewVersion</Declaration>
+			
+			
+			<Anchor>//api/name/iVersionDidNotDetectNewVersion</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/iVersionDelegate/iVersionVersionCheckDidFailWithError:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>iVersion.h</DeclaredIn>			
+			
+			<Declaration>- (void)iVersionVersionCheckDidFailWithError:(NSError *)error</Declaration>
+			
+			
+			<Anchor>//api/name/iVersionVersionCheckDidFailWithError:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/iVersionDelegate/iVersionDidDetectNewVersion:details:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>iVersion.h</DeclaredIn>			
+			
+			<Declaration>- (void)iVersionDidDetectNewVersion:(NSString *)version details:(NSString *)versionDetails</Declaration>
+			
+			
+			<Anchor>//api/name/iVersionDidDetectNewVersion:details:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/iVersionDelegate/iVersionShouldDisplayNewVersion:details:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>iVersion.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)iVersionShouldDisplayNewVersion:(NSString *)version details:(NSString *)versionDetails</Declaration>
+			
+			
+			<Anchor>//api/name/iVersionShouldDisplayNewVersion:details:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/iVersionDelegate/iVersionShouldDisplayCurrentVersionDetails:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>iVersion.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)iVersionShouldDisplayCurrentVersionDetails:(NSString *)versionDetails</Declaration>
+			
+			
+			<Anchor>//api/name/iVersionShouldDisplayCurrentVersionDetails:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/iVersionDelegate/iVersionUserDidAttemptToDownloadUpdate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>iVersion.h</DeclaredIn>			
+			
+			<Declaration>- (void)iVersionUserDidAttemptToDownloadUpdate:(NSString *)version</Declaration>
+			
+			
+			<Anchor>//api/name/iVersionUserDidAttemptToDownloadUpdate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/iVersionDelegate/iVersionUserDidRequestReminderForUpdate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>iVersion.h</DeclaredIn>			
+			
+			<Declaration>- (void)iVersionUserDidRequestReminderForUpdate:(NSString *)version</Declaration>
+			
+			
+			<Anchor>//api/name/iVersionUserDidRequestReminderForUpdate:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/iVersionDelegate/iVersionUserDidIgnoreUpdate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>iVersion.h</DeclaredIn>			
+			
+			<Declaration>- (void)iVersionUserDidIgnoreUpdate:(NSString *)version</Declaration>
+			
+			
+			<Anchor>//api/name/iVersionUserDidIgnoreUpdate:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

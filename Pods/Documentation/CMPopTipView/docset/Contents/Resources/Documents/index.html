@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>CMPopTipView 1.2.0 Reference</title>
+		<link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.6 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="index.html">CMPopTipView 1.2.0 </a></h1>
+				<a id="developerHome" href="index.html">Chris Miles</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">CMPopTipView 1.2.0 Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar"></ul>
+		</header>
+		<article>
+			<div id="overview_contents" role="main">
+				<div class="main-navigation navigation-top">
+					<a href="hierarchy.html">Next</a>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">CMPopTipView 1.2.0 Reference</h1>
+					</div>		
+				</div>
+				<div id="container">
+					
+					<div class="section section-overview index-overview">
+						
+						
+						<h1><a href="Classes/CMPopTipView.html">CMPopTipView</a></h1>
+
+<p>An iOS UIView subclass that displays a rounded rect &ldquo;bubble&rdquo;, containing
+a text message, pointing at a specified button or view.</p>
+
+<p>A <a href="Classes/CMPopTipView.html">CMPopTipView</a> will automatically position itself within the view so that
+it is pointing at the specified button or view, positioning the &ldquo;pointer&rdquo;
+as necessary.</p>
+
+<p>A <a href="Classes/CMPopTipView.html">CMPopTipView</a> can be pointed at any UIView within the containing view.
+It can also be pointed at a UIBarButtonItem within either a UINavigationBar
+or a UIToolbar and it will automatically position itself to point at the
+target.</p>
+
+<p>The background and text colors can be customised if the defaults are not
+suitable.</p>
+
+<p>Two animation options are available for when a <a href="Classes/CMPopTipView.html">CMPopTipView</a> is presented:
+&ldquo;slide&rdquo; and &ldquo;pop&rdquo;.</p>
+
+<p>A <a href="Classes/CMPopTipView.html">CMPopTipView</a> can be dismissed by the user tapping on it.  It can also
+be dismissed programatically.</p>
+
+<p><a href="Classes/CMPopTipView.html">CMPopTipView</a> is rendered entirely by Core Graphics.</p>
+
+<p>The source includes a universal (iPhone/iPad) demo app.</p>
+
+<h2>URLs</h2>
+
+<ul>
+<li><a href="https://github.com/chrismiles/CMPopTipView">https://github.com/chrismiles/CMPopTipView</a></li>
+<li><a href="http://chrismiles-tech.blogspot.com/2010/12/cmpoptipview-custom-popup-view-for-ios.html">http://chrismiles-tech.blogspot.com/2010/12/cmpoptipview-custom-popup-view-for-ios.html</a></li>
+<li><a href="http://chrismiles-tech.blogspot.com/2011/05/cmpoptipview-new-animation-option.html">http://chrismiles-tech.blogspot.com/2011/05/cmpoptipview-new-animation-option.html</a></li>
+</ul>
+
+
+<p>Used in apps:
+ * River Level <a href="http://itunes.apple.com/au/app/river-level/id356158594?mt=8">http://itunes.apple.com/au/app/river-level/id356158594?mt=8</a>
+ * The Happiest Hour <a href="http://itunes.apple.com/au/app/the-happiest-hour/id414453120?mt=8">http://itunes.apple.com/au/app/the-happiest-hour/id414453120?mt=8</a>
+ * <em>Your app here &hellip;?</em></p>
+
+<h2>Screenshots</h2>
+
+<p>|iphone_demo_1| |iphone_demo_2| |ipad_demo_1|</p>
+
+<p>.. |iphone_demo_1| image:: <a href="http://farm5.static.flickr.com/4005/5191641030">http://farm5.static.flickr.com/4005/5191641030</a><em>2b93a4a559.jpg
+.. |iphone_demo_2| image:: <a href="http://farm5.static.flickr.com/4112/5191046667">http://farm5.static.flickr.com/4112/5191046667</a></em>109a98dfc7.jpg
+.. |ipad_demo_1| image:: <a href="http://farm6.static.flickr.com/5170/5266199718">http://farm6.static.flickr.com/5170/5266199718</a>_4720c56384.jpg</p>
+
+<h2>Videos</h2>
+
+<p><a href="http://www.youtube.com/watch?v=nul9VA">http://www.youtube.com/watch?v=nul9VA</a>_QsGI</p>
+
+<h2>Usage</h2>
+
+<p>Example 1 &ndash; point at a UIBarButtonItem in a nav bar::</p>
+
+<p>  // Present a <a href="Classes/CMPopTipView.html">CMPopTipView</a> pointing at a UIBarButtonItem in the nav bar
+  <a href="Classes/CMPopTipView.html">CMPopTipView</a> *navBarLeftButtonPopTipView = [[[CMPopTipView alloc] initWithMessage:@&ldquo;A Message&rdquo;] autorelease];
+  navBarLeftButtonPopTipView.delegate = self;
+  [navBarLeftButtonPopTipView presentPointingAtBarButtonItem:self.navigationItem.leftBarButtonItem animated:YES];</p>
+
+<p>  // Dismiss a CMPopTipView
+  [navBarLeftButtonPopTipView dismissAnimated:YES];</p>
+
+<p>  // <a href="Protocols/CMPopTipViewDelegate.html">CMPopTipViewDelegate</a> method
+  &ndash; (void)popTipViewWasDismissedByUser:(<a href="Classes/CMPopTipView.html">CMPopTipView</a> *)popTipView {</p>
+
+<pre><code>// Any cleanup code, such as releasing a CMPopTipView instance variable, if necessary
+</code></pre>
+
+<p>  }</p>
+
+<p>Example 2 &ndash; pointing at a UIButton, with custom color scheme::</p>
+
+<ul>
+<li><p>(IBAction)buttonAction:(id)sender {
+// Toggle popTipView when a standard UIButton is pressed
+if (nil == self.roundRectButtonPopTipView) {
+  self.roundRectButtonPopTipView = [[[CMPopTipView alloc] initWithMessage:@&ldquo;My message&rdquo;] autorelease];
+  self.roundRectButtonPopTipView.delegate = self;
+  self.roundRectButtonPopTipView.backgroundColor = [UIColor lightGrayColor];
+  self.roundRectButtonPopTipView.textColor = [UIColor darkTextColor];</p>
+
+<p>  UIButton <em>button = (UIButton </em>)sender;
+  [self.roundRectButtonPopTipView presentPointingAtView:button inView:self.view animated:YES];
+}
+else {
+  // Dismiss
+  [self.roundRectButtonPopTipView dismissAnimated:YES];
+  self.roundRectButtonPopTipView = nil;
+}
+}</p></li>
+</ul>
+
+
+<p>  #pragma mark <a href="Protocols/CMPopTipViewDelegate.html">CMPopTipViewDelegate</a> methods
+  &ndash; (void)popTipViewWasDismissedByUser:(<a href="Classes/CMPopTipView.html">CMPopTipView</a> *)popTipView {</p>
+
+<pre><code>// User can tap CMPopTipView to dismiss it
+self.roundRectButtonPopTipView = nil;
+</code></pre>
+
+<p>  }</p>
+
+<h2>ARC</h2>
+
+<p>The <a href="Classes/CMPopTipView.html">CMPopTipView</a> Master branch is non-ARC. However, producing an ARC version is easy as <a href="Classes/CMPopTipView.html">CMPopTipView</a> memory management is kept clean and ARC-conversion ready.</p>
+
+<p>To generate an ARC version simply open the demo app project in Xcode and select: Edit / Refactor / Convert to Objective-C ARC&hellip; The project should convert cleanly and the ARC-ready <a href="Classes/CMPopTipView.html">CMPopTipView</a> source can then be copied to your project. If any ARC problems, please raise an issue.</p>
+
+<h2>License</h2>
+
+<p><a href="Classes/CMPopTipView.html">CMPopTipView</a> is released under the MIT license.  See LICENSE for details.</p>
+
+<p><a href="Classes/CMPopTipView.html">CMPopTipView</a> is copyright &copy; Chris Miles 2010-2012.</p>
+						
+						
+					</div>
+					
+                        
+                    
+					
+					
+					<div class="index-column">
+						<h2 class="index-title">Class References</h2>
+						<ul>
+							
+							<li><a href="Classes/CMPopTipView.html">CMPopTipView</a></li>
+							
+						</ul>
+					</div>
+					
+					
+						
+					<div class="index-column">
+						
+						<h2 class="index-title">Protocol References</h2>
+						<ul>
+							
+							<li><a href="Protocols/CMPopTipViewDelegate.html">CMPopTipViewDelegate</a></li>
+							
+						</ul>
+						
+						
+					</div>
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<a href="hierarchy.html">Next</a>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Chris Miles. All rights reserved. (Last updated: 2012-12-15)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.6 (build 789)</a>.</span></p>
+						
+	
+					</div>
+				</div>
+			</div>
+		</article>		
+	</body>
+</html>

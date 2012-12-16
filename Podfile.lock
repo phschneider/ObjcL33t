@@ -1,0 +1,29 @@
+
+COCOAPODS: 0.15.2
+
+SPEC CHECKSUMS: 
+  SVProgressHUD: 51042a14e3a716efdbdd73cbb2181fb23ee94389
+  Parse: 7562edd0ccab08d69e0e96dbcaca303a7c250725
+  QuincyKit: 3c1a3d8aff99ad03fc0afe302b1194eb6f2ddf69
+  HockeyKit: df5e71674550a3f8a4cb52dfa606c2af34dbfe12
+  GoogleAnalytics-iOS-SDK: dbc85b4df88cd4a7eb7fb774400e865db2fab8bb
+  iRate: e4a0bd887cf39a1cd389a2112c0edc87fb8f7c0a
+  iVersion: 89f8442e57575b011ac9a03da8832f28233ec1f2
+
+DEPENDENCIES: 
+- GoogleAnalytics-iOS-SDK
+- HockeyKit
+- Parse
+- QuincyKit
+- SVProgressHUD
+- iRate
+- iVersion
+
+PODS: 
+- GoogleAnalytics-iOS-SDK (2.0beta3)
+- HockeyKit (2.0.7)
+- Parse (1.1.10)
+- QuincyKit (2.1.9)
+- SVProgressHUD (0.8)
+- iRate (1.7)
+- iVersion (1.9.8)

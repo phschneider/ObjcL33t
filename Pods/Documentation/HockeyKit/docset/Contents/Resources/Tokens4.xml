@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/BWHockeyViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/BWHockeyViewController</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>BWHockeyViewController.h</DeclaredIn>
+			
+			<NodeRef refid="4"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BWHockeyViewController/setHockeyManager:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>BWHockeyViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) BWHockeyManager *hockeyManager</Declaration>
+			
+			
+			<Anchor>//api/name/hockeyManager</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BWHockeyViewController/hockeyManager</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>BWHockeyViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) BWHockeyManager *hockeyManager</Declaration>
+			
+			
+			<Anchor>//api/name/hockeyManager</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BWHockeyViewController/setModal:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>BWHockeyViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readwrite) BOOL modal</Declaration>
+			
+			
+			<Anchor>//api/name/modal</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BWHockeyViewController/modal</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>BWHockeyViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readwrite) BOOL modal</Declaration>
+			
+			
+			<Anchor>//api/name/modal</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BWHockeyViewController/setModalAnimated:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>BWHockeyViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readwrite) BOOL modalAnimated</Declaration>
+			
+			
+			<Anchor>//api/name/modalAnimated</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BWHockeyViewController/modalAnimated</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>BWHockeyViewController.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, readwrite) BOOL modalAnimated</Declaration>
+			
+			
+			<Anchor>//api/name/modalAnimated</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BWHockeyViewController/init:modal:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>BWHockeyViewController.h</DeclaredIn>			
+			
+			<Declaration>- (id)init:(BWHockeyManager *)newHockeyManager modal:(BOOL)newModal</Declaration>
+			
+			
+			<Anchor>//api/name/init:modal:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BWHockeyViewController/init</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>BWHockeyViewController.h</DeclaredIn>			
+			
+			<Declaration>- (id)init</Declaration>
+			
+			
+			<Anchor>//api/name/init</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

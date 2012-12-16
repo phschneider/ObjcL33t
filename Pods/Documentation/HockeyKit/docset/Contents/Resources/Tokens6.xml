@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/PSStoreButton.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/PSStoreButton</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>
+			
+			<NodeRef refid="6"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSStoreButton/initWithFrame:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>			
+			
+			<Declaration>- (id)initWithFrame:(CGRect)frame</Declaration>
+			
+			
+			<Anchor>//api/name/initWithFrame:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSStoreButton/initWithPadding:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>			
+			
+			<Declaration>- (id)initWithPadding:(CGPoint)padding</Declaration>
+			
+			
+			<Anchor>//api/name/initWithPadding:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSStoreButton/setButtonDelegate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) id&lt;PSStoreButtonDelegate&gt; buttonDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/buttonDelegate</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/PSStoreButton/buttonDelegate</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) id&lt;PSStoreButtonDelegate&gt; buttonDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/buttonDelegate</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSStoreButton/setButtonData:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) PSStoreButtonData *buttonData</Declaration>
+			
+			
+			<Anchor>//api/name/buttonData</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/PSStoreButton/buttonData</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) PSStoreButtonData *buttonData</Declaration>
+			
+			
+			<Anchor>//api/name/buttonData</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSStoreButton/setButtonData:animated:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>			
+			
+			<Declaration>- (void)setButtonData:(PSStoreButtonData *)aButtonData animated:(BOOL)animated</Declaration>
+			
+			
+			<Anchor>//api/name/setButtonData:animated:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSStoreButton/setCustomPadding:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) CGPoint customPadding</Declaration>
+			
+			
+			<Anchor>//api/name/customPadding</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/PSStoreButton/customPadding</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, assign) CGPoint customPadding</Declaration>
+			
+			
+			<Anchor>//api/name/customPadding</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSStoreButton/alignToSuperview</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>			
+			
+			<Declaration>- (void)alignToSuperview</Declaration>
+			
+			
+			<Anchor>//api/name/alignToSuperview</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/PSStoreButton/appStoreGreenColor</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>			
+			
+			<Declaration>+ (NSArray *)appStoreGreenColor</Declaration>
+			
+			
+			<Anchor>//api/name/appStoreGreenColor</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/PSStoreButton/appStoreBlueColor</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>			
+			
+			<Declaration>+ (NSArray *)appStoreBlueColor</Declaration>
+			
+			
+			<Anchor>//api/name/appStoreBlueColor</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/PSStoreButton/appStoreGrayColor</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>			
+			
+			<Declaration>+ (NSArray *)appStoreGrayColor</Declaration>
+			
+			
+			<Anchor>//api/name/appStoreGrayColor</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

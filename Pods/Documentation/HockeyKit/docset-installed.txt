@@ -1,0 +1,4 @@
+Documentation set was installed to Xcode!
+
+Path: /Users/pschneider/Library/Developer/Shared/Documentation/DocSets/org.cocoapods.HockeyKit-2.0.7.docset
+Time: 2012-12-03 00:21:09 +0000

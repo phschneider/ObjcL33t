@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/PSStoreButtonDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/PSStoreButtonDelegate</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>
+			
+			<NodeRef refid="12"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/PSStoreButtonDelegate/storeButtonFired:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSStoreButton.h</DeclaredIn>			
+			
+			<Declaration>- (void)storeButtonFired:(PSStoreButton *)button</Declaration>
+			
+			
+			<Anchor>//api/name/storeButtonFired:</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

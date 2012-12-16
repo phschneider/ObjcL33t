@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/PSAppStoreHeader.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/PSAppStoreHeader</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSAppStoreHeader.h</DeclaredIn>
+			
+			<NodeRef refid="5"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSAppStoreHeader/setHeaderLabel:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSAppStoreHeader.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *headerLabel</Declaration>
+			
+			
+			<Anchor>//api/name/headerLabel</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/PSAppStoreHeader/headerLabel</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSAppStoreHeader.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *headerLabel</Declaration>
+			
+			
+			<Anchor>//api/name/headerLabel</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSAppStoreHeader/setMiddleHeaderLabel:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSAppStoreHeader.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *middleHeaderLabel</Declaration>
+			
+			
+			<Anchor>//api/name/middleHeaderLabel</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/PSAppStoreHeader/middleHeaderLabel</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSAppStoreHeader.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *middleHeaderLabel</Declaration>
+			
+			
+			<Anchor>//api/name/middleHeaderLabel</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSAppStoreHeader/setSubHeaderLabel:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSAppStoreHeader.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *subHeaderLabel</Declaration>
+			
+			
+			<Anchor>//api/name/subHeaderLabel</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/PSAppStoreHeader/subHeaderLabel</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSAppStoreHeader.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, copy) NSString *subHeaderLabel</Declaration>
+			
+			
+			<Anchor>//api/name/subHeaderLabel</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/PSAppStoreHeader/setIconImage:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSAppStoreHeader.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) UIImage *iconImage</Declaration>
+			
+			
+			<Anchor>//api/name/iconImage</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/PSAppStoreHeader/iconImage</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>PSAppStoreHeader.h</DeclaredIn>			
+			
+			<Declaration>@property (nonatomic, retain) UIImage *iconImage</Declaration>
+			
+			
+			<Anchor>//api/name/iconImage</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

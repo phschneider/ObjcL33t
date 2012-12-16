@@ -1,0 +1,14 @@
+/* Localized versions of Info.plist keys */
+
+
+
+// TabBar
+"A-Z TabBar Title" = "A-Z";
+"Input TabBar Title" = "Write";
+"Wiki TabBar Title" = "Info";
+
+// Input View Controller
+"Added to clipboard alert description" = "In Zwischenablage kopiert";
+
+// Wiki View Controller
+"Wikipedia Navigation Title" = "Von Wikipedia";

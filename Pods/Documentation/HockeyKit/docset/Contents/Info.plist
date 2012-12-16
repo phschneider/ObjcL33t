@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleIdentifier</key>
+	<string>org.cocoapods.HockeyKit-2.0.7</string>
+	<key>CFBundleName</key>
+	<string>HockeyKit 2.0.7 Documentation</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	
+	
+	<key>DocSetDescription</key>
+	<string>Hockey is a iOS Ad-Hoc updater framework. It can be used for all apps that target the Apple AppStore and improves the beta testing process dramatically. NOTES: You will need to add a dependency on JSONKit or SBJson yourself. If you want the framework to try again when a network is available, add a dependency on Reachability and send a notification with the name `NetworkDidBecomeReachable` yourself when the network becomse reachable.</string>
+	
+	<key>DocSetFeedName</key>
+	<string>HockeyKit 2.0.7 Documentation</string>
+	
+	<key>DocSetMinimumXcodeVersion</key>
+	<string>3.0</string>
+	
+	<key>DashDocSetFamily</key>
+	<string>appledoc</string>
+	<key>DocSetPublisherIdentifier</key>
+	<string>org.cocoapods.documentation</string>
+	<key>DocSetPublisherName</key>
+	<string>Andreas Linde</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Andreas Linde</string>
+</dict>
+</plist>

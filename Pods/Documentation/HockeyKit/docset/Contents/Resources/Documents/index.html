@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>HockeyKit 2.0.7 Reference</title>
+		<link rel="stylesheet" type="text/css" href="css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.6 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="index.html">HockeyKit 2.0.7 </a></h1>
+				<a id="developerHome" href="index.html">Andreas Linde</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">HockeyKit 2.0.7 Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar"></ul>
+		</header>
+		<article>
+			<div id="overview_contents" role="main">
+				<div class="main-navigation navigation-top">
+					<a href="hierarchy.html">Next</a>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">HockeyKit 2.0.7 Reference</h1>
+					</div>		
+				</div>
+				<div id="container">
+					
+					<div class="section section-overview index-overview">
+						
+						
+						<h1>About:</h1>
+
+<p>Hockey is a iOS Ad-Hoc updater framework. It can be used for all apps that target the Apple AppStore and improves the beta testing process dramatically. All beta testers. It consists of two components, a server and a client framework.
+The server component is required for all scenarios. But it also can work standalone without the client library. It provides a web interface which beta testers can use to install the latest AdHoc provisioning profile and also the latest beta version via Safari right from the device. One server installation is able to  handle multiple applications via different bundle identifiers (I highly suggest using different bundle identifiers for Debug, AdHoc Beta and AppStore release builds !!!).
+The client framework should only be included in AdHoc builds and should NOT (!!) be used in AppStore distribution builds! By default the client library will check for updates on your server whenever the app is started or will wake up. The user can adjust this in the settings dialog to alternatively only check once a day or manually.</p>
+
+<p>This framework was created after reading the blog post at <a href="http://jeffreysambells.com/posts/2010/06/22/ios-wireless-app-distribution/">http://jeffreysambells.com/posts/2010/06/22/ios-wireless-app-distribution/</a> where Jeffrey Sambells wrote about the mechanisms required and being available for us to use.</p>
+
+<p>A complete documentation can be found in the wiki at <a href="https://github.com/TheRealKerni/HockeyKit/wiki">https://github.com/TheRealKerni/HockeyKit/wiki</a></p>
+
+<h1>Requirements:</h1>
+
+<ul>
+<li>A PHP5 server needs to be available and is required for distribution of the apps</li>
+<li>No database required!</li>
+</ul>
+
+
+<h1>Features:</h1>
+
+<ul>
+<li>iOS AdHoc build OTA distribution</li>
+<li>Automatically generated website, in specific versions for all device types and desktop browser</li>
+<li>Web interface only requires subdirectory to be created and and .ipa and .plist file (any name) being added/updated</li>
+<li>Website can be used for first time installation and updates, iOS3 users can use the website from a desktop browser to download the app, iTunes installation instructions for those are also included</li>
+<li>Can handle multiple apps on one server, one subdirectory per app</li>
+<li>Optionally shows release notes by displaying the content of a file with the extension .html (use HTML format without wrapping it in <html> and <body>)</li>
+<li>Provisioning profile link shown optionally (useful if new users are added without building a new version just for them)</li>
+<li>Support for app icon on website and during installation on the device, place any .png file into the subdirectory (114x114 pixel works on all devices!)</li>
+<li>Optional client side framework</li>
+<li>Framework notifies users on startup of new updates, iOS4 users can install directly from within the client (In-App-Updates), iOS3 users will be hinted to the website</li>
+<li>Framework optionally sends UDID, app version, iOS version, device type to the server, overview will appear automatically in /stats/ website (write access for PHP scripts required)</li>
+<li>Stats website supports replacing UDIDs with names by entering them into a userlist.txt file within the stats subdirectory</li>
+<li>Bookmarklet to extract all UDIDs and names from iOS program portal device page available in the stats page</li>
+<li>Template for an Xcode 3 build script to upload all files to your server after a build (Beta Automatisation.sh)</li>
+</ul>
+
+
+<h1>Notes:</h1>
+
+<ul>
+<li>The server can run stand alone, the client is optional</li>
+<li>Beta testers need to run at least iOS 4 to benefit from the auto update functionality</li>
+<li>Beta testers using iOS 3 will also be notified of updates within the app</li>
+<li>Please check the iOS README.mkdown for addition iOS client related notes</li>
+<li>Do not enter a link to the app icon in the organizer screen. Hockey will add that part into the PList automatically on the server, if there is a PNG file found (114pixel icons work on all devices!)</li>
+<li>Make sure the IPA filename has no space in it. iOS is not able to call that URL correctly.</li>
+<li>Don&rsquo;t make separate names per IPA file you make, because only the first file found per directory be served</li>
+</ul>
+
+
+<h1>BRANCHES:</h1>
+
+<p>The branching structure follows the git flow concept, defined by Vincent Driessen: <a href="http://nvie.com/posts/a-successful-git-branching-model/">http://nvie.com/posts/a-successful-git-branching-model/</a></p>
+
+<ul>
+<li><p>Master branch:</p>
+
+<p>  The main branch where the source code of HEAD always reflects a production-ready state.</p></li>
+<li><p>Develop branch:</p>
+
+<p>  Consider this to be the main branch where the source code of HEAD always reflects a state with the latest delivered development changes for the next release. Some would call this the “integration branch”.</p></li>
+<li><p>Feature branches:</p>
+
+<p>  These are used to develop new features for the upcoming or a distant future release. The essence of a feature branch is that it exists as long as the feature is in development, but will eventually be merged back into develop (to definitely add the new feature to the upcoming release) or discarded (in case of a disappointing experiment).</p></li>
+<li><p>Release branches:</p>
+
+<p>  These branches support preparation of a new production release. By using this, the develop branch is cleared to receive features for the next big release.</p></li>
+<li><p>Hotfix branches:</p>
+
+<p>  Hotfix branches are very much like release branches in that they are also meant to prepare for a new production release, albeit unplanned.</p></li>
+</ul>
+
+
+<h1>Acknowledgments:</h1>
+
+<p>The following 3rd party open source libraries have been used:</p>
+
+<ul>
+<li>JSONKit by johnezang (<a href="https://github.com/johnezang/JSONKit">https://github.com/johnezang/JSONKit)</a>)</li>
+<li>SBJson by Stig Brautaset (<a href="http://github.com/stig/json-framework">http://github.com/stig/json-framework)</a>)</li>
+<li><a href="Classes/PSStoreButton.html">PSStoreButton</a> by Peter Steinberger (<a href="https://github.com/steipete/PSStoreButton">https://github.com/steipete/PSStoreButton)</a>)</li>
+<li>NSString+URLEncoding by Kaboomerang LLC.</li>
+<li>bluescreen css framework (<a href="http://blueprintcss.org/">http://blueprintcss.org/)</a>)</li>
+<li>PHP plist reader code from <a href="http://blog.iconara.net/2007/05/08/php-plist-parsing/">http://blog.iconara.net/2007/05/08/php-plist-parsing/</a></li>
+</ul>
+
+						
+						
+					</div>
+					
+                        
+                    
+					
+					
+					<div class="index-column">
+						<h2 class="index-title">Class References</h2>
+						<ul>
+							
+							<li><a href="Classes/BWApp.html">BWApp</a></li>
+							
+							<li><a href="Classes/BWHockeyManager.html">BWHockeyManager</a></li>
+							
+							<li><a href="Classes/BWHockeySettingsViewController.html">BWHockeySettingsViewController</a></li>
+							
+							<li><a href="Classes/BWHockeyViewController.html">BWHockeyViewController</a></li>
+							
+							<li><a href="Classes/PSAppStoreHeader.html">PSAppStoreHeader</a></li>
+							
+							<li><a href="Classes/PSStoreButton.html">PSStoreButton</a></li>
+							
+							<li><a href="Classes/PSStoreButtonData.html">PSStoreButtonData</a></li>
+							
+							<li><a href="Classes/PSWebTableViewCell.html">PSWebTableViewCell</a></li>
+							
+						</ul>
+					</div>
+					
+					
+						
+					<div class="index-column">
+						
+						<h2 class="index-title">Protocol References</h2>
+						<ul>
+							
+							<li><a href="Protocols/BWHockeyManagerDelegate.html">BWHockeyManagerDelegate</a></li>
+							
+							<li><a href="Protocols/PSStoreButtonDelegate.html">PSStoreButtonDelegate</a></li>
+							
+						</ul>
+						
+						
+						<h2 class="index-title">Category References</h2>
+						<ul>
+							
+							<li><a href="Categories/NSString+HockeyAdditions.html">NSString(HockeyAdditions)</a></li>
+							
+							<li><a href="Categories/UIImage+HockeyAdditions.html">UIImage(HockeyAdditions)</a></li>
+							
+						</ul>
+						
+					</div>
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<a href="hierarchy.html">Next</a>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Andreas Linde. All rights reserved. (Last updated: 2012-12-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.6 (build 789)</a>.</span></p>
+						
+	
+					</div>
+				</div>
+			</div>
+		</article>		
+	</body>
+</html>
