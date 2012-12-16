@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  leetspeak
+
+  Created by Philip Schneider on 16.12.12.
+  Copyright (c) 2012 Philip Schneider (phschneider.net). All rights reserved.
+*/
+
+
+// TabBar
+"A-Z TabBar Title" = "A-Z";
+"Input TabBar Title" = "Eingabe";
+"Wiki TabBar Title" = "Info";
+
+// Input View Controller
+"Added to clipboard alert description" = "In Zwischenablage kopiert";
+
+// Wiki View Controller
+"Wikipedia Navigation Title" = "Wikipedia";

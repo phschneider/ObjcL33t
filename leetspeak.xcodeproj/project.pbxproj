@@ -33,6 +33,7 @@
 		2214851F164434BA001DED95 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22148512164430C8001DED95 /* Default@2x.png */; };
 		22148520164434BF001DED95 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 22148514164431B7001DED95 /* Default.png */; };
 		22415AD8167A5CAD006712FC /* PSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22415AD7167A5CAD006712FC /* PSTabBarController.m */; };
+		2250CB85167D607500B56038 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2250CB87167D607500B56038 /* Localizable.strings */; };
 		226B324A166BC87200E0B8CC /* PSScreenSaverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 226B3249166BC87200E0B8CC /* PSScreenSaverViewController.m */; };
 		22A6F23B167D5E3600849D4B /* PSInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A6F23A167D5E3600849D4B /* PSInputViewController.m */; };
 		22CC2A7C166C187B00D8B20C /* PSMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC2A7B166C187B00D8B20C /* PSMoreViewController.m */; };
@@ -1550,6 +1551,8 @@
 		22415AD5167A5667006712FC /* defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = defaults.h; sourceTree = "<group>"; };
 		22415AD6167A5CAD006712FC /* PSTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTabBarController.h; sourceTree = "<group>"; };
 		22415AD7167A5CAD006712FC /* PSTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTabBarController.m; sourceTree = "<group>"; };
+		2250CB86167D607500B56038 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2250CB89167D607900B56038 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		226B3248166BC87200E0B8CC /* PSScreenSaverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSScreenSaverViewController.h; sourceTree = "<group>"; };
 		226B3249166BC87200E0B8CC /* PSScreenSaverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSScreenSaverViewController.m; sourceTree = "<group>"; };
 		22A6F23A167D5E3600849D4B /* PSInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSInputViewController.m; sourceTree = "<group>"; };
@@ -3176,6 +3179,7 @@
 		22147F5D16441EDB001DED95 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2250CB87167D607500B56038 /* Localizable.strings */,
 				22F16443167D39DE00F2F3F8 /* Audio */,
 				226B326B166BDA8F00E0B8CC /* Wiki */,
 				220F2C851644880B003CC37A /* BookmanOld.ttf */,
@@ -6271,6 +6275,7 @@
 				22EB5BB5167D5407000CB557 /* white-59-woman@2x.png in Resources */,
 				22EB5BB6167D5407000CB557 /* white-60-x.png in Resources */,
 				22EB5BB7167D5407000CB557 /* white-60-x@2x.png in Resources */,
+				2250CB85167D607500B56038 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6356,6 +6361,18 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		2250CB87167D607500B56038 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2250CB86167D607500B56038 /* en */,
+				2250CB89167D607900B56038 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		22147F4B16441E35001DED95 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -6386,7 +6403,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "70B527D2-A6CC-4B86-A3D9-0C3BBE3DABEC";
+				PROVISIONING_PROFILE = "F7F7CD2F-6C90-44E8-B384-6CA11EB737D4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s armv6";
@@ -6415,7 +6432,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "70B527D2-A6CC-4B86-A3D9-0C3BBE3DABEC";
+				PROVISIONING_PROFILE = "F7F7CD2F-6C90-44E8-B384-6CA11EB737D4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -6525,7 +6542,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "70B527D2-A6CC-4B86-A3D9-0C3BBE3DABEC";
+				PROVISIONING_PROFILE = "F7F7CD2F-6C90-44E8-B384-6CA11EB737D4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -6592,7 +6609,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "70B527D2-A6CC-4B86-A3D9-0C3BBE3DABEC";
+				PROVISIONING_PROFILE = "F7F7CD2F-6C90-44E8-B384-6CA11EB737D4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

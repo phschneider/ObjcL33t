@@ -68,11 +68,12 @@
         CGRect textViewFrame = CGRectMake(paddingX,paddingY,width,height);
         self.input = [[PSTextView alloc] initWithFrame:textViewFrame];
         self.input.autoresizingMask = UIViewAutoresizingNone;
-        //        self.input.text = @"Hello, i'm your nerdy friend";
-        self.input.text = @"";
+        self.input.text = @"Hi";
+//        self.input.text = @"";
         self.input.delegate = self;
         [self.input setCanBecomeFirstResponder:YES];
         self.input.layer.borderWidth = 1;
+        self.input.keyboardAppearance = UIKeyboardAppearanceAlert;
         self.input.layer.borderColor = [[UIColor blackColor] CGColor];
         [self.view addSubview:self.input];
         
@@ -99,6 +100,7 @@
         self.output.delegate = self.input.delegate;
         self.output.autoresizingMask = self.input.autoresizingMask;
         self.output.editable = NO;
+        self.output.keyboardAppearance = self.input.keyboardAppearance;
         [self.output setCanBecomeFirstResponder:NO];
         self.output.textColor = [UIColor whiteColor];
         self.output.layer.borderWidth = 1;

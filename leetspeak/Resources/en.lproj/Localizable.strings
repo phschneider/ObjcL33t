@@ -1,3 +1,11 @@
+/* 
+  Localizable.strings
+  leetspeak
+
+  Created by Philip Schneider on 16.12.12.
+  Copyright (c) 2012 Philip Schneider (phschneider.net). All rights reserved.
+*/
+
 /* Localized versions of Info.plist keys */
 
 
@@ -10,4 +18,4 @@
 "Added to clipboard alert description" = "copied to clipboard";
 
 // Wiki View Controller
-"Wikipedia Navigation Title" = "Wikipedia";
+"Wikipedia Navigation Title" = "From Wikipedia";
