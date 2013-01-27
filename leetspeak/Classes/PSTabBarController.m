@@ -31,11 +31,23 @@
     DLogFuncName();
     if (APPDELEGATE.screenSaverStarted)
     {
-        self.tabBar.hidden = YES;
+        
+        [UIView animateWithDuration:10
+                              delay:0
+                            options: UIViewAnimationCurveLinear
+                         animations:^{
+                             self.tabBar.alpha = .0;
+                         }
+                         completion:^(BOOL finished){
+                             self.tabBar.hidden = YES;
+                             self.tabBar.alpha = 1.0;
+                         }];
+
     }
     else
     {
         self.tabBar.hidden = NO;
+        self.tabBar.alpha = 1.0;
     }
 }
 

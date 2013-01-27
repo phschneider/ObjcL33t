@@ -95,6 +95,10 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
         self.slider.minimumValue = 0;
         self.slider.maximumValue = 8;
         self.slider.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+        self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        self.tapGestureRecognizer.numberOfTapsRequired = 1;
+        [self.slider addGestureRecognizer:self.tapGestureRecognizer];
+        
         [self.view addSubview:self.slider];
         
         
@@ -119,6 +123,7 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {
@@ -198,6 +203,39 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
 
 
 #pragma mark - Slider
+/**
+ Slider weakness
+ @param sender <#sender description#>
+ */
+- (void)handleTap:(UITapGestureRecognizer *)sender {
+    DLogFuncName();
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {         // handling code
+        CGPoint loc = [sender locationInView:self.slider];
+        DLogPoint(loc);
+        CGRect frame = [self.slider thumbRectForBounds:self.slider.bounds trackRect:self.slider.bounds value:self.slider.value];
+        DLogRect(frame);
+        if (frame.origin.x < loc.x)
+        {
+            if (self.slider.value < self.slider.maximumValue)
+            {
+                [self.slider setValue:self.slider.value+1];
+                [self valueChanged:self.slider];
+            }
+        }
+        else if (frame.origin.x > loc.x)
+        {
+            if (self.slider.value > self.slider.minimumValue)
+            {
+                [self.slider setValue:self.slider.value-1];
+                [self valueChanged:self.slider];
+            }
+        }
+        
+    }
+}
+
+
 - (void)updateSliderValue
 {
     DLogFuncName();

@@ -18,6 +18,7 @@
 @property (strong, nonatomic) UISlider *slider;
 
 @property (strong, nonatomic) UIImageView * strengthImage;
+@property (strong, nonatomic) UITapGestureRecognizer * tapGestureRecognizer;
 
 - (void)valueChanged:(id)sender;
 

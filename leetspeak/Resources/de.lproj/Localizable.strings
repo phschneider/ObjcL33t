@@ -13,7 +13,11 @@
 "Wiki TabBar Title" = "Info";
 
 // Input View Controller
+"Nothing in clipboard alert description" = "Die Zwischenablage ist leer";
 "Added to clipboard alert description" = "In Zwischenablage kopiert";
+"No Mail Account alert description" = "Ups, noch kein E-Mail Account konfiguriert";
+"Device not configured to send mail" = "Ups, Senden von E-Mails auf dem Gerät nicht konfiguriert";
+"Device not configured to send SMS" = "Ups, Senden von SMS auf dem Gerät nicht konfiguriert";
 
 // Wiki View Controller
 "Wikipedia Navigation Title" = "Wikipedia";

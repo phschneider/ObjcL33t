@@ -15,7 +15,11 @@
 "Wiki TabBar Title" = "Info";
 
 // Input View Controller
+"Nothing in clipboard alert description" = "Sorry, nothing to copy from clipboard";
 "Added to clipboard alert description" = "copied to clipboard";
+"No Mail Account alert description" = "Sorry, no mail account configured";
+"Device not configured to send mail" = "Sorry, device is not configured to send mail";
+"Device not configured to send SMS" = "Sorry, device not configured to send SMS";
 
 // Wiki View Controller
 "Wikipedia Navigation Title" = "From Wikipedia";

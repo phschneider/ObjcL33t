@@ -123,6 +123,7 @@
 - (void) hideScreenSaver
 {
     DLogFuncName();
+    self.screenSaverStarted = NO;
     [self.screenSaverViewController.view removeFromSuperview];
 }
 
@@ -137,10 +138,13 @@
 {
     DLogFuncName();
     NSLog(@"Init BWQuincyManager");
-    [[BWQuincyManager sharedQuincyManager] setSubmissionURL:@"http://crash.phschneider.net/crash_v200.php"];
-    [[BWQuincyManager sharedQuincyManager] setAutoSubmitCrashReport:YES];
-    [[BWQuincyManager sharedQuincyManager] setFeedbackActivated:YES];
-    [[BWQuincyManager sharedQuincyManager] setDelegate:self];
+    if (!IS_SIMULATOR)
+    {
+        [[BWQuincyManager sharedQuincyManager] setSubmissionURL:@"http://crash.phschneider.net/crash_v200.php"];
+        [[BWQuincyManager sharedQuincyManager] setAutoSubmitCrashReport:YES];
+        [[BWQuincyManager sharedQuincyManager] setFeedbackActivated:YES];
+        [[BWQuincyManager sharedQuincyManager] setDelegate:self];
+    }
 }
 
 
@@ -148,6 +152,8 @@
 {
     DLogFuncName();
     #ifndef CONFIGURATION_AppStore
+    if (!IS_SIMULATOR)
+    {
         // Add these two lines if you want to activate the authorization feature
         //    [BWHockeyManager sharedHockeyManager].requireAuthorization = YES;
         //    [BWHockeyManager sharedHockeyManager].authenticationSecret = @"ChangeThisToYourOwnSecretString";
@@ -158,21 +164,24 @@
         
         // optionally enable logging to get more information about states.
         [BWHockeyManager sharedHockeyManager].loggingEnabled = YES;
+    }
     #endif
 }
 
 - (void) startGoogleAnalytics
 {
     DLogFuncName();
-    
-    // Optional: automatically track uncaught exceptions with Google Analytics.
-    [GAI sharedInstance].trackUncaughtExceptions = YES;
-    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
-    [GAI sharedInstance].dispatchInterval = 20;
-    // Optional: set debug to YES for extra debugging information.
-    [GAI sharedInstance].debug = YES;
-    // Create tracker instance.
-    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-37082737-1"];
+    if (!IS_SIMULATOR)
+    {
+        // Optional: automatically track uncaught exceptions with Google Analytics.
+        [GAI sharedInstance].trackUncaughtExceptions = YES;
+        // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+        [GAI sharedInstance].dispatchInterval = 20;
+        // Optional: set debug to YES for extra debugging information.
+        [GAI sharedInstance].debug = YES;
+        // Create tracker instance.
+        id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-37082737-1"];
+    }
 }
 
 
@@ -206,28 +215,31 @@
     }
 }
 
-
+#pragma mark - Application Delegate
 //AppDelegate Initialize Functions
 + (void)initialize
 {
     DLogFuncName();
-    [iVersion sharedInstance].applicationBundleID = @"net.phschneider.l33t";
-    [iVersion sharedInstance].showOnFirstLaunch = YES;
-#ifdef DEBUG
-    [iVersion sharedInstance].previewMode = YES;
-    [iVersion sharedInstance].verboseLogging = YES;
-#endif
-    
-    //configure iRate
-    [iRate sharedInstance].daysUntilPrompt = 5;
-    [iRate sharedInstance].applicationBundleID = @"net.phschneider.l33t";
-    [iRate sharedInstance].usesUntilPrompt = 15;
-    [iRate sharedInstance].promptAgainForEachNewVersion = YES;
-    
-#ifdef DEBUG
-    [iRate sharedInstance].previewMode = YES;
-    [iRate sharedInstance].verboseLogging = YES;
-#endif
+    if (!IS_SIMULATOR)
+    {
+        [iVersion sharedInstance].applicationBundleID = @"net.phschneider.l33t";
+        [iVersion sharedInstance].showOnFirstLaunch = YES;
+    #ifdef DEBUG
+        [iVersion sharedInstance].previewMode = YES;
+        [iVersion sharedInstance].verboseLogging = YES;
+    #endif
+        
+        //configure iRate
+        [iRate sharedInstance].daysUntilPrompt = 5;
+        [iRate sharedInstance].applicationBundleID = @"net.phschneider.l33t";
+        [iRate sharedInstance].usesUntilPrompt = 15;
+        [iRate sharedInstance].promptAgainForEachNewVersion = YES;
+        
+    #ifdef DEBUG
+        [iRate sharedInstance].previewMode = YES;
+        [iRate sharedInstance].verboseLogging = YES;
+    #endif
+    }
 }
 
 
@@ -242,6 +254,7 @@
     [self initUserDefaults];
     
     NSLog(@"isiOS6 = %d", IS_IOS6);
+    NSLog(@"isSimulator = %d", IS_SIMULATOR);
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

@@ -49,19 +49,32 @@
     DLog(@"Language = %@", language);
 
     NSString * resource;
-    
+    NSString * request;
     if ([[language uppercaseString] isEqualToString:@"DE"])
     {
         resource = @"DE-Leetspeak–Wikipedia";
+        request = @"http://de.wikipedia.org/wiki/Leetspeak";
     }
     else
     {
         resource = @"EN-Leetspeak–Wikipedia";
+        request = @"http://en.wikipedia.org/wiki/Leetspeak";
     }
-    
-    [[self navigationItem] setTitle:NSLocalizedString(@"Wikipedia Navigation Title",nil)];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:resource ofType:@"webarchive"] isDirectory:NO]]];
-    [self.webView becomeFirstResponder];
+    DLog(@"Resource = %@",resource);
+    NSString * path = [[NSBundle mainBundle] pathForResource:resource ofType:@"webarchive"];
+    DLog(@"Path = %@", path);
+    if (path)
+    {
+        [[self navigationItem] setTitle:NSLocalizedString(@"Wikipedia Navigation Title",nil)];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path isDirectory:NO]]];
+        [self.webView becomeFirstResponder];
+    }
+    else
+    {
+        [[self navigationItem] setTitle:NSLocalizedString(@"Wikipedia Navigation Title",nil)];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:request]]];
+        [self.webView becomeFirstResponder];
+    }
 }
 
 - (BOOL) shouldAutorotate

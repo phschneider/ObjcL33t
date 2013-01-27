@@ -148,6 +148,7 @@ debugIOS.textAlignment = UITextAlignmentLeft;\
 
 #define IS_LANDSCAPE    UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])
 #define IS_PORTRAIT     UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])
+#define IS_SIMULATOR    (TARGET_IPHONE_SIMULATOR)
 
 #define IS_IPAD         UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad
 #define IS_IPHONE       UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone
@@ -157,9 +158,9 @@ debugIOS.textAlignment = UITextAlignmentLeft;\
 
 #define APPDELEGATE     ((PSAppDelegate*)[[UIApplication sharedApplication] delegate])
 
-#define APP_BACKGROUND_COLOR            [[UIColor alloc]initWithRed: 0.129412 green: 0.129412 blue: 0.129412 alpha: 1]
-#define APP_SCREENSAVER_TIMER           60
-
+#define APP_BACKGROUND_COLOR                [[UIColor alloc]initWithRed: 0.129412 green: 0.129412 blue: 0.129412 alpha: 1]
+#define APP_SCREENSAVER_TIMER               60
+#define APP_ERROR_DURATION_TIMERINTERVAL    1.0
 
 // USERDEFAULTS
 

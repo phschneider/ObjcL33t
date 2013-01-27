@@ -123,24 +123,42 @@
         
         buttonFrame.origin.y = textViewFrame.origin.y + textViewFrame.size.height +10;
         buttonFrame.origin.x = textViewFrame.origin.x + textViewFrame.size.width;
-        
+
         self.exportButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.exportButton.frame = buttonFrame;
         [self.exportButton setImage:[UIImage imageNamed:@"white-266-upload"] forState:UIControlStateNormal];
         [self.exportButton addTarget:self action:@selector(exportButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.exportButton];
+
+        CGRect tmpButtonFrame = buttonFrame;
+        tmpButtonFrame.origin.y = self.output.frame.origin.y  + (ceil(self.output.frame.size.height / 2)) - ceil(self.exportButton.frame.size.height / 2);
         
+        self.mailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.mailButton.frame = tmpButtonFrame;
+        [self.mailButton setImage:[UIImage imageNamed:@"white-18-envelope"] forState:UIControlStateNormal];
+        [self.mailButton addTarget:self action:@selector(mailButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.mailButton];
+        
+        tmpButtonFrame.origin.y = self.output.frame.origin.y - 8;
+        
+        self.chatButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.chatButton.frame = tmpButtonFrame;
+        [self.chatButton setImage:[UIImage imageNamed:@"white-08-chat"] forState:UIControlStateNormal];
+        [self.chatButton addTarget:self action:@selector(chatButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.chatButton];
+                
         
         CGRect sliderFrame = CGRectMake(paddingX, self.view.frame.size.height - SLIDER_HEIGHT - paddingY, width, SLIDER_HEIGHT);
         
         self.slider = [[UISlider alloc] initWithFrame:sliderFrame];
         [self.slider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
         self.slider.minimumValue = 0;
-        //        UIImage * minImage = [UIImage imageNamed:@"white-89-dumbells"];
-        //        UIImage * maxImage = [UIImage imageNamed:@"white-89-dumbells"];
-        //        self.slider.minimumValueImage = minImage;
-        //        self.slider.maximumValueImage = maxImage;
         self.slider.maximumValue = 8;
+        
+        self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        self.tapGestureRecognizer.numberOfTapsRequired = 1;
+        [self.slider addGestureRecognizer:self.tapGestureRecognizer];
+    
         self.slider.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
         [self.view addSubview:self.slider];
         
@@ -169,6 +187,12 @@
         
         self.switchButton.layer.borderWidth = 1.0;
         self.switchButton.layer.borderColor = [[UIColor whiteColor] CGColor];
+        
+        self.chatButton.layer.borderWidth = 1.0;
+        self.chatButton.layer.borderColor = [[UIColor whiteColor] CGColor];
+        
+        self.mailButton.layer.borderWidth = 1.0;
+        self.mailButton.layer.borderColor = [[UIColor whiteColor] CGColor];
         
         self.strengthImage.layer.borderWidth = 1.0;
         self.strengthImage.layer.borderColor = [[UIColor whiteColor] CGColor];
@@ -220,6 +244,25 @@
     DLogFrame(self.topTextField);
     DLogFrame(self.bottomTextField);
     DLogFrame(self.switchButton);
+    
+//    buttonCenter = self.mailButton.center;
+//    buttonCenter.y =  ceil((self.bottomTextField.frame.origin.y - (self.topTextField.frame.origin.y + self.topTextField.frame.size.height)) / 2) + self.topTextField.frame.origin.y + self.topTextField.frame.size.height;
+//    self.mailButton.center = buttonCenter;
+    
+    buttonCenter = self.mailButton.center;
+    buttonCenter.x =  self.exportButton.center.x;
+    self.mailButton.center = buttonCenter;
+    
+    buttonCenter = self.chatButton.center;
+    buttonCenter.x =  self.exportButton.center.x;
+    self.chatButton.center = buttonCenter;
+//
+//    buttonCenter = self.slider.center;
+//    buttonCenter.x = ceil((self.view.frame.size.width - (self.slider.frame.origin.x + self.slider.frame.size.width))/2)+width+padding;
+//    self.mailButton.center = buttonCenter;
+    
+#warning todo mail button
+#warning todo chat button
 }
 
 
@@ -279,7 +322,7 @@
     [super viewDidUnload];
 }
 
-#pragma mark - Rotation
+#pragma mark - Rotation (iPad)
 - (void) setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if (IS_IPAD)
@@ -444,6 +487,39 @@
 }
 
 #pragma mark - Slider
+/**
+ Slider weakness
+ @param sender <#sender description#>
+ */
+- (void)handleTap:(UITapGestureRecognizer *)sender {
+    DLogFuncName();
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {         // handling code
+        CGPoint loc = [sender locationInView:self.slider];
+        DLogPoint(loc);
+        CGRect frame = [self.slider thumbRectForBounds:self.slider.bounds trackRect:self.slider.bounds value:self.slider.value];
+        DLogRect(frame);
+        if (frame.origin.x < loc.x)
+        {
+            if (self.slider.value < self.slider.maximumValue)
+            {
+                [self.slider setValue:self.slider.value+1];
+                [self valueChanged:self.slider];
+            }
+        }
+        else if (frame.origin.x > loc.x)
+        {
+            if (self.slider.value > self.slider.minimumValue)
+            {
+                [self.slider setValue:self.slider.value-1];
+                [self valueChanged:self.slider];
+            }
+        }
+        
+    }
+}
+
+
 - (void)updateSliderValue
 {
     DLogFuncName();
@@ -556,6 +632,10 @@
     {
         [self updateInputFromPasteBoardString:pasteboard.string];
     }
+    else
+    {
+        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Added to clipboard alert description",nil)];
+    }
     
     [[PSUserDefaults sharedPSUserDefaults] incrementImportButtonTouches];
 }
@@ -566,6 +646,158 @@
     [self export];
     [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Added to clipboard alert description",nil)];
     [[PSUserDefaults sharedPSUserDefaults] incrementExportButtonTouches];
+}
+
+
+- (void)mailButtonTouched:(id)sender {
+    DLogFuncName();
+    
+    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+
+    if (mailClass != nil) {
+        if ([MFMailComposeViewController canSendMail])
+        {
+            self.mailComposeViewController = [[MFMailComposeViewController alloc] init];
+            self.mailComposeViewController.mailComposeDelegate = self;
+            [self.mailComposeViewController setMessageBody:self.bottomTextField.text isHTML:NO];
+            //        self.mailcomposerViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+            
+
+            [self.mailComposeViewController addAttachmentData:[self.bottomTextField.text dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"l33t" fileName:@"Open With l33t-App (Avaiable in the AppStore)"];
+            [self presentViewController:self.mailComposeViewController animated:YES completion:nil];
+            
+            
+            
+            // Bugfix damit AbbrechenButton tastatur dismissen kann ...
+            self.mailComposeViewController.view.superview.autoresizingMask =
+            UIViewAutoresizingFlexibleTopMargin |
+            UIViewAutoresizingFlexibleBottomMargin;
+            if (IS_IPAD)
+            {
+                self.mailComposeViewController.view.superview.frame = CGRectMake(
+                                                                                  self.mailComposeViewController.view.superview.frame.origin.x,
+                                                                                  self.mailComposeViewController.view.superview.frame.origin.y,
+                                                                                  540.0f,
+                                                                                  480.0f);
+                
+                //    UIViewController *splitViewController = [[OBGAppDelegate sharedInstance] splitViewController];
+                CGRect bounds = [self.view bounds];
+                CGPoint centerPoint = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+                
+                self.mailComposeViewController.view.superview.center = centerPoint;
+            }
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send mail",nil) duration:APP_ERROR_DURATION_TIMERINTERVAL];
+        }
+    }
+    else
+    {
+        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send mail",nil) duration:APP_ERROR_DURATION_TIMERINTERVAL];
+    }
+
+}
+
+// Dismisses the email composition interface when users tap Cancel or Send. Proceeds to update the
+// message field with the result of the operation.
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    DLogFuncName();
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Result:" message:@"" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+
+    switch (result) {
+        case MFMailComposeResultCancelled:
+            alert.message = @"Result: Mail sending canceled";
+            break;
+        case MFMailComposeResultSaved:
+            alert.message = @"Result: Mail saved";
+            break;
+        case MFMailComposeResultSent:
+            alert.message = @"Result: Mail sent";
+            break;
+        case MFMailComposeResultFailed:
+            alert.message = @"Result: Mail sending failed";
+            break;
+        default:
+            alert.message = @"Result: Mail not sent";
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [alert show];
+}
+
+
+-(void)chatButtonTouched:(id)sender
+{
+    DLogFuncName();
+    Class messageClass = (NSClassFromString(@"MFMessageComposeViewController"));
+	
+	if (messageClass != nil) {
+        if ([MFMessageComposeViewController canSendText])
+        {
+            self.messageComposeViewController = [[MFMessageComposeViewController alloc] init];
+            self.messageComposeViewController.messageComposeDelegate = self;
+            [self.messageComposeViewController setBody: self.bottomTextField.text];        
+            [self presentViewController:self.messageComposeViewController animated:YES completion:nil];
+            
+            // Bugfix damit AbbrechenButton tastatur dismissen kann ...
+            self.messageComposeViewController.view.superview.autoresizingMask =
+            UIViewAutoresizingFlexibleTopMargin |
+            UIViewAutoresizingFlexibleBottomMargin;
+            if (IS_IPAD)
+            {
+                self.messageComposeViewController.view.superview.frame = CGRectMake(
+                                                                                 self.messageComposeViewController.view.superview.frame.origin.x,
+                                                                                 self.messageComposeViewController.view.superview.frame.origin.y,
+                                                                                 540.0f,
+                                                                                 480.0f);
+                
+                //    UIViewController *splitViewController = [[OBGAppDelegate sharedInstance] splitViewController];
+                CGRect bounds = [self.view bounds];
+                CGPoint centerPoint = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+                
+                self.messageComposeViewController.view.superview.center = centerPoint;
+            }
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send SMS",nil) duration:APP_ERROR_DURATION_TIMERINTERVAL];
+        }
+    }
+    else
+    {
+        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send SMS",nil) duration:APP_ERROR_DURATION_TIMERINTERVAL];
+    }
+}
+
+
+// Dismisses the message composition interface when users tap Cancel or Send. Proceeds to update the
+// feedback message field with the result of the operation.
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    DLogFuncName();
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Result:" message:@"" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+
+	// Notifies users about errors associated with the interface
+	switch (result)
+	{
+		case MessageComposeResultCancelled:
+			alert.message = @"Result: SMS sending canceled";
+			break;
+		case MessageComposeResultSent:
+			alert.message = @"Result: SMS sent";
+			break;
+		case MessageComposeResultFailed:
+			alert.message = @"Result: SMS sending failed";
+			break;
+		default:
+			alert.message = @"Result: SMS not sent";
+			break;
+	}
+//	[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [alert show];
 }
 
 
@@ -750,6 +982,14 @@
     oldExportButtonFrame.origin.y = newOutputRect.origin.y + newOutputRect.size.height - oldExportButtonFrame.size.height;
     oldExportButtonFrame.origin.y += 8;
     self.exportButton.frame = oldExportButtonFrame;
+    
+    CGRect tmpButtonFrame = oldExportButtonFrame;
+//    tmpButtonFrame.origin.y = oldExportButtonFrame.origin.y - self.exportButton.frame.size.height - 10;
+    tmpButtonFrame.origin.y = self.output.frame.origin.y  + (ceil(self.output.frame.size.height / 2)) - ceil(self.exportButton.frame.size.height / 2);
+    self.mailButton.frame = tmpButtonFrame;
+    
+    tmpButtonFrame.origin.y = self.output.frame.origin.y - 8; // - self.mailButton.frame.size.height - 10;
+    self.chatButton.frame = tmpButtonFrame;
 }
 
 
@@ -828,6 +1068,14 @@
     oldExportButtonFrame.origin.y = newOutputRect.origin.y + newOutputRect.size.height - oldExportButtonFrame.size.height;
     oldExportButtonFrame.origin.y += 8;
     self.exportButton.frame = oldExportButtonFrame;
+    
+    CGRect tmpButtonFrame = oldExportButtonFrame;
+//    tmpButtonFrame.origin.y = oldExportButtonFrame.origin.y - self.exportButton.frame.size.height - 10;
+    tmpButtonFrame.origin.y = self.output.frame.origin.y  + (ceil(self.output.frame.size.height / 2)) - ceil(self.exportButton.frame.size.height / 2);
+    self.mailButton.frame = tmpButtonFrame;
+    
+    tmpButtonFrame.origin.y = self.output.frame.origin.y - 8; // - self.mailButton.frame.size.height - 10;
+    self.chatButton.frame = tmpButtonFrame;
 }
 
 
@@ -978,4 +1226,5 @@
                          }
                      }];
 }
+    
 @end

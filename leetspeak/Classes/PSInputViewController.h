@@ -10,9 +10,12 @@
 #import "GAITrackedViewController.h"
 #import <UIKit/UIKit.h>
 #import "leet.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+#import <MessageUI/MFMessageComposeViewController.h>
 
 @class PSTextView;
-@interface PSInputViewController : GAITrackedViewController <UITextInputDelegate, UITextViewDelegate, UIAlertViewDelegate>
+@interface PSInputViewController : GAITrackedViewController <UITextInputDelegate, UITextViewDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
 
 @property (nonatomic) BOOL convertToLeet;
@@ -32,8 +35,15 @@
 @property (strong, nonatomic) UIButton *importButton;
 @property (strong, nonatomic) UIButton *exportButton;
 @property (strong, nonatomic) UIButton *switchButton;
+@property (strong, nonatomic) UIButton *mailButton;
+@property (strong, nonatomic) UIButton *chatButton;
 
 @property (strong, nonatomic) UIImageView * strengthImage;
+
+@property (strong, nonatomic) MFMailComposeViewController * mailComposeViewController;
+@property (strong, nonatomic) MFMessageComposeViewController * messageComposeViewController;
+
+@property (strong, nonatomic) UITapGestureRecognizer * tapGestureRecognizer;
 
 @property (readwrite)   CFURLRef        soundFileURLRef;
 @property (readonly)    SystemSoundID    soundKiss;
@@ -44,5 +54,18 @@
 - (void)switchButtonTouched:(id)sender;
 
 - (void)valueChanged:(id)sender;
+
+- (void)shrinkTextViewsWithAnimation:(BOOL)animation;
+- (void)shrinkTextViews;
+
+- (void) expandTextViewsWithAnimation:(BOOL)animation;
+- (void) expandTextViews;
+
+- (void) transformInput:(NSString*) text withRange:(NSRange) range;
+- (void) transformInput;
+
+- (void) exportOutput;
+- (void) export;
+
 
 @end
