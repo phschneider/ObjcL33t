@@ -23,3 +23,10 @@
 
 // Wiki View Controller
 "Wikipedia Navigation Title" = "From Wikipedia";
+
+
+// Reminder
+"Random First Reminder Title"   = "Hi";
+"Random Second Reminder Title"  = "How are you?";
+"Random Third Reminder Title"   = "Do you miss me?";
+"Random Fourth Reminder Title"   = "Always at your service";

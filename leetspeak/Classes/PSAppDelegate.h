@@ -27,8 +27,10 @@
 @property (nonatomic, strong) UITabBarController *tabBarController;
 @property (nonatomic, strong) PSScreenSaverViewController * screenSaverViewController;
 
-@property (readwrite) int number;
-@property (readwrite) BOOL screenSaverStarted;
+@property (nonatomic, strong) NSArray * reminderArray;
+        
+@property (nonatomic) int number;
+@property (nonatomic) BOOL screenSaverStarted;
 @property (nonatomic, strong) NSTimer * screenSaverTimer;
 
 - (void)startScreenSaverTimer;

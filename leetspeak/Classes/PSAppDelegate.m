@@ -18,6 +18,7 @@
 #import "PSWikiViewController.h"
 #import "PSMoreViewController.h"
 
+
 @implementation PSAppDelegate
 
 @synthesize screenSaverViewController = _screenSaverViewController;
@@ -25,6 +26,8 @@
 @synthesize number = _number;
 @synthesize screenSaverStarted = _screenSaverStarted;
 @synthesize screenSaverTimer = _screenSaverTimer;
+
+@synthesize reminderArray = _reminderArray;
 
 
 #pragma mark -
@@ -59,16 +62,14 @@
 //    DLogFuncName();
     if (!self.screenSaverTimer)
     {
-//        NSLog(@"Timer Started");
         self.screenSaverTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
     }
     else if ([self.screenSaverTimer isValid])
     {
-//        NSLog(@"Timer isValid");
+        
     }
     else if (![self.screenSaverTimer isValid])
     {
-//        NSLog(@"Timer isInValid");
         self.screenSaverTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
     }
 
@@ -124,9 +125,59 @@
 {
     DLogFuncName();
     self.screenSaverStarted = NO;
+    [self.tabBarController.view layoutSubviews];
     [self.screenSaverViewController.view removeFromSuperview];
 }
 
+
+#pragma mark - LocalNotifications
+- (void) clearReminder
+{
+    DLogFuncName();
+    // Kill old notification
+    for (UILocalNotification * notification in [[[UIApplication sharedApplication] scheduledLocalNotifications] copy])
+    {
+        [[UIApplication sharedApplication] cancelLocalNotification:notification];
+    }
+}
+
+- (void) updateReminder
+{
+    DLogFuncName();
+    [self clearReminder];
+    
+    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+    if (localNotif == nil) {
+        return;
+    }
+    
+    int r = arc4random() % [self.reminderArray count] + 1;
+    // Erinnere mich in 14 Tagen
+    localNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow: 60 * 60 * 24 * 14];
+#ifdef DEBUG
+    localNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow: 60];
+#endif
+    localNotif.timeZone = [NSTimeZone defaultTimeZone];
+    localNotif.alertBody = NSLocalizedString([self.reminderArray objectAtIndex:r], nil);
+    localNotif.alertAction = nil;
+    localNotif.soundName = UILocalNotificationDefaultSoundName;
+    localNotif.userInfo = nil;
+    
+
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
+    
+    DLog(@"NOTIFICATIONS ARE =======================================");
+    for (UILocalNotification * notification in [[UIApplication sharedApplication] scheduledLocalNotifications])
+    {
+        DLog(@"Notification %@", notification.fireDate);
+        DLog(@"Notification %@", notification.alertBody);
+        DLog(@"Notification %@", notification.alertAction);
+    }
+    DLog(@"=======================================");
+}
+
+
+#pragma mark - Helpers
 - (BOOL) applicationSupportsShakeToEdit
 {
     DLogFuncName();
@@ -152,26 +203,30 @@
 {
     DLogFuncName();
     #ifndef CONFIGURATION_AppStore
-    if (!IS_SIMULATOR)
-    {
-        // Add these two lines if you want to activate the authorization feature
-        //    [BWHockeyManager sharedHockeyManager].requireAuthorization = YES;
-        //    [BWHockeyManager sharedHockeyManager].authenticationSecret = @"ChangeThisToYourOwnSecretString";
-        
-        NSLog(@"Init BWHockeyManager");
-        [BWHockeyManager sharedHockeyManager].updateURL = @"http://beta.phschneider.net";
-        [BWHockeyManager sharedHockeyManager].delegate = self;
-        
-        // optionally enable logging to get more information about states.
-        [BWHockeyManager sharedHockeyManager].loggingEnabled = YES;
-    }
+        #ifdef CONFIGURATION_Beta
+        if (!IS_SIMULATOR)
+        {
+            // Add these two lines if you want to activate the authorization feature
+            //    [BWHockeyManager sharedHockeyManager].requireAuthorization = YES;
+            //    [BWHockeyManager sharedHockeyManager].authenticationSecret = @"ChangeThisToYourOwnSecretString";
+            
+            NSLog(@"Init BWHockeyManager");
+            [BWHockeyManager sharedHockeyManager].updateURL = @"http://beta.phschneider.net";
+            [BWHockeyManager sharedHockeyManager].delegate = self;
+            
+            // optionally enable logging to get more information about states.
+            [BWHockeyManager sharedHockeyManager].loggingEnabled = YES;
+        }
+        #endif
     #endif
 }
+
 
 - (void) startGoogleAnalytics
 {
     DLogFuncName();
-    if (!IS_SIMULATOR)
+    #ifdef CONFIGURATION_AppStore
+    if (!IS_SIMULATOR && !DEBUG)
     {
         // Optional: automatically track uncaught exceptions with Google Analytics.
         [GAI sharedInstance].trackUncaughtExceptions = YES;
@@ -182,6 +237,7 @@
         // Create tracker instance.
         id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-37082737-1"];
     }
+    #endif
 }
 
 
@@ -256,6 +312,8 @@
     NSLog(@"isiOS6 = %d", IS_IOS6);
     NSLog(@"isSimulator = %d", IS_SIMULATOR);
     
+    self.reminderArray = [NSArray arrayWithObjects:@"Random First Reminder Title",@"Random Second Reminder Title", @"Random Third Reminder Title", @"Random Fourth Reminder Title", nil];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Override point for customization after application launch.
@@ -283,6 +341,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     DLogFuncName();
+    [self updateReminder];
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
@@ -290,7 +349,8 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     DLogFuncName();
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    [self updateReminder];
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -304,11 +364,14 @@
 {
     DLogFuncName();
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+//    [self updateReminder];
+    [self clearReminder];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     DLogFuncName();
+    [self updateReminder];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

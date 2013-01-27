@@ -12,6 +12,7 @@
 "Input TabBar Title" = "Eingabe";
 "Wiki TabBar Title" = "Info";
 
+
 // Input View Controller
 "Nothing in clipboard alert description" = "Die Zwischenablage ist leer";
 "Added to clipboard alert description" = "In Zwischenablage kopiert";
@@ -19,5 +20,13 @@
 "Device not configured to send mail" = "Ups, Senden von E-Mails auf dem Gerät nicht konfiguriert";
 "Device not configured to send SMS" = "Ups, Senden von SMS auf dem Gerät nicht konfiguriert";
 
+
 // Wiki View Controller
 "Wikipedia Navigation Title" = "Wikipedia";
+
+
+// Reminder
+"Random First Reminder Title"   = "Hi";
+"Random Second Reminder Title"  = "Wie geht's?";
+"Random Third Reminder Title"   = "Vermisst Du mich?";
+"Random Fourth Reminder Title"   = "Stets zu Diensten";
