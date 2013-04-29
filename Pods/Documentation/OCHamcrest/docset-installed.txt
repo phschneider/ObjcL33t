@@ -1,0 +1,4 @@
+Documentation set was installed to Xcode!
+
+Path: /Users/pschneider/Library/Developer/Shared/Documentation/DocSets/org.cocoapods.OCHamcrest-1.9.docset
+Time: 2013-02-25 21:04:30 +0000

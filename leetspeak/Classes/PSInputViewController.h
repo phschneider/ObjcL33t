@@ -20,6 +20,9 @@
 
 @property (nonatomic) BOOL convertToLeet;
 
+@property (strong, nonatomic) NSMutableArray * toolTips;
+@property (strong, nonatomic) NSMutableArray * darkViews;
+
 @property (strong, nonatomic) PSTextView *input;
 @property (strong, nonatomic) PSTextView *output;
 @property (strong, nonatomic) PSTextView *editingTextView;
@@ -37,6 +40,7 @@
 @property (strong, nonatomic) UIButton *switchButton;
 @property (strong, nonatomic) UIButton *mailButton;
 @property (strong, nonatomic) UIButton *chatButton;
+@property (strong, nonatomic) UIButton *helpButton;
 
 @property (strong, nonatomic) UIImageView * strengthImage;
 

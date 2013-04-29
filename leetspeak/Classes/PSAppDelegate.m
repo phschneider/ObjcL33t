@@ -17,7 +17,9 @@
 #import "PSScreenSaverViewController.h"
 #import "PSWikiViewController.h"
 #import "PSMoreViewController.h"
+#import "PSWizzardViewController.h"
 
+#import "TestFlight.h"
 
 @implementation PSAppDelegate
 
@@ -39,6 +41,7 @@
     if ([[UIDevice currentDevice] respondsToSelector:@selector(uniqueIdentifier)])
         return [[UIDevice currentDevice] performSelector:@selector(uniqueIdentifier)];
 #endif
+    
     return nil;
 }
 
@@ -75,6 +78,7 @@
 
 }
 
+
 - (void)resetScreenSaverTimer
 {
 //    DLogFuncName();
@@ -83,6 +87,7 @@
     self.screenSaverStarted = NO;
     [self startScreenSaverTimer];
 }
+
 
 - (void)updateTimer
 {
@@ -111,14 +116,17 @@
 - (void) showScreenSaver
 {
     DLogFuncName();
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_STARTED object:nil];
+    if (!self.wizzardStarted)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_STARTED object:nil];
 
-    self.screenSaverStarted = YES;
-    [self.screenSaverTimer invalidate];
-    
-    self.screenSaverViewController = [[PSScreenSaverViewController alloc] init];
-    //[self.window.rootViewController presentModalViewController:screenSaver animated:NO];
-    [self.window.rootViewController.view addSubview:self.screenSaverViewController.view];
+        self.screenSaverStarted = YES;
+        [self.screenSaverTimer invalidate];
+        
+        self.screenSaverViewController = [[PSScreenSaverViewController alloc] init];
+        //[self.window.rootViewController presentModalViewController:screenSaver animated:NO];
+        [self.window.rootViewController.view addSubview:self.screenSaverViewController.view];
+    }
 }
 
 - (void) hideScreenSaver
@@ -198,6 +206,19 @@
     }
 }
 
+
+- (void) startTestFlight
+{
+    DLogFuncName();
+    
+#ifdef CONFIGURATION_Beta
+    [TestFlight takeOff:@"dbf621ea-1434-439b-92b6-c38292542f98"];
+#endif
+    
+#ifdef CONFIGURATION_Debug
+    [TestFlight takeOff:@"0c8f417c-5a0a-41b3-a743-770753d520eb"];
+#endif
+}
 
 - (void) startBetaUpdateChecker
 {
@@ -286,10 +307,12 @@
     #endif
         
         //configure iRate
-        [iRate sharedInstance].daysUntilPrompt = 5;
+//        [iRate sharedInstance].daysUntilPrompt = 10;
         [iRate sharedInstance].applicationBundleID = @"net.phschneider.l33t";
-        [iRate sharedInstance].usesUntilPrompt = 15;
+//        [iRate sharedInstance].usesUntilPrompt = 15;
         [iRate sharedInstance].promptAgainForEachNewVersion = YES;
+        [iRate sharedInstance].remindPeriod = 7;
+        [iRate sharedInstance].eventCount = 100;
         
     #ifdef DEBUG
         [iRate sharedInstance].previewMode = YES;
@@ -306,6 +329,8 @@
     [self startBetaUpdateChecker];
     [self startGoogleAnalytics];
     
+    [self startTestFlight];
+    
     [self setAppearance];
     [self initUserDefaults];
     
@@ -320,8 +345,6 @@
     UIViewController *viewController1, *viewController2, *viewController3;
     viewController1 = [[PSAlphaBetViewController alloc] init];
     viewController2 = [[PSInputViewController alloc] init];
-//    viewController3 = [[UINavigationController alloc] initWithRootViewController:[[PSMoreViewController alloc] init]];
-//    viewController3 = [[PSWikiViewController alloc] init];
     viewController3 = [[UINavigationController alloc] initWithRootViewController:[[PSWikiViewController alloc] init]];
     
     self.tabBarController = [[PSTabBarController alloc] init];
@@ -333,9 +356,40 @@
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
 
+    
+#warning umbauen
     [self startScreenSaverTimer];
     
+    [self showWizzard];
+    
     return YES;
+}
+
+
+- (void) showWizzard
+{
+    DLogFuncName();
+    self.wizzardViewController = nil;
+    self.wizzardStarted = YES;
+    self.wizzardViewController = [[PSWizzardViewController alloc] init];
+    [self.window.rootViewController.view addSubview:self.wizzardViewController.view];
+    
+    [self.wizzardViewController viewDidAppear:YES];
+}
+
+
+- (void) hideWizzard
+{
+    [UIView animateWithDuration:1.0
+                     animations:^{
+                                    self.wizzardViewController.view.alpha = 0;
+                                }
+                     completion:^(BOOL finished){
+                                    [self.wizzardViewController.view removeFromSuperview];
+//                                    self.wizzardViewController = nil;
+                                    self.wizzardStarted = NO;
+                        }];
+   
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

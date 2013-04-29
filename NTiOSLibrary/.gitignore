@@ -1,0 +1,12 @@
+# XCode
+*.mod1v3
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.pyc
+*~.nib/
+build/*
+xcuserdata
+
+# OSX
+.DS_Store

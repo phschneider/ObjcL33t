@@ -12,7 +12,7 @@
 	<body>
 		<header id="top_header">
 			<div id="library" class="hideInXcode">
-				<h1><a id="libraryTitle" href="../index.html">GoogleAnalytics-iOS-SDK 2.0beta3 </a></h1>
+				<h1><a id="libraryTitle" href="../index.html">GoogleAnalytics-iOS-SDK 2.0beta4 </a></h1>
 				<a id="developerHome" href="../index.html">Google Inc.</a>
 			</div>
 			
@@ -78,6 +78,24 @@
 	<option value="//api/name/get:">&nbsp;&nbsp;&nbsp;&nbsp;- get:</option>
 	
 	<option value="//api/name/send:params:">&nbsp;&nbsp;&nbsp;&nbsp;- send:params:</option>
+	
+	<option value="//api/name/sendEventWithCategory:withAction:withLabel:withValue:">&nbsp;&nbsp;&nbsp;&nbsp;- sendEventWithCategory:withAction:withLabel:withValue:</option>
+	
+	<option value="//api/name/sendException:withDescription:">&nbsp;&nbsp;&nbsp;&nbsp;- sendException:withDescription:</option>
+	
+	<option value="//api/name/sendException:withNSError:">&nbsp;&nbsp;&nbsp;&nbsp;- sendException:withNSError:</option>
+	
+	<option value="//api/name/sendException:withNSException:">&nbsp;&nbsp;&nbsp;&nbsp;- sendException:withNSException:</option>
+	
+	<option value="//api/name/sendSocial:withAction:withTarget:">&nbsp;&nbsp;&nbsp;&nbsp;- sendSocial:withAction:withTarget:</option>
+	
+	<option value="//api/name/sendTimingWithCategory:withValue:withName:withLabel:">&nbsp;&nbsp;&nbsp;&nbsp;- sendTimingWithCategory:withValue:withName:withLabel:</option>
+	
+	<option value="//api/name/sendTransaction:">&nbsp;&nbsp;&nbsp;&nbsp;- sendTransaction:</option>
+	
+	<option value="//api/name/sendView">&nbsp;&nbsp;&nbsp;&nbsp;- sendView</option>
+	
+	<option value="//api/name/sendView:">&nbsp;&nbsp;&nbsp;&nbsp;- sendView:</option>
 	
 	<option value="//api/name/set:value:">&nbsp;&nbsp;&nbsp;&nbsp;- set:value:</option>
 	
@@ -166,6 +184,24 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/get:">get:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/send:params:">send:params:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendEventWithCategory:withAction:withLabel:withValue:">sendEventWithCategory:withAction:withLabel:withValue:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendException:withDescription:">sendException:withDescription:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendException:withNSError:">sendException:withNSError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendException:withNSException:">sendException:withNSException:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendSocial:withAction:withTarget:">sendSocial:withAction:withTarget:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendTimingWithCategory:withValue:withName:withLabel:">sendTimingWithCategory:withValue:withName:withLabel:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendTransaction:">sendTransaction:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendView">sendView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendView:">sendView:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/set:value:">set:value:</a></span></li>
 	
@@ -373,7 +409,7 @@ be modified.</p></span>
 	<span class="task-item-suffix">required method</span>
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/trackView">&ndash;&nbsp;trackView</a></code>
+		<code><a href="#//api/name/sendView">&ndash;&nbsp;sendView</a></code>
 		<span class="tooltip"><p>Track that the current screen (as set in <a href="#//api/name/appScreen">appScreen</a>) was displayed. If <a href="#//api/name/appScreen">appScreen</a>
 has not been set, this will not generate any tracking information.</p></span>
 	</span>
@@ -381,7 +417,14 @@ has not been set, this will not generate any tracking information.</p></span>
 	<span class="task-item-suffix">required method</span>
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/trackView:">&ndash;&nbsp;trackView:</a></code>
+		<code><a href="#//api/name/trackView">&ndash;&nbsp;trackView</a></code>
+		<span class="tooltip"><p>This method is deprecated.  See <a href="#//api/name/sendView">sendView</a>.</p></span>
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendView:">&ndash;&nbsp;sendView:</a></code>
 		<span class="tooltip"><p>Track that the specified view or screen was displayed. This call sets
 the <a href="#//api/name/appScreen">appScreen</a> property and generates tracking information to be sent to Google
 Analytics.</p></span>
@@ -390,28 +433,56 @@ Analytics.</p></span>
 	<span class="task-item-suffix">required method</span>
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/trackEventWithCategory:withAction:withLabel:withValue:">&ndash;&nbsp;trackEventWithCategory:withAction:withLabel:withValue:</a></code>
+		<code><a href="#//api/name/trackView:">&ndash;&nbsp;trackView:</a></code>
+		<span class="tooltip"><p>This method is deprecated.  See <a href="#//api/name/sendView">sendView</a>.</p></span>
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendEventWithCategory:withAction:withLabel:withValue:">&ndash;&nbsp;sendEventWithCategory:withAction:withLabel:withValue:</a></code>
 		<span class="tooltip"><p>Track an event.</p></span>
 	</span>
 	
 	<span class="task-item-suffix">required method</span>
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/trackTransaction:">&ndash;&nbsp;trackTransaction:</a></code>
+		<code><a href="#//api/name/trackEventWithCategory:withAction:withLabel:withValue:">&ndash;&nbsp;trackEventWithCategory:withAction:withLabel:withValue:</a></code>
+		<span class="tooltip"><p>This method is deprecated. See sendEventWithCategory.</p></span>
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendTransaction:">&ndash;&nbsp;sendTransaction:</a></code>
 		<span class="tooltip"><p>Track a transaction.</p></span>
 	</span>
 	
 	<span class="task-item-suffix">required method</span>
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/trackException:withDescription:">&ndash;&nbsp;trackException:withDescription:</a></code>
+		<code><a href="#//api/name/trackTransaction:">&ndash;&nbsp;trackTransaction:</a></code>
+		<span class="tooltip"><p>This method is deprecated. see sendTransaction.</p></span>
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendException:withDescription:">&ndash;&nbsp;sendException:withDescription:</a></code>
 		<span class="tooltip"><p>Track an exception.</p></span>
 	</span>
 	
 	<span class="task-item-suffix">required method</span>
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/trackException:withNSException:">&ndash;&nbsp;trackException:withNSException:</a></code>
+		<code><a href="#//api/name/trackException:withDescription:">&ndash;&nbsp;trackException:withDescription:</a></code>
+		<span class="tooltip"><p>This method is deprecated. See sendException.</p></span>
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendException:withNSException:">&ndash;&nbsp;sendException:withNSException:</a></code>
 		<span class="tooltip"><p>Convenience method for tracking an NSException that passes the exception
 name to <a href="#//api/name/trackException:withDescription:">trackException:withDescription:</a>.</p></span>
 	</span>
@@ -419,7 +490,14 @@ name to <a href="#//api/name/trackException:withDescription:">trackException:wit
 	<span class="task-item-suffix">required method</span>
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/trackException:withNSError:">&ndash;&nbsp;trackException:withNSError:</a></code>
+		<code><a href="#//api/name/trackException:withNSException:">&ndash;&nbsp;trackException:withNSException:</a></code>
+		<span class="tooltip"><p>This method is deprecated. See sendException.</p></span>
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendException:withNSError:">&ndash;&nbsp;sendException:withNSError:</a></code>
 		<span class="tooltip"><p>Convenience method for tracking an NSError that passes the domain, code, and
 description to <a href="#//api/name/trackException:withDescription:">trackException:withDescription:</a>.</p></span>
 	</span>
@@ -427,15 +505,36 @@ description to <a href="#//api/name/trackException:withDescription:">trackExcept
 	<span class="task-item-suffix">required method</span>
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/trackTimingWithCategory:withValue:withName:withLabel:">&ndash;&nbsp;trackTimingWithCategory:withValue:withName:withLabel:</a></code>
+		<code><a href="#//api/name/trackException:withNSError:">&ndash;&nbsp;trackException:withNSError:</a></code>
+		<span class="tooltip"><p>This method is deprecated. See sendException.</p></span>
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendTimingWithCategory:withValue:withName:withLabel:">&ndash;&nbsp;sendTimingWithCategory:withValue:withName:withLabel:</a></code>
 		<span class="tooltip"><p>Track user timing.</p></span>
 	</span>
 	
 	<span class="task-item-suffix">required method</span>
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/trackSocial:withAction:withTarget:">&ndash;&nbsp;trackSocial:withAction:withTarget:</a></code>
+		<code><a href="#//api/name/trackTimingWithCategory:withValue:withName:withLabel:">&ndash;&nbsp;trackTimingWithCategory:withValue:withName:withLabel:</a></code>
+		<span class="tooltip"><p>This method is deprecated. See sendTimingWithCategory.</p></span>
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendSocial:withAction:withTarget:">&ndash;&nbsp;sendSocial:withAction:withTarget:</a></code>
 		<span class="tooltip"><p>Track social action.</p></span>
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/trackSocial:withAction:withTarget:">&ndash;&nbsp;trackSocial:withAction:withTarget:</a></code>
+		<span class="tooltip"><p>This method is deprecated. See sendSocial.</p></span>
 	</span>
 	
 	<span class="task-item-suffix">required method</span>
@@ -1126,7 +1225,7 @@ Analytics using HTTPS connection(s); otherwise, HTTP will be used. Note that
 there may be additional overhead when sending data using HTTPS in terms of
 processing costs and/or battery consumption.</p>
 
-<p>By default, this flag is false.</p>
+<p>By default, this flag is true.</p>
 	</div>
 	
 	
@@ -1308,6 +1407,600 @@ if an error occurred (e.g. bad track type).</p>
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Queue tracking information with the given parameter values.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GAITracker.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendEventWithCategory:withAction:withLabel:withValue:" title="sendEventWithCategory:withAction:withLabel:withValue:"></a>
+	<h3 class="subsubtitle method-title">sendEventWithCategory:withAction:withLabel:withValue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Track an event.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)sendEventWithCategory:(NSString *)<em>category</em> withAction:(NSString *)<em>action</em> withLabel:(NSString *)<em>label</em> withValue:(NSNumber *)<em>value</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>category</em></dt>
+			<dd><p>The event category, or <code>nil</code> if none.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>action</em></dt>
+			<dd><p>The event action, or <code>nil</code> if none.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>label</em></dt>
+			<dd><p>The event label, or <code>nil</code> if none.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>The event value, to be interpreted as a 64-bit signed integer, or
+<code>nil</code> if none.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
+there was an error (e.g. the tracker was closed).</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Track an event.</p>
+
+<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GAITracker.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendException:withDescription:" title="sendException:withDescription:"></a>
+	<h3 class="subsubtitle method-title">sendException:withDescription:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Track an exception.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)sendException:(BOOL)<em>isFatal</em> withDescription:(NSString *)<em>format</em>, <em>...</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>isFatal</em></dt>
+			<dd><p>A boolean indicating whether the exception is fatal.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>format</em></dt>
+			<dd><p>A format string that will be used to create the exception
+description.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>...</em></dt>
+			<dd><p>An optional list of arguments to be substituted using the format
+string.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
+there was an error (e.g. the tracker was closed).</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Track an exception.</p>
+
+<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GAITracker.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendException:withNSError:" title="sendException:withNSError:"></a>
+	<h3 class="subsubtitle method-title">sendException:withNSError:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenience method for tracking an NSError that passes the domain, code, and
+description to <a href="#//api/name/trackException:withDescription:">trackException:withDescription:</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)sendException:(BOOL)<em>isFatal</em> withNSError:(NSError *)<em>error</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>isFatal</em></dt>
+			<dd><p>A boolean indicating whether the exception is fatal.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>The NSError error object.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
+there was an error (e.g. the tracker was closed).</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Convenience method for tracking an NSError that passes the domain, code, and
+description to trackException:withDescription:.</p>
+
+<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GAITracker.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendException:withNSException:" title="sendException:withNSException:"></a>
+	<h3 class="subsubtitle method-title">sendException:withNSException:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenience method for tracking an NSException that passes the exception
+name to <a href="#//api/name/trackException:withDescription:">trackException:withDescription:</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)sendException:(BOOL)<em>isFatal</em> withNSException:(NSException *)<em>exception</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>isFatal</em></dt>
+			<dd><p>A boolean indicating whether the exception is fatal.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>exception</em></dt>
+			<dd><p>The NSException exception object.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
+there was an error (e.g. the tracker was closed).</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Convenience method for tracking an NSException that passes the exception
+name to trackException:withDescription:.</p>
+
+<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GAITracker.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendSocial:withAction:withTarget:" title="sendSocial:withAction:withTarget:"></a>
+	<h3 class="subsubtitle method-title">sendSocial:withAction:withTarget:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Track social action.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)sendSocial:(NSString *)<em>network</em> withAction:(NSString *)<em>action</em> withTarget:(NSString *)<em>target</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>network</em></dt>
+			<dd><p>A string representing social network. Must not be nil.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>action</em></dt>
+			<dd><p>A string representing a social action. Must not be nil.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>target</em></dt>
+			<dd><p>A string representing the target. May be nil.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
+there was an error (e.g. the tracker was closed).</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Track social action.</p>
+
+<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GAITracker.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendTimingWithCategory:withValue:withName:withLabel:" title="sendTimingWithCategory:withValue:withName:withLabel:"></a>
+	<h3 class="subsubtitle method-title">sendTimingWithCategory:withValue:withName:withLabel:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Track user timing.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)sendTimingWithCategory:(NSString *)<em>category</em> withValue:(NSTimeInterval)<em>time</em> withName:(NSString *)<em>name</em> withLabel:(NSString *)<em>label</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>category</em></dt>
+			<dd><p>A string representing a timing category.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>time</em></dt>
+			<dd><p>A timing value.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>A string representing a timing name, or <code>nil</code> if none.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>label</em></dt>
+			<dd><p>A string representing a timing variable label, or <code>nil</code> if none.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
+there was an error (e.g. the tracker was closed).</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Track user timing.</p>
+
+<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GAITracker.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendTransaction:" title="sendTransaction:"></a>
+	<h3 class="subsubtitle method-title">sendTransaction:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Track a transaction.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)sendTransaction:(GAITransaction *)<em>transaction</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>transaction</em></dt>
+			<dd><p>The <a href="../Classes/GAITransaction.html">GAITransaction</a> object.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
+there was an error (e.g. the tracker was closed).</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Track a transaction.</p>
+
+<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GAITracker.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendView" title="sendView"></a>
+	<h3 class="subsubtitle method-title">sendView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Track that the current screen (as set in <a href="#//api/name/appScreen">appScreen</a>) was displayed. If <a href="#//api/name/appScreen">appScreen</a>
+has not been set, this will not generate any tracking information.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)sendView</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
+there was an error (e.g. the tracker was closed or <a href="#//api/name/appScreen">appScreen</a> is not set).</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Track that the current screen (as set in appScreen) was displayed. If appScreen
+has not been set, this will not generate any tracking information.</p>
+
+<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GAITracker.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendView:" title="sendView:"></a>
+	<h3 class="subsubtitle method-title">sendView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Track that the specified view or screen was displayed. This call sets
+the <a href="#//api/name/appScreen">appScreen</a> property and generates tracking information to be sent to Google
+Analytics.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)sendView:(NSString *)<em>screen</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>screen</em></dt>
+			<dd><p>The name of the screen. Must not be <code>nil</code>.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
+there was an error (e.g. the tracker was closed).</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Track that the specified view or screen was displayed. This call sets
+the appScreen property and generates tracking information to be sent to Google
+Analytics.</p>
+
+<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
 	</div>
 	
 	
@@ -1518,7 +2211,7 @@ integer, or <code>nil</code> if the metric at the given index is to be cleared.<
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Track an event.</p>
+		<p>This method is deprecated. See sendEventWithCategory.</p>
 	</div>		
 	
     
@@ -1527,39 +2220,7 @@ integer, or <code>nil</code> if the metric at the given index is to be cleared.<
 
     
 	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>category</em></dt>
-			<dd><p>The event category, or <code>nil</code> if none.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>action</em></dt>
-			<dd><p>The event action, or <code>nil</code> if none.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>label</em></dt>
-			<dd><p>The event label, or <code>nil</code> if none.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>value</em></dt>
-			<dd><p>The event value, to be interpreted as a 64-bit signed integer, or
-<code>nil</code> if none.</p></dd>
-		</dl>
-		
-	</div>
 	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
-there was an error (e.g. the tracker was closed).</p>
-	</div>
 	
 	
 	
@@ -1567,9 +2228,7 @@ there was an error (e.g. the tracker was closed).</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Track an event.</p>
-
-<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+		<p>This method is deprecated. See sendEventWithCategory.</p>
 	</div>
 	
 	
@@ -1593,7 +2252,7 @@ there was an error (e.g. the tracker was closed).</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Track an exception.</p>
+		<p>This method is deprecated. See sendException.</p>
 	</div>		
 	
     
@@ -1602,35 +2261,7 @@ there was an error (e.g. the tracker was closed).</p>
 
     
 	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>isFatal</em></dt>
-			<dd><p>A boolean indicating whether the exception is fatal.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>format</em></dt>
-			<dd><p>A format string that will be used to create the exception
-description.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>...</em></dt>
-			<dd><p>An optional list of arguments to be substituted using the format
-string.</p></dd>
-		</dl>
-		
-	</div>
 	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
-there was an error (e.g. the tracker was closed).</p>
-	</div>
 	
 	
 	
@@ -1638,9 +2269,7 @@ there was an error (e.g. the tracker was closed).</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Track an exception.</p>
-
-<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+		<p>This method is deprecated. See sendException.</p>
 	</div>
 	
 	
@@ -1664,8 +2293,7 @@ there was an error (e.g. the tracker was closed).</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Convenience method for tracking an NSError that passes the domain, code, and
-description to <a href="#//api/name/trackException:withDescription:">trackException:withDescription:</a>.</p>
+		<p>This method is deprecated. See sendException.</p>
 	</div>		
 	
     
@@ -1674,28 +2302,7 @@ description to <a href="#//api/name/trackException:withDescription:">trackExcept
 
     
 	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>isFatal</em></dt>
-			<dd><p>A boolean indicating whether the exception is fatal.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>error</em></dt>
-			<dd><p>The NSError error object.</p></dd>
-		</dl>
-		
-	</div>
 	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
-there was an error (e.g. the tracker was closed).</p>
-	</div>
 	
 	
 	
@@ -1703,10 +2310,7 @@ there was an error (e.g. the tracker was closed).</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Convenience method for tracking an NSError that passes the domain, code, and
-description to trackException:withDescription:.</p>
-
-<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+		<p>This method is deprecated. See sendException.</p>
 	</div>
 	
 	
@@ -1730,8 +2334,7 @@ description to trackException:withDescription:.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Convenience method for tracking an NSException that passes the exception
-name to <a href="#//api/name/trackException:withDescription:">trackException:withDescription:</a>.</p>
+		<p>This method is deprecated. See sendException.</p>
 	</div>		
 	
     
@@ -1740,28 +2343,7 @@ name to <a href="#//api/name/trackException:withDescription:">trackException:wit
 
     
 	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>isFatal</em></dt>
-			<dd><p>A boolean indicating whether the exception is fatal.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>exception</em></dt>
-			<dd><p>The NSException exception object.</p></dd>
-		</dl>
-		
-	</div>
 	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
-there was an error (e.g. the tracker was closed).</p>
-	</div>
 	
 	
 	
@@ -1769,10 +2351,7 @@ there was an error (e.g. the tracker was closed).</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Convenience method for tracking an NSException that passes the exception
-name to trackException:withDescription:.</p>
-
-<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+		<p>This method is deprecated. See sendException.</p>
 	</div>
 	
 	
@@ -1796,7 +2375,7 @@ name to trackException:withDescription:.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Track social action.</p>
+		<p>This method is deprecated. See sendSocial.</p>
 	</div>		
 	
     
@@ -1805,33 +2384,7 @@ name to trackException:withDescription:.</p>
 
     
 	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>network</em></dt>
-			<dd><p>A string representing social network. Must not be nil.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>action</em></dt>
-			<dd><p>A string representing a social action. Must not be nil.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>target</em></dt>
-			<dd><p>A string representing the target. May be nil.</p></dd>
-		</dl>
-		
-	</div>
 	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
-there was an error (e.g. the tracker was closed).</p>
-	</div>
 	
 	
 	
@@ -1839,9 +2392,7 @@ there was an error (e.g. the tracker was closed).</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Track social action.</p>
-
-<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+		<p>This method is deprecated. See sendSocial.</p>
 	</div>
 	
 	
@@ -1865,7 +2416,7 @@ there was an error (e.g. the tracker was closed).</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Track user timing.</p>
+		<p>This method is deprecated. See sendTimingWithCategory.</p>
 	</div>		
 	
     
@@ -1874,38 +2425,7 @@ there was an error (e.g. the tracker was closed).</p>
 
     
 	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>category</em></dt>
-			<dd><p>A string representing a timing category.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>time</em></dt>
-			<dd><p>A timing value.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>name</em></dt>
-			<dd><p>A string representing a timing name, or <code>nil</code> if none.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>label</em></dt>
-			<dd><p>A string representing a timing variable label, or <code>nil</code> if none.</p></dd>
-		</dl>
-		
-	</div>
 	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
-there was an error (e.g. the tracker was closed).</p>
-	</div>
 	
 	
 	
@@ -1913,9 +2433,7 @@ there was an error (e.g. the tracker was closed).</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Track user timing.</p>
-
-<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+		<p>This method is deprecated. See sendTimingWithCategory.</p>
 	</div>
 	
 	
@@ -1939,7 +2457,7 @@ there was an error (e.g. the tracker was closed).</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Track a transaction.</p>
+		<p>This method is deprecated. see sendTransaction.</p>
 	</div>		
 	
     
@@ -1948,23 +2466,7 @@ there was an error (e.g. the tracker was closed).</p>
 
     
 	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>transaction</em></dt>
-			<dd><p>The <a href="../Classes/GAITransaction.html">GAITransaction</a> object.</p></dd>
-		</dl>
-		
-	</div>
 	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
-there was an error (e.g. the tracker was closed).</p>
-	</div>
 	
 	
 	
@@ -1972,9 +2474,7 @@ there was an error (e.g. the tracker was closed).</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Track a transaction.</p>
-
-<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+		<p>This method is deprecated. see sendTransaction.</p>
 	</div>
 	
 	
@@ -1998,8 +2498,7 @@ there was an error (e.g. the tracker was closed).</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Track that the current screen (as set in <a href="#//api/name/appScreen">appScreen</a>) was displayed. If <a href="#//api/name/appScreen">appScreen</a>
-has not been set, this will not generate any tracking information.</p>
+		<p>This method is deprecated.  See <a href="#//api/name/sendView">sendView</a>.</p>
 	</div>		
 	
     
@@ -2010,22 +2509,13 @@ has not been set, this will not generate any tracking information.</p>
 	
 	
 	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
-there was an error (e.g. the tracker was closed or <a href="#//api/name/appScreen">appScreen</a> is not set).</p>
-	</div>
-	
 	
 	
 	
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Track that the current screen (as set in appScreen) was displayed. If appScreen
-has not been set, this will not generate any tracking information.</p>
-
-<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+		<p>This method is deprecated.  See <a href="#//api/name/sendView">sendView</a>.</p>
 	</div>
 	
 	
@@ -2049,9 +2539,7 @@ has not been set, this will not generate any tracking information.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Track that the specified view or screen was displayed. This call sets
-the <a href="#//api/name/appScreen">appScreen</a> property and generates tracking information to be sent to Google
-Analytics.</p>
+		<p>This method is deprecated.  See <a href="#//api/name/sendView">sendView</a>.</p>
 	</div>		
 	
     
@@ -2060,23 +2548,7 @@ Analytics.</p>
 
     
 	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>screen</em></dt>
-			<dd><p>The name of the screen. Must not be <code>nil</code>.</p></dd>
-		</dl>
-		
-	</div>
 	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p><code>YES</code> if the tracking information was queued for dispatch, or <code>NO</code> if
-there was an error (e.g. the tracker was closed).</p>
-	</div>
 	
 	
 	
@@ -2084,11 +2556,7 @@ there was an error (e.g. the tracker was closed).</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Track that the specified view or screen was displayed. This call sets
-the appScreen property and generates tracking information to be sent to Google
-Analytics.</p>
-
-<p>If <a href="../Classes/GAI.html#//api/name/optOut">[GAI optOut]</a> is true, this will not generate any tracking information.</p>
+		<p>This method is deprecated.  See <a href="#//api/name/sendView">sendView</a>.</p>
 	</div>
 	
 	
@@ -2118,7 +2586,7 @@ Analytics.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Google Inc.. All rights reserved. (Last updated: 2012-12-15)</span><br />
+						<p><span class="copyright">&copy; 2013 Google Inc.. All rights reserved. (Last updated: 2013-04-29)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.6 (build 789)</a>.</span></p>
 						

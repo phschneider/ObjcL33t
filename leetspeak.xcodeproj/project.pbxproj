@@ -7,23 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220E96FB172E8C4E00C0294B /* PSWizzardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 220E96FA172E8C4E00C0294B /* PSWizzardModel.m */; };
+		220E96FF172E91C300C0294B /* PSWizzardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 220E96FE172E91C300C0294B /* PSWizzardView.m */; };
 		220F2C77164468E3003CC37A /* leet.m in Sources */ = {isa = PBXBuildFile; fileRef = 220F2C741644678D003CC37A /* leet.m */; };
 		220F2C7B164473F8003CC37A /* PSWikiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 220F2C79164473F8003CC37A /* PSWikiViewController.m */; };
 		220F2C7E1644863D003CC37A /* BookmanOldStyle in Resources */ = {isa = PBXBuildFile; fileRef = 220F2C7D1644863D003CC37A /* BookmanOldStyle */; };
 		220F2C861644880B003CC37A /* BookmanOld.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 220F2C851644880B003CC37A /* BookmanOld.ttf */; };
-		220F2C871644880B003CC37A /* BookmanOld.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 220F2C851644880B003CC37A /* BookmanOld.ttf */; };
 		220F2C8B16459B82003CC37A /* PSAlphaBetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 220F2C8916459B82003CC37A /* PSAlphaBetViewController.m */; };
-		220F2C8C16459B82003CC37A /* PSAlphaBetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 220F2C8916459B82003CC37A /* PSAlphaBetViewController.m */; };
 		220F2C9116459DBE003CC37A /* PSAlphaBetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 220F2C9016459DBE003CC37A /* PSAlphaBetCell.m */; };
-		220F2C9216459DBE003CC37A /* PSAlphaBetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 220F2C9016459DBE003CC37A /* PSAlphaBetCell.m */; };
 		22147F0516441E33001DED95 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22147F0416441E33001DED95 /* UIKit.framework */; };
 		22147F0716441E33001DED95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22147F0616441E33001DED95 /* Foundation.framework */; };
 		22147F0916441E33001DED95 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22147F0816441E33001DED95 /* CoreGraphics.framework */; };
 		22147F1116441E33001DED95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22147F1016441E33001DED95 /* main.m */; };
-		22147F3D16441E34001DED95 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22147F3C16441E34001DED95 /* SenTestingKit.framework */; };
-		22147F3E16441E34001DED95 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22147F0416441E33001DED95 /* UIKit.framework */; };
-		22147F3F16441E34001DED95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22147F0616441E33001DED95 /* Foundation.framework */; };
-		22147F4A16441E35001DED95 /* leetspeakTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22147F4916441E35001DED95 /* leetspeakTests.m */; };
 		22147F5A16441ED5001DED95 /* PSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22147F5516441ED5001DED95 /* PSAppDelegate.m */; };
 		2214851716443313001DED95 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 2214851616443313001DED95 /* Default-Landscape@2x~ipad.png */; };
 		2214851916443340001DED95 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 2214851816443340001DED95 /* Default-Landscape~ipad.png */; };
@@ -41,6 +36,8 @@
 		22CC2A8E166C1B4600D8B20C /* PSImprintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC2A8D166C1B4600D8B20C /* PSImprintViewController.m */; };
 		22CC2A90166C1BF800D8B20C /* Imprint.html in Resources */ = {isa = PBXBuildFile; fileRef = 22CC2A8F166C1BF800D8B20C /* Imprint.html */; };
 		22CC2A93166C1E4600D8B20C /* PSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CC2A92166C1E4600D8B20C /* PSSettingsViewController.m */; };
+		22CC81A916B71A2A007DA879 /* libNTiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CC81A516B71A15007DA879 /* libNTiOS.a */; };
+		22CF179316DC059D00E71BD7 /* PSLeetAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CF179216DC059D00E71BD7 /* PSLeetAlphabet.m */; };
 		22D2C343168DCA4D00E46851 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D2C342168DCA4D00E46851 /* MessageUI.framework */; };
 		22D370D2166C2B1F00B5CE53 /* DE-Leetspeak–Wikipedia.webarchive in Resources */ = {isa = PBXBuildFile; fileRef = 22D370D0166C2B1F00B5CE53 /* DE-Leetspeak–Wikipedia.webarchive */; };
 		22D370D3166C2B1F00B5CE53 /* EN-Leetspeak-Wikipedia.webarchive in Resources */ = {isa = PBXBuildFile; fileRef = 22D370D1166C2B1F00B5CE53 /* EN-Leetspeak-Wikipedia.webarchive */; };
@@ -1502,22 +1499,38 @@
 		22EB5BB7167D5407000CB557 /* white-60-x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22EB5AC7167D5407000CB557 /* white-60-x@2x.png */; };
 		22F16446167D39E600F2F3F8 /* kiss.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 22F16445167D39E600F2F3F8 /* kiss.aiff */; };
 		22F1644B167D3A9C00F2F3F8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F1644A167D3A9C00F2F3F8 /* AudioToolbox.framework */; };
+		22F7CC0416DC0AA900ADF5D4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22147F3C16441E34001DED95 /* SenTestingKit.framework */; };
+		22F7CC0516DC0AA900ADF5D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22147F0416441E33001DED95 /* UIKit.framework */; };
+		22F7CC0616DC0AA900ADF5D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22147F0616441E33001DED95 /* Foundation.framework */; };
+		22F7CC0C16DC0AA900ADF5D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22F7CC0A16DC0AA900ADF5D4 /* InfoPlist.strings */; };
+		22F7CC1716DC0AC600ADF5D4 /* leetspeakLeetAlphabetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F7CC1616DC0AC600ADF5D4 /* leetspeakLeetAlphabetTest.m */; };
 		C1D1B024BCC14D3FAD2D64E9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8EC6D37B3F402D9FC72C58 /* libPods.a */; };
 		E5F16D0B1E0AA4317A134092 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F16B399268E8B83B7C6AD7 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		22147F4016441E34001DED95 /* PBXContainerItemProxy */ = {
+		22CC81A416B71A15007DA879 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 22147EF716441E32001DED95 /* Project object */;
+			containerPortal = 22CC819C16B71A15007DA879 /* NTiOSLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA3F5E8D1468C67700BDC7B1;
+			remoteInfo = NTiOSLibrary;
+		};
+		22CC81A716B71A24007DA879 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22CC819C16B71A15007DA879 /* NTiOSLibrary.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 22147EFF16441E33001DED95;
-			remoteInfo = leetspeak;
+			remoteGlobalIDString = CA3F5E8C1468C67700BDC7B1;
+			remoteInfo = NTiOSLibrary;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0F6E1145887F4B88ADE08AB3 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		220E96F9172E8C4E00C0294B /* PSWizzardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWizzardModel.h; sourceTree = "<group>"; };
+		220E96FA172E8C4E00C0294B /* PSWizzardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSWizzardModel.m; sourceTree = "<group>"; };
+		220E96FD172E91C300C0294B /* PSWizzardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWizzardView.h; sourceTree = "<group>"; };
+		220E96FE172E91C300C0294B /* PSWizzardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSWizzardView.m; sourceTree = "<group>"; };
 		220F2C741644678D003CC37A /* leet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = leet.m; sourceTree = "<group>"; };
 		220F2C76164467BC003CC37A /* leet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = leet.h; sourceTree = "<group>"; };
 		220F2C78164473F8003CC37A /* PSWikiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWikiViewController.h; sourceTree = "<group>"; };
@@ -1535,11 +1548,7 @@
 		22147F0C16441E33001DED95 /* leetspeak-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "leetspeak-Info.plist"; sourceTree = "<group>"; };
 		22147F1016441E33001DED95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		22147F1216441E33001DED95 /* leetspeak-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "leetspeak-Prefix.pch"; sourceTree = "<group>"; };
-		22147F3B16441E34001DED95 /* leetspeakTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = leetspeakTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22147F3C16441E34001DED95 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		22147F4416441E34001DED95 /* leetspeakTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "leetspeakTests-Info.plist"; sourceTree = "<group>"; };
-		22147F4816441E34001DED95 /* leetspeakTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = leetspeakTests.h; sourceTree = "<group>"; };
-		22147F4916441E35001DED95 /* leetspeakTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = leetspeakTests.m; sourceTree = "<group>"; };
 		22147F5416441ED5001DED95 /* PSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAppDelegate.h; sourceTree = "<group>"; };
 		22147F5516441ED5001DED95 /* PSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAppDelegate.m; sourceTree = "<group>"; };
 		22147F5616441ED5001DED95 /* PSInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSInputViewController.h; sourceTree = "<group>"; };
@@ -1567,6 +1576,9 @@
 		22CC2A8F166C1BF800D8B20C /* Imprint.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Imprint.html; sourceTree = "<group>"; };
 		22CC2A91166C1E4600D8B20C /* PSSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSSettingsViewController.h; path = Classes/PSSettingsViewController.h; sourceTree = "<group>"; };
 		22CC2A92166C1E4600D8B20C /* PSSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSSettingsViewController.m; path = Classes/PSSettingsViewController.m; sourceTree = "<group>"; };
+		22CC819C16B71A15007DA879 /* NTiOSLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NTiOSLibrary.xcodeproj; path = NTiOSLibrary/NTiOSLibrary.xcodeproj; sourceTree = "<group>"; };
+		22CF179116DC059D00E71BD7 /* PSLeetAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSLeetAlphabet.h; sourceTree = "<group>"; };
+		22CF179216DC059D00E71BD7 /* PSLeetAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSLeetAlphabet.m; sourceTree = "<group>"; };
 		22D2C342168DCA4D00E46851 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		22D370D0166C2B1F00B5CE53 /* DE-Leetspeak–Wikipedia.webarchive */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "DE-Leetspeak–Wikipedia.webarchive"; sourceTree = "<group>"; };
 		22D370D1166C2B1F00B5CE53 /* EN-Leetspeak-Wikipedia.webarchive */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "EN-Leetspeak-Wikipedia.webarchive"; sourceTree = "<group>"; };
@@ -3030,6 +3042,11 @@
 		22EB5AC7167D5407000CB557 /* white-60-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white-60-x@2x.png"; sourceTree = "<group>"; };
 		22F16445167D39E600F2F3F8 /* kiss.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = kiss.aiff; sourceTree = "<group>"; };
 		22F1644A167D3A9C00F2F3F8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		22F7CC0316DC0AA900ADF5D4 /* leetspeakTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = leetspeakTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		22F7CC0916DC0AA900ADF5D4 /* leetspeakTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "leetspeakTest-Info.plist"; sourceTree = "<group>"; };
+		22F7CC0B16DC0AA900ADF5D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		22F7CC1016DC0AA900ADF5D4 /* leetspeakTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "leetspeakTest-Prefix.pch"; sourceTree = "<group>"; };
+		22F7CC1616DC0AC600ADF5D4 /* leetspeakLeetAlphabetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = leetspeakLeetAlphabetTest.m; sourceTree = "<group>"; };
 		8C8EC6D37B3F402D9FC72C58 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F16B399268E8B83B7C6AD7 /* QuartzCore.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -3039,6 +3056,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22CC81A916B71A2A007DA879 /* libNTiOS.a in Frameworks */,
 				22D2C343168DCA4D00E46851 /* MessageUI.framework in Frameworks */,
 				22F1644B167D3A9C00F2F3F8 /* AudioToolbox.framework in Frameworks */,
 				22D9023E167D2C8A00ED74CF /* CoreData.framework in Frameworks */,
@@ -3051,22 +3069,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		22147F3716441E34001DED95 /* Frameworks */ = {
+		22F7CBFF16DC0AA900ADF5D4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22147F3D16441E34001DED95 /* SenTestingKit.framework in Frameworks */,
-				22147F3E16441E34001DED95 /* UIKit.framework in Frameworks */,
-				22147F3F16441E34001DED95 /* Foundation.framework in Frameworks */,
+				22F7CC0416DC0AA900ADF5D4 /* SenTestingKit.framework in Frameworks */,
+				22F7CC0516DC0AA900ADF5D4 /* UIKit.framework in Frameworks */,
+				22F7CC0616DC0AA900ADF5D4 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		220E96FC172E91B300C0294B /* Wizzard */ = {
+			isa = PBXGroup;
+			children = (
+				225FEFA116AC5AC300280670 /* PSWizzardViewController.h */,
+				225FEFA216AC5AC300280670 /* PSWizzardViewController.m */,
+				220E96F9172E8C4E00C0294B /* PSWizzardModel.h */,
+				220E96FA172E8C4E00C0294B /* PSWizzardModel.m */,
+				220E96FD172E91C300C0294B /* PSWizzardView.h */,
+				220E96FE172E91C300C0294B /* PSWizzardView.m */,
+			);
+			name = Wizzard;
+			sourceTree = "<group>";
+		};
 		22147EF516441E32001DED95 = {
 			isa = PBXGroup;
 			children = (
+				22CC819C16B71A15007DA879 /* NTiOSLibrary.xcodeproj */,
 				2214851C1644336E001DED95 /* Default-Portrait~ipad.png */,
 				2214851A16443369001DED95 /* Default-Portrait@2x~ipad.png */,
 				2214851816443340001DED95 /* Default-Landscape~ipad.png */,
@@ -3085,7 +3117,7 @@
 				22EB4E81167D48EC000CB557 /* iTunesArtwork512 */,
 				22EB4E82167D48EC000CB557 /* iTunesArtwork1024 */,
 				22147F0A16441E33001DED95 /* leetspeak */,
-				22147F4216441E34001DED95 /* leetspeakTests */,
+				22F7CC0716DC0AA900ADF5D4 /* leetspeakTest */,
 				22147F0316441E33001DED95 /* Frameworks */,
 				22147F0116441E33001DED95 /* Products */,
 				0F6E1145887F4B88ADE08AB3 /* Pods.xcconfig */,
@@ -3096,7 +3128,7 @@
 			isa = PBXGroup;
 			children = (
 				22147F0016441E33001DED95 /* l33t.app */,
-				22147F3B16441E34001DED95 /* leetspeakTests.octest */,
+				22F7CC0316DC0AA900ADF5D4 /* leetspeakTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3140,24 +3172,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		22147F4216441E34001DED95 /* leetspeakTests */ = {
-			isa = PBXGroup;
-			children = (
-				22147F4816441E34001DED95 /* leetspeakTests.h */,
-				22147F4916441E35001DED95 /* leetspeakTests.m */,
-				22147F4316441E34001DED95 /* Supporting Files */,
-			);
-			path = leetspeakTests;
-			sourceTree = "<group>";
-		};
-		22147F4316441E34001DED95 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				22147F4416441E34001DED95 /* leetspeakTests-Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		22147F5316441ED5001DED95 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -3168,16 +3182,12 @@
 				22147F5516441ED5001DED95 /* PSAppDelegate.m */,
 				22147F5616441ED5001DED95 /* PSInputViewController.h */,
 				22A6F23A167D5E3600849D4B /* PSInputViewController.m */,
-				220F2C8816459B82003CC37A /* PSAlphaBetViewController.h */,
-				220F2C8916459B82003CC37A /* PSAlphaBetViewController.m */,
-				220F2C8F16459DBE003CC37A /* PSAlphaBetCell.h */,
-				220F2C9016459DBE003CC37A /* PSAlphaBetCell.m */,
+				22CF179416DC05A900E71BD7 /* Alphabet */,
 				226B3248166BC87200E0B8CC /* PSScreenSaverViewController.h */,
 				226B3249166BC87200E0B8CC /* PSScreenSaverViewController.m */,
 				220F2C78164473F8003CC37A /* PSWikiViewController.h */,
 				220F2C79164473F8003CC37A /* PSWikiViewController.m */,
-				225FEFA116AC5AC300280670 /* PSWizzardViewController.h */,
-				225FEFA216AC5AC300280670 /* PSWizzardViewController.m */,
+				220E96FC172E91B300C0294B /* Wizzard */,
 				22D90240167D305A00ED74CF /* PSUserDefaults.h */,
 				22D90241167D305A00ED74CF /* PSUserDefaults.m */,
 				22D9B2AD167C8A3B00BAA030 /* Subclasses */,
@@ -3223,6 +3233,27 @@
 				22D370D1166C2B1F00B5CE53 /* EN-Leetspeak-Wikipedia.webarchive */,
 			);
 			path = Wiki;
+			sourceTree = "<group>";
+		};
+		22CC819D16B71A15007DA879 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22CC81A516B71A15007DA879 /* libNTiOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		22CF179416DC05A900E71BD7 /* Alphabet */ = {
+			isa = PBXGroup;
+			children = (
+				22CF179116DC059D00E71BD7 /* PSLeetAlphabet.h */,
+				22CF179216DC059D00E71BD7 /* PSLeetAlphabet.m */,
+				220F2C8F16459DBE003CC37A /* PSAlphaBetCell.h */,
+				220F2C9016459DBE003CC37A /* PSAlphaBetCell.m */,
+				220F2C8816459B82003CC37A /* PSAlphaBetViewController.h */,
+				220F2C8916459B82003CC37A /* PSAlphaBetViewController.m */,
+			);
+			name = Alphabet;
 			sourceTree = "<group>";
 		};
 		22D9023F167D2E4700ED74CF /* Legacy */ = {
@@ -4745,6 +4776,25 @@
 			path = Audio;
 			sourceTree = "<group>";
 		};
+		22F7CC0716DC0AA900ADF5D4 /* leetspeakTest */ = {
+			isa = PBXGroup;
+			children = (
+				22F7CC1616DC0AC600ADF5D4 /* leetspeakLeetAlphabetTest.m */,
+				22F7CC0816DC0AA900ADF5D4 /* Supporting Files */,
+			);
+			path = leetspeakTest;
+			sourceTree = "<group>";
+		};
+		22F7CC0816DC0AA900ADF5D4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				22F7CC0916DC0AA900ADF5D4 /* leetspeakTest-Info.plist */,
+				22F7CC0A16DC0AA900ADF5D4 /* InfoPlist.strings */,
+				22F7CC1016DC0AA900ADF5D4 /* leetspeakTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4760,29 +4810,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				22CC81A816B71A24007DA879 /* PBXTargetDependency */,
 			);
 			name = leetspeak;
 			productName = leetspeak;
 			productReference = 22147F0016441E33001DED95 /* l33t.app */;
 			productType = "com.apple.product-type.application";
 		};
-		22147F3A16441E34001DED95 /* leetspeakTests */ = {
+		22F7CC0216DC0AA900ADF5D4 /* leetspeakTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 22147F5016441E35001DED95 /* Build configuration list for PBXNativeTarget "leetspeakTests" */;
+			buildConfigurationList = 22F7CC1116DC0AA900ADF5D4 /* Build configuration list for PBXNativeTarget "leetspeakTest" */;
 			buildPhases = (
-				22147F3616441E34001DED95 /* Sources */,
-				22147F3716441E34001DED95 /* Frameworks */,
-				22147F3816441E34001DED95 /* Resources */,
-				22147F3916441E34001DED95 /* ShellScript */,
+				22F7CBFE16DC0AA900ADF5D4 /* Sources */,
+				22F7CBFF16DC0AA900ADF5D4 /* Frameworks */,
+				22F7CC0016DC0AA900ADF5D4 /* Resources */,
+				22F7CC0116DC0AA900ADF5D4 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				22147F4116441E34001DED95 /* PBXTargetDependency */,
 			);
-			name = leetspeakTests;
-			productName = leetspeakTests;
-			productReference = 22147F3B16441E34001DED95 /* leetspeakTests.octest */;
+			name = leetspeakTest;
+			productName = leetspeakTest;
+			productReference = 22F7CC0316DC0AA900ADF5D4 /* leetspeakTest.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -4806,13 +4856,29 @@
 			mainGroup = 22147EF516441E32001DED95;
 			productRefGroup = 22147F0116441E33001DED95 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 22CC819D16B71A15007DA879 /* Products */;
+					ProjectRef = 22CC819C16B71A15007DA879 /* NTiOSLibrary.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				22147EFF16441E33001DED95 /* leetspeak */,
-				22147F3A16441E34001DED95 /* leetspeakTests */,
+				22F7CC0216DC0AA900ADF5D4 /* leetspeakTest */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		22CC81A516B71A15007DA879 /* libNTiOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNTiOS.a;
+			remoteRef = 22CC81A416B71A15007DA879 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		22147EFE16441E33001DED95 /* Resources */ = {
@@ -6288,18 +6354,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		22147F3816441E34001DED95 /* Resources */ = {
+		22F7CC0016DC0AA900ADF5D4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				220F2C871644880B003CC37A /* BookmanOld.ttf in Resources */,
+				22F7CC0C16DC0AA900ADF5D4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		22147F3916441E34001DED95 /* ShellScript */ = {
+		22F7CC0116DC0AA900ADF5D4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -6348,26 +6414,27 @@
 				22D90242167D305A00ED74CF /* PSUserDefaults.m in Sources */,
 				22A6F23B167D5E3600849D4B /* PSInputViewController.m in Sources */,
 				225FEFA316AC5AC300280670 /* PSWizzardViewController.m in Sources */,
+				22CF179316DC059D00E71BD7 /* PSLeetAlphabet.m in Sources */,
+				220E96FB172E8C4E00C0294B /* PSWizzardModel.m in Sources */,
+				220E96FF172E91C300C0294B /* PSWizzardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		22147F3616441E34001DED95 /* Sources */ = {
+		22F7CBFE16DC0AA900ADF5D4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22147F4A16441E35001DED95 /* leetspeakTests.m in Sources */,
-				220F2C8C16459B82003CC37A /* PSAlphaBetViewController.m in Sources */,
-				220F2C9216459DBE003CC37A /* PSAlphaBetCell.m in Sources */,
+				22F7CC1716DC0AC600ADF5D4 /* leetspeakLeetAlphabetTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		22147F4116441E34001DED95 /* PBXTargetDependency */ = {
+		22CC81A816B71A24007DA879 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 22147EFF16441E33001DED95 /* leetspeak */;
-			targetProxy = 22147F4016441E34001DED95 /* PBXContainerItemProxy */;
+			name = NTiOSLibrary;
+			targetProxy = 22CC81A716B71A24007DA879 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -6379,6 +6446,14 @@
 				2250CB89167D607900B56038 /* de */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		22F7CC0A16DC0AA900ADF5D4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22F7CC0B16DC0AA900ADF5D4 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -6463,6 +6538,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "leetspeak/leetspeak-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
+				HEADER_SEARCH_PATHS = (
+					"${PODS_HEADERS_SEARCH_PATHS}",
+					"./NTiOSLibrary/**",
+				);
 				INFOPLIST_FILE = "leetspeak/leetspeak-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = l33t;
@@ -6489,46 +6568,16 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "leetspeak/leetspeak-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
+				HEADER_SEARCH_PATHS = (
+					"${PODS_HEADERS_SEARCH_PATHS}",
+					"./NTiOSLibrary/**",
+				);
 				INFOPLIST_FILE = "leetspeak/leetspeak-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = l33t;
 				PROVISIONING_PROFILE = "DC1AB276-0F42-4ABC-94D5-82F8B45341B3";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		22147F5116441E35001DED95 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/leetspeak.app/leetspeak";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "leetspeak/leetspeak-Prefix.pch";
-				INFOPLIST_FILE = "leetspeakTests/leetspeakTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		22147F5216441E35001DED95 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/leetspeak.app/leetspeak";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "leetspeak/leetspeak-Prefix.pch";
-				INFOPLIST_FILE = "leetspeakTests/leetspeakTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -6574,28 +6623,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "leetspeak/leetspeak-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
+				HEADER_SEARCH_PATHS = (
+					"${PODS_HEADERS_SEARCH_PATHS}",
+					"./NTiOSLibrary/**",
+				);
 				INFOPLIST_FILE = "leetspeak/leetspeak-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = l33t;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Beta;
-		};
-		22415AD4167A51A7006712FC /* Beta */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/leetspeak.app/leetspeak";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "leetspeak/leetspeak-Prefix.pch";
-				INFOPLIST_FILE = "leetspeakTests/leetspeakTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Beta;
 		};
@@ -6642,6 +6678,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "leetspeak/leetspeak-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
+				HEADER_SEARCH_PATHS = (
+					"${PODS_HEADERS_SEARCH_PATHS}",
+					"./NTiOSLibrary/**",
+				);
 				INFOPLIST_FILE = "leetspeak/leetspeak-appstore-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = l33t;
@@ -6651,19 +6691,78 @@
 			};
 			name = AppStore;
 		};
-		22D370CE166C29AA00B5CE53 /* AppStore */ = {
+		22F7CC1216DC0AA900ADF5D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/leetspeak.app/leetspeak";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "leetspeak/leetspeak-Prefix.pch";
-				INFOPLIST_FILE = "leetspeakTests/leetspeakTests-Info.plist";
+				GCC_PREFIX_HEADER = "leetspeakTest/leetspeakTest-Prefix.pch";
+				INFOPLIST_FILE = "leetspeakTest/leetspeakTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		22F7CC1316DC0AA900ADF5D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "leetspeakTest/leetspeakTest-Prefix.pch";
+				INFOPLIST_FILE = "leetspeakTest/leetspeakTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		22F7CC1416DC0AA900ADF5D4 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "leetspeakTest/leetspeakTest-Prefix.pch";
+				INFOPLIST_FILE = "leetspeakTest/leetspeakTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Beta;
+		};
+		22F7CC1516DC0AA900ADF5D4 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "leetspeakTest/leetspeakTest-Prefix.pch";
+				INFOPLIST_FILE = "leetspeakTest/leetspeakTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = AppStore;
@@ -6693,13 +6792,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		22147F5016441E35001DED95 /* Build configuration list for PBXNativeTarget "leetspeakTests" */ = {
+		22F7CC1116DC0AA900ADF5D4 /* Build configuration list for PBXNativeTarget "leetspeakTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				22147F5116441E35001DED95 /* Debug */,
-				22147F5216441E35001DED95 /* Release */,
-				22415AD4167A51A7006712FC /* Beta */,
-				22D370CE166C29AA00B5CE53 /* AppStore */,
+				22F7CC1216DC0AA900ADF5D4 /* Debug */,
+				22F7CC1316DC0AA900ADF5D4 /* Release */,
+				22F7CC1416DC0AA900ADF5D4 /* Beta */,
+				22F7CC1516DC0AA900ADF5D4 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

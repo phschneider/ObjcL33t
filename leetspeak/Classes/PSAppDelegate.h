@@ -14,6 +14,7 @@
 #import <UIKit/UIKit.h>
 
 @class PSScreenSaverViewController;
+@class PSWizzardViewController;
 
 #ifndef CONFIGURATION_AppStore
     @interface PSAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, BWHockeyManagerDelegate, BWQuincyManagerDelegate> {
@@ -26,7 +27,10 @@
 
 @property (nonatomic, strong) UITabBarController *tabBarController;
 @property (nonatomic, strong) PSScreenSaverViewController * screenSaverViewController;
-
+        
+@property (nonatomic) BOOL wizzardStarted;
+@property (nonatomic, strong) PSWizzardViewController * wizzardViewController;
+        
 @property (nonatomic, strong) NSArray * reminderArray;
         
 @property (nonatomic) int number;
@@ -35,7 +39,9 @@
 
 - (void)startScreenSaverTimer;
 - (void)resetScreenSaverTimer;
-
 - (void) hideScreenSaver;
-
+        
+- (void) showWizzard;
+- (void) hideWizzard;
+        
 @end

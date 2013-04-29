@@ -366,26 +366,37 @@ be modified.</Abstract>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackView</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/sendView</TokenIdentifier>
 			<Abstract type="html">Track that the current screen (as set in appScreen was displayed. If appScreen
 has not been set, this will not generate any tracking information.</Abstract>
 			<DeclaredIn>GAITracker.h</DeclaredIn>			
 			
-			<Declaration>- (BOOL)trackView</Declaration>
+			<Declaration>- (BOOL)sendView</Declaration>
 			
 			<ReturnValue><Abstract type="html">YES if the tracking information was queued for dispatch, or NO if
 there was an error (e.g. the tracker was closed or appScreen is not set).</Abstract></ReturnValue>
+			<Anchor>//api/name/sendView</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackView</TokenIdentifier>
+			<Abstract type="html">This method is deprecated.  See sendView.</Abstract>
+			<DeclaredIn>GAITracker.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)trackView</Declaration>
+			
+			
 			<Anchor>//api/name/trackView</Anchor>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackView:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/sendView:</TokenIdentifier>
 			<Abstract type="html">Track that the specified view or screen was displayed. This call sets
 the appScreen property and generates tracking information to be sent to Google
 Analytics.</Abstract>
 			<DeclaredIn>GAITracker.h</DeclaredIn>			
 			
-			<Declaration>- (BOOL)trackView:(NSString *)screen</Declaration>
+			<Declaration>- (BOOL)sendView:(NSString *)screen</Declaration>
 			<Parameters>
 				<Parameter>
 					<Name>screen</Name>
@@ -394,15 +405,26 @@ Analytics.</Abstract>
 			</Parameters>
 			<ReturnValue><Abstract type="html">YES if the tracking information was queued for dispatch, or NO if
 there was an error (e.g. the tracker was closed).</Abstract></ReturnValue>
+			<Anchor>//api/name/sendView:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackView:</TokenIdentifier>
+			<Abstract type="html">This method is deprecated.  See sendView.</Abstract>
+			<DeclaredIn>GAITracker.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)trackView:(NSString *)screen</Declaration>
+			
+			
 			<Anchor>//api/name/trackView:</Anchor>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackEventWithCategory:withAction:withLabel:withValue:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/sendEventWithCategory:withAction:withLabel:withValue:</TokenIdentifier>
 			<Abstract type="html">Track an event.</Abstract>
 			<DeclaredIn>GAITracker.h</DeclaredIn>			
 			
-			<Declaration>- (BOOL)trackEventWithCategory:(NSString *)category withAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value</Declaration>
+			<Declaration>- (BOOL)sendEventWithCategory:(NSString *)category withAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value</Declaration>
 			<Parameters>
 				<Parameter>
 					<Name>category</Name>
@@ -421,15 +443,26 @@ nil if none.</Abstract>
 			</Parameters>
 			<ReturnValue><Abstract type="html">YES if the tracking information was queued for dispatch, or NO if
 there was an error (e.g. the tracker was closed).</Abstract></ReturnValue>
+			<Anchor>//api/name/sendEventWithCategory:withAction:withLabel:withValue:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackEventWithCategory:withAction:withLabel:withValue:</TokenIdentifier>
+			<Abstract type="html">This method is deprecated. See sendEventWithCategory.</Abstract>
+			<DeclaredIn>GAITracker.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)trackEventWithCategory:(NSString *)category withAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value</Declaration>
+			
+			
 			<Anchor>//api/name/trackEventWithCategory:withAction:withLabel:withValue:</Anchor>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackTransaction:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/sendTransaction:</TokenIdentifier>
 			<Abstract type="html">Track a transaction.</Abstract>
 			<DeclaredIn>GAITracker.h</DeclaredIn>			
 			
-			<Declaration>- (BOOL)trackTransaction:(GAITransaction *)transaction</Declaration>
+			<Declaration>- (BOOL)sendTransaction:(GAITransaction *)transaction</Declaration>
 			<Parameters>
 				<Parameter>
 					<Name>transaction</Name>
@@ -438,15 +471,26 @@ there was an error (e.g. the tracker was closed).</Abstract></ReturnValue>
 			</Parameters>
 			<ReturnValue><Abstract type="html">YES if the tracking information was queued for dispatch, or NO if
 there was an error (e.g. the tracker was closed).</Abstract></ReturnValue>
+			<Anchor>//api/name/sendTransaction:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackTransaction:</TokenIdentifier>
+			<Abstract type="html">This method is deprecated. see sendTransaction.</Abstract>
+			<DeclaredIn>GAITracker.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)trackTransaction:(GAITransaction *)transaction</Declaration>
+			
+			
 			<Anchor>//api/name/trackTransaction:</Anchor>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackException:withDescription:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/sendException:withDescription:</TokenIdentifier>
 			<Abstract type="html">Track an exception.</Abstract>
 			<DeclaredIn>GAITracker.h</DeclaredIn>			
 			
-			<Declaration>- (BOOL)trackException:(BOOL)isFatal withDescription:(NSString *)format, ...</Declaration>
+			<Declaration>- (BOOL)sendException:(BOOL)isFatal withDescription:(NSString *)format, ...</Declaration>
 			<Parameters>
 				<Parameter>
 					<Name>isFatal</Name>
@@ -463,16 +507,27 @@ string.</Abstract>
 			</Parameters>
 			<ReturnValue><Abstract type="html">YES if the tracking information was queued for dispatch, or NO if
 there was an error (e.g. the tracker was closed).</Abstract></ReturnValue>
+			<Anchor>//api/name/sendException:withDescription:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackException:withDescription:</TokenIdentifier>
+			<Abstract type="html">This method is deprecated. See sendException.</Abstract>
+			<DeclaredIn>GAITracker.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)trackException:(BOOL)isFatal withDescription:(NSString *)format, ...</Declaration>
+			
+			
 			<Anchor>//api/name/trackException:withDescription:</Anchor>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackException:withNSException:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/sendException:withNSException:</TokenIdentifier>
 			<Abstract type="html">Convenience method for tracking an NSException that passes the exception
 name to trackException:withDescription:.</Abstract>
 			<DeclaredIn>GAITracker.h</DeclaredIn>			
 			
-			<Declaration>- (BOOL)trackException:(BOOL)isFatal withNSException:(NSException *)exception</Declaration>
+			<Declaration>- (BOOL)sendException:(BOOL)isFatal withNSException:(NSException *)exception</Declaration>
 			<Parameters>
 				<Parameter>
 					<Name>isFatal</Name>
@@ -484,16 +539,27 @@ name to trackException:withDescription:.</Abstract>
 			</Parameters>
 			<ReturnValue><Abstract type="html">YES if the tracking information was queued for dispatch, or NO if
 there was an error (e.g. the tracker was closed).</Abstract></ReturnValue>
+			<Anchor>//api/name/sendException:withNSException:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackException:withNSException:</TokenIdentifier>
+			<Abstract type="html">This method is deprecated. See sendException.</Abstract>
+			<DeclaredIn>GAITracker.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)trackException:(BOOL)isFatal withNSException:(NSException *)exception</Declaration>
+			
+			
 			<Anchor>//api/name/trackException:withNSException:</Anchor>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackException:withNSError:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/sendException:withNSError:</TokenIdentifier>
 			<Abstract type="html">Convenience method for tracking an NSError that passes the domain, code, and
 description to trackException:withDescription:.</Abstract>
 			<DeclaredIn>GAITracker.h</DeclaredIn>			
 			
-			<Declaration>- (BOOL)trackException:(BOOL)isFatal withNSError:(NSError *)error</Declaration>
+			<Declaration>- (BOOL)sendException:(BOOL)isFatal withNSError:(NSError *)error</Declaration>
 			<Parameters>
 				<Parameter>
 					<Name>isFatal</Name>
@@ -505,15 +571,26 @@ description to trackException:withDescription:.</Abstract>
 			</Parameters>
 			<ReturnValue><Abstract type="html">YES if the tracking information was queued for dispatch, or NO if
 there was an error (e.g. the tracker was closed).</Abstract></ReturnValue>
+			<Anchor>//api/name/sendException:withNSError:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackException:withNSError:</TokenIdentifier>
+			<Abstract type="html">This method is deprecated. See sendException.</Abstract>
+			<DeclaredIn>GAITracker.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)trackException:(BOOL)isFatal withNSError:(NSError *)error</Declaration>
+			
+			
 			<Anchor>//api/name/trackException:withNSError:</Anchor>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackTimingWithCategory:withValue:withName:withLabel:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/sendTimingWithCategory:withValue:withName:withLabel:</TokenIdentifier>
 			<Abstract type="html">Track user timing.</Abstract>
 			<DeclaredIn>GAITracker.h</DeclaredIn>			
 			
-			<Declaration>- (BOOL)trackTimingWithCategory:(NSString *)category withValue:(NSTimeInterval)time withName:(NSString *)name withLabel:(NSString *)label</Declaration>
+			<Declaration>- (BOOL)sendTimingWithCategory:(NSString *)category withValue:(NSTimeInterval)time withName:(NSString *)name withLabel:(NSString *)label</Declaration>
 			<Parameters>
 				<Parameter>
 					<Name>category</Name>
@@ -531,15 +608,26 @@ there was an error (e.g. the tracker was closed).</Abstract></ReturnValue>
 			</Parameters>
 			<ReturnValue><Abstract type="html">YES if the tracking information was queued for dispatch, or NO if
 there was an error (e.g. the tracker was closed).</Abstract></ReturnValue>
+			<Anchor>//api/name/sendTimingWithCategory:withValue:withName:withLabel:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackTimingWithCategory:withValue:withName:withLabel:</TokenIdentifier>
+			<Abstract type="html">This method is deprecated. See sendTimingWithCategory.</Abstract>
+			<DeclaredIn>GAITracker.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)trackTimingWithCategory:(NSString *)category withValue:(NSTimeInterval)time withName:(NSString *)name withLabel:(NSString *)label</Declaration>
+			
+			
 			<Anchor>//api/name/trackTimingWithCategory:withValue:withName:withLabel:</Anchor>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackSocial:withAction:withTarget:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/sendSocial:withAction:withTarget:</TokenIdentifier>
 			<Abstract type="html">Track social action.</Abstract>
 			<DeclaredIn>GAITracker.h</DeclaredIn>			
 			
-			<Declaration>- (BOOL)trackSocial:(NSString *)network withAction:(NSString *)action withTarget:(NSString *)target</Declaration>
+			<Declaration>- (BOOL)sendSocial:(NSString *)network withAction:(NSString *)action withTarget:(NSString *)target</Declaration>
 			<Parameters>
 				<Parameter>
 					<Name>network</Name>
@@ -554,6 +642,17 @@ there was an error (e.g. the tracker was closed).</Abstract></ReturnValue>
 			</Parameters>
 			<ReturnValue><Abstract type="html">YES if the tracking information was queued for dispatch, or NO if
 there was an error (e.g. the tracker was closed).</Abstract></ReturnValue>
+			<Anchor>//api/name/sendSocial:withAction:withTarget:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/GAITracker/trackSocial:withAction:withTarget:</TokenIdentifier>
+			<Abstract type="html">This method is deprecated. See sendSocial.</Abstract>
+			<DeclaredIn>GAITracker.h</DeclaredIn>			
+			
+			<Declaration>- (BOOL)trackSocial:(NSString *)network withAction:(NSString *)action withTarget:(NSString *)target</Declaration>
+			
+			
 			<Anchor>//api/name/trackSocial:withAction:withTarget:</Anchor>
 		</Token>
 		

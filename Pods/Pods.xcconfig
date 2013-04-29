@@ -1,9 +1,9 @@
-PODS_ROOT = ${SRCROOT}/Pods
-OTHER_LDFLAGS = -ObjC -lGoogleAnalytics -lsqlite3 -lz -framework AudioToolbox -framework CFNetwork -framework CoreData -framework CoreGraphics -framework CrashReporter -framework MobileCoreServices -framework Parse -framework QuartzCore -framework Security -framework StoreKit -framework SystemConfiguration -weak_framework Accounts -weak_framework AdSupport -weak_framework Social
-PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/BuildHeaders/HockeyKit" "${PODS_ROOT}/BuildHeaders/Parse" "${PODS_ROOT}/BuildHeaders/QuincyKit" "${PODS_ROOT}/BuildHeaders/SVProgressHUD" "${PODS_ROOT}/BuildHeaders/iRate" "${PODS_ROOT}/BuildHeaders/iVersion"
-PODS_HEADERS_SEARCH_PATHS = ${PODS_PUBLIC_HEADERS_SEARCH_PATHS}
-LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleAnalytics-iOS-SDK/GoogleAnalyticsiOS_2.0beta3/Library"
-HEADER_SEARCH_PATHS = ${PODS_HEADERS_SEARCH_PATHS}
-PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/HockeyKit" "${PODS_ROOT}/Headers/Parse" "${PODS_ROOT}/Headers/QuincyKit" "${PODS_ROOT}/Headers/SVProgressHUD" "${PODS_ROOT}/Headers/iRate" "${PODS_ROOT}/Headers/iVersion"
 ALWAYS_SEARCH_USER_PATHS = YES
 FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/Parse" "$(PODS_ROOT)/QuincyKit/client/iOS"
+HEADER_SEARCH_PATHS = ${PODS_HEADERS_SEARCH_PATHS}
+LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleAnalytics-iOS-SDK/Library" "$(PODS_ROOT)/TestFlightSDK"
+OTHER_LDFLAGS = -ObjC -lGoogleAnalytics -lTestFlight -lsqlite3 -lz -framework AudioToolbox -framework CFNetwork -framework CoreData -framework CoreGraphics -framework CrashReporter -framework MobileCoreServices -framework Parse -framework QuartzCore -framework Security -framework StoreKit -framework SystemConfiguration -framework UIKit -weak_framework Accounts -weak_framework AdSupport -weak_framework Social
+PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/BuildHeaders/HockeyKit" "${PODS_ROOT}/BuildHeaders/OCHamcrest" "${PODS_ROOT}/BuildHeaders/OCMockito" "${PODS_ROOT}/BuildHeaders/Parse" "${PODS_ROOT}/BuildHeaders/QuincyKit" "${PODS_ROOT}/BuildHeaders/SVProgressHUD" "${PODS_ROOT}/BuildHeaders/StyledPageControl" "${PODS_ROOT}/BuildHeaders/TestFlightSDK" "${PODS_ROOT}/BuildHeaders/iRate" "${PODS_ROOT}/BuildHeaders/iVersion"
+PODS_HEADERS_SEARCH_PATHS = ${PODS_PUBLIC_HEADERS_SEARCH_PATHS}
+PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/HockeyKit" "${PODS_ROOT}/Headers/OCHamcrest" "${PODS_ROOT}/Headers/OCMockito" "${PODS_ROOT}/Headers/Parse" "${PODS_ROOT}/Headers/QuincyKit" "${PODS_ROOT}/Headers/SVProgressHUD" "${PODS_ROOT}/Headers/StyledPageControl" "${PODS_ROOT}/Headers/TestFlightSDK" "${PODS_ROOT}/Headers/iRate" "${PODS_ROOT}/Headers/iVersion"
+PODS_ROOT = ${SRCROOT}/Pods

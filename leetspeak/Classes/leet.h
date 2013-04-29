@@ -25,6 +25,7 @@
 // https://github.com/shultzc/iphone-passwordmaker/blob/12a472eb01a5a7de5c6087c06e13778db629d4bd/Sources/Classes/leet.m
 
 #import <Foundation/Foundation.h>
+#define kNUMBER_OF_OBJECTS  26
 
 // convert message to l33t-speak
 NSString* leetConvert(int level, NSString* message);

@@ -11,9 +11,14 @@
 #import "PSInputViewController.h"
 #import "PSTextView.h"
 #import "SVProgressHUD.h"
+#import "iRate.h"
+
+#import <NTUIToolTipView.h>
 
 @implementation PSInputViewController
 
+@synthesize toolTips                    = _toolTips;
+@synthesize darkViews                   = _darkViews;
 @synthesize clipboardAlertView          = _clipboardAlertView;
 @synthesize ignoreClipboardAlertView    = _ignoreClipboardAlertView;
 @synthesize convertToLeet               = _convertToLeet;
@@ -36,6 +41,9 @@
         self.title = NSLocalizedString(@"Input TabBar Title", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"white-187-pencil"];
         self.view.backgroundColor = APP_BACKGROUND_COLOR;
+        
+        self.toolTips = [[NSMutableArray alloc] initWithCapacity:10];
+        self.darkViews = [[NSMutableArray alloc] initWithCapacity:100];
         
         // Create the sound ID
         NSString* path = [[NSBundle mainBundle]
@@ -82,6 +90,8 @@
         buttonFrame.origin.y -= 6;
         self.clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.clearButton.frame = buttonFrame;
+        self.clearButton.accessibilityHint = NSLocalizedString(@"Clear Button AccessibiltyHint", @"");
+        self.clearButton.accessibilityHint = NSLocalizedString(@"Clear Input",@"");
         [self.clearButton setImage:[UIImage imageNamed:@"white-298-circlex"] forState:UIControlStateNormal];
         [self.clearButton addTarget:self action:@selector(clearButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.clearButton];
@@ -90,6 +100,7 @@
         buttonFrame.origin.y = textViewFrame.origin.y + textViewFrame.size.height - buttonFrame.size.height;
         self.importButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.importButton.frame = buttonFrame;
+        self.importButton.accessibilityHint = NSLocalizedString(@"Import Button AccessibiltyHint", @"");
         [self.importButton setImage:[UIImage imageNamed:@"white-265-download"] forState:UIControlStateNormal];
         [self.importButton addTarget:self action:@selector(importButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.importButton];
@@ -117,6 +128,7 @@
         
         self.switchButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.switchButton.frame = buttonFrame;
+        self.switchButton.accessibilityHint = NSLocalizedString(@"Switch Button AccessibiltyHint", @"");
         [self.switchButton setImage:[UIImage imageNamed:@"white-288-retweet"] forState:UIControlStateNormal];
         [self.switchButton addTarget:self action:@selector(switchButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.switchButton];
@@ -126,6 +138,7 @@
 
         self.exportButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.exportButton.frame = buttonFrame;
+        self.exportButton.accessibilityHint = NSLocalizedString(@"Export Button AccessibiltyHint", @"");
         [self.exportButton setImage:[UIImage imageNamed:@"white-266-upload"] forState:UIControlStateNormal];
         [self.exportButton addTarget:self action:@selector(exportButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.exportButton];
@@ -135,6 +148,7 @@
         
         self.mailButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.mailButton.frame = tmpButtonFrame;
+        self.mailButton.accessibilityHint = NSLocalizedString(@"Mail Button AccessibiltyHint", @"");
         [self.mailButton setImage:[UIImage imageNamed:@"white-18-envelope"] forState:UIControlStateNormal];
         [self.mailButton addTarget:self action:@selector(mailButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.mailButton];
@@ -143,6 +157,7 @@
         
         self.chatButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.chatButton.frame = tmpButtonFrame;
+        self.chatButton.accessibilityHint = NSLocalizedString(@"Chat Button AccessibiltyHint", @"");
         [self.chatButton setImage:[UIImage imageNamed:@"white-08-chat"] forState:UIControlStateNormal];
         [self.chatButton addTarget:self action:@selector(chatButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.chatButton];
@@ -151,6 +166,7 @@
         CGRect sliderFrame = CGRectMake(paddingX, self.view.frame.size.height - SLIDER_HEIGHT - paddingY, width, SLIDER_HEIGHT);
         
         self.slider = [[UISlider alloc] initWithFrame:sliderFrame];
+        self.slider.accessibilityHint = NSLocalizedString(@"Slider AccessibiltyHint", @"");
         [self.slider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
         self.slider.minimumValue = 0;
         self.slider.maximumValue = 8;
@@ -210,6 +226,7 @@
 - (void) screenSaverStarted
 {
     DLogFuncName();
+    [self hideToolTips];
     if ([self.topTextField isFirstResponder])
     {
         [self.topTextField resignFirstResponder];
@@ -292,8 +309,16 @@
     }
     
     [self setInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+//    [self showToolTips];
 }
 
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    DLogFuncName();
+    [super viewWillDisappear:animated];
+    [self hideToolTips:NO];
+}
 
 - (void) setConvertToLeet:(BOOL)convertToLeet
 {
@@ -321,6 +346,152 @@
     [self setExportButton:nil];
     [super viewDidUnload];
 }
+
+#pragma mark - ToolTips
+- (void) darkenGui
+{
+    DLogFuncName();
+    for (UIView * view in self.view.subviews)
+    {
+        [self.darkViews addObject:view];
+        [UIView animateWithDuration:0.5
+                              delay:0
+                            options: UIViewAnimationCurveEaseInOut
+                         animations:^{
+                             view.alpha = 0.5;
+                         }
+                         completion:^(BOOL finished){
+                             
+                         }];
+    }
+}
+
+- (void) lightenGui
+{
+    DLogFuncName();
+    for (UIView * view in [self.darkViews copy])
+    {
+        [self.darkViews removeObject:view];
+        [UIView animateWithDuration:0.5
+                              delay:0
+                            options: UIViewAnimationCurveEaseInOut
+                         animations:^{
+                             view.alpha = 1;
+                         }
+                         completion:^(BOOL finished){
+                             
+                         }];
+    }
+}
+
+
+- (void) horizontalToolTipForButton:(UIButton*) button
+{
+    DLogFuncName();
+    NTUIToolTipView * toolTip = [[NTUIToolTipView alloc] initWithMessage:button.accessibilityHint];
+	CGPoint center = [self.view convertPoint:button.center toView:self.view];
+	[toolTip setPointAt:CGRectMake(center.x -15, center.y, button.frame.size.width, button.frame.size.height)];
+    [toolTip setOrientation:NTUIToolTipViewOrientationLeft];
+    [toolTip setFillColor:[UIColor blackColor]];
+    
+    [toolTip show];
+    [self.toolTips addObject:toolTip];
+    
+//    return toolTip;
+}
+
+- (void) verticallToolTipForButton:(UIButton*) button
+{
+    DLogFuncName();
+    NTUIToolTipView * toolTip = [[NTUIToolTipView alloc] initWithMessage:button.accessibilityHint];
+	CGPoint center = [self.view convertPoint:button.center toView:self.view];
+	[toolTip setPointAt:CGRectMake(center.x, center.y, 1, 1)];
+    [toolTip setOrientation:NTUIToolTipViewOrientationTop];
+    [toolTip setFillColor:[UIColor blackColor]];
+    
+    [toolTip show];
+    [self.toolTips addObject:toolTip];
+    
+    //    return toolTip;
+}
+
+- (void) showHorizontalToolTips
+{
+    DLogFuncName();
+    [self hideToolTips];
+    [self darkenGui];
+    
+    [self horizontalToolTipForButton:self.clearButton];
+    [self horizontalToolTipForButton:self.importButton];
+    [self horizontalToolTipForButton:self.chatButton];
+    [self horizontalToolTipForButton:self.mailButton];
+    [self horizontalToolTipForButton:self.exportButton];
+}
+
+
+- (void) showVerticalToolTips
+{
+    DLogFuncName();
+    
+    NTUIToolTipView * toolTip;
+	CGPoint center;
+  
+    [self hideToolTips];
+    
+    if ([self.darkViews count] == 0)
+    {
+        [self darkenGui];
+    }
+    
+    [self verticallToolTipForButton:self.switchButton];
+    [self verticallToolTipForButton:self.slider];
+}
+
+- (void) hideToolTips
+{
+    DLogFuncName();
+    [self hideToolTips:YES];
+}
+
+- (void) hideToolTips:(BOOL)animated
+{
+    DLogFuncName();
+    for (NTUIToolTipView * toolTip in self.toolTips)
+    {
+        if (animated)
+        {
+        [UIView animateWithDuration:1
+                              delay:0
+                            options: UIViewAnimationCurveEaseInOut
+                         animations:^{
+                             toolTip.alpha = 0.0;
+                         }
+                         completion:^(BOOL finished){
+                             [toolTip dismiss];
+                         }];
+        }
+        else
+        {
+            [toolTip dismiss];
+        }
+    }
+    
+    [self lightenGui];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    DLogFuncName();
+    [self hideToolTips];
+}
+
+- (void) showToolTips
+{
+    DLogFuncName();
+//    [self showHorizontalToolTips];
+    [self showVerticalToolTips];
+}
+
 
 #pragma mark - Rotation (iPad)
 - (void) setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -634,7 +805,7 @@
     }
     else
     {
-        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Added to clipboard alert description",nil)];
+        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Nothing in clipboard alert description",nil)];
     }
     
     [[PSUserDefaults sharedPSUserDefaults] incrementImportButtonTouches];
@@ -663,7 +834,7 @@
             //        self.mailcomposerViewController.modalPresentationStyle = UIModalPresentationFormSheet;
             
 
-            [self.mailComposeViewController addAttachmentData:[self.bottomTextField.text dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"l33t" fileName:@"Open With l33t-App (Avaiable in the AppStore)"];
+            [self.mailComposeViewController addAttachmentData:[self.bottomTextField.text dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"l33t" fileName:@"Open With l33t-App"];
             [self presentViewController:self.mailComposeViewController animated:YES completion:nil];
             
             
@@ -837,6 +1008,8 @@
     
     [self expandTextViewsWithAnimation:YES];
     [self exportOutput];
+    [[iRate sharedInstance] logEvent:YES];
+
 }
 
 
@@ -894,15 +1067,23 @@
         NSString * old = self.input.text;
         NSRange newRange = NSMakeRange(range.location, range.length);
         self.input.text = [old stringByReplacingCharactersInRange:range withString:text];
+        return NO;
     }
     
-    [self transformInput:text withRange:range];
+
     
+    
+    [self transformInput:text withRange:range];
     if (change)
     {
         return NO;
     }
-    return YES;
+//    self.input.text = [self.input.text lowercaseString];
+//    textView.text = [textView.text lowercaseString];
+    self.input.text = [[self.input.text stringByReplacingCharactersInRange:range withString:text] lowercaseString];
+
+    
+    return NO;
 }
 
 #pragma mark - UITextView Optic

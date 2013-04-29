@@ -30,3 +30,22 @@
 "Random Second Reminder Title"  = "Wie geht's?";
 "Random Third Reminder Title"   = "Vermisst Du mich?";
 "Random Fourth Reminder Title"   = "Stets zu Diensten";
+
+
+// Buttons
+"Clear" = "Leeren";
+"Import" = "Einfügen";
+"Switch" = "Umschalten";
+"Export" = "Exportieren";
+"Mail" = "E-Mail";
+"Chat" = "SMS";
+"Strength" = "Stärke";
+
+
+"Clear Button AccessibiltyHint" = "Inhalt der Eingabefelder leeren.";
+"Import Button AccessibiltyHint" = "Inhalte aus der Zwischenablage in das Eingabefeld einfügen \n(Copy & Paste).";
+"Switch Button AccessibiltyHint" = "Konvertierung umschalten \n(Text zu Leet, Leet zu Text).";
+"Export Button AccessibiltyHint" = "Inhalt des Ausgabefeldes in die Zwischenablage kopieren \n(Copy & Paste).";
+"Mail Button AccessibiltyHint" = "Inhalt des Ausgabefeldes als E-Mail senden.";
+"Chat Button AccessibiltyHint" = "Inhalt der Ausgabefeldes als SMS oder iMessage senden.";
+"Slider Button AccessibiltyHint" = "Stärke der Konvertierung anpassen.";

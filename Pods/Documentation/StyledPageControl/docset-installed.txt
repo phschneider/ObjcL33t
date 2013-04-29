@@ -1,0 +1,4 @@
+Documentation set was installed to Xcode!
+
+Path: /Users/pschneider/Library/Developer/Shared/Documentation/DocSets/org.cocoapods.styledpagecontrol.StyledPageControl-1.0.docset
+Time: 2013-04-29 13:24:32 +0000

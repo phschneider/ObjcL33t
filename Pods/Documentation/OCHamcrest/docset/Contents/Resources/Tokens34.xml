@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/HCStringDescription.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/HCStringDescription</TokenIdentifier>
+			<Abstract type="html">    An HCDescription that is stored as a string.</Abstract>
+			<DeclaredIn>HCStringDescription.h</DeclaredIn>
+			
+			<NodeRef refid="34"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/HCStringDescription/stringFrom:</TokenIdentifier>
+			<Abstract type="html">    Returns the description of an HCSelfDescribing object as a string.</Abstract>
+			<DeclaredIn>HCStringDescription.h</DeclaredIn>			
+			
+			<Declaration>+ (NSString *)stringFrom:(id&lt;HCSelfDescribing&gt;)selfDescribing</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>selfDescribing</Name>
+					<Abstract type="html">The object to be described.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">The description of the object.</Abstract></ReturnValue>
+			<Anchor>//api/name/stringFrom:</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/HCStringDescription/stringDescription</TokenIdentifier>
+			<Abstract type="html">    Returns an empty description.</Abstract>
+			<DeclaredIn>HCStringDescription.h</DeclaredIn>			
+			
+			<Declaration>+ (HCStringDescription *)stringDescription</Declaration>
+			
+			
+			<Anchor>//api/name/stringDescription</Anchor>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/HCStringDescription/init</TokenIdentifier>
+			<Abstract type="html">    Returns an initialized HCStringDescription object that is empty.</Abstract>
+			<DeclaredIn>HCStringDescription.h</DeclaredIn>			
+			
+			<Declaration>- (id)init</Declaration>
+			
+			
+			<Anchor>//api/name/init</Anchor>
+		</Token>
+		
+	</File>
+</Tokens>

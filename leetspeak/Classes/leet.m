@@ -31,7 +31,7 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
     @"y", @"z"};
 
 // Unless we make an Array class, we can only do this with
-static NSString* levels[][26] = {
+static NSString* levels[][kNUMBER_OF_OBJECTS] = {
 	{@"4", @"b", @"c", @"d", @"3", @"f", @"g", @"h", @"i", @"j", @"k", @"1",
 		@"m", @"n", @"0", @"p", @"9", @"r", @"s", @"7", @"u", @"v", @"w", @"x",
 		@"y", @"z"},
@@ -123,17 +123,24 @@ NSString * convertLeet(int level, NSString* message)
 
         BOOL found = NO;
         int multiplierReached = 0;
-        
+        int end = 0;
 		for ( NSInteger index = 0; index < stringlen; index++ ) {
-            found = NO;
-            multiplierReached = 0;
+            multiplierReached = multipler+1;
+            if (found && end > 0 && end != index)
+            {
+                NSLog(@"Reset Found index %d, end %d ", index, end);
+                index = end;
+                found = NO;
+            }
+
             do {
-//                NSLog(@"Level = %d", level);
-//                NSLog(@"Index = %d", index);
-//                NSLog(@"multiplierReached = %d", multiplierReached);
-                multiplierReached++;
+                NSLog(@"Level = %d", level);
+                NSLog(@"Index = %d", index);
+                                multiplierReached--;
+                NSLog(@"multiplierReached = %d", multiplierReached);
+
                 
-                int end = multiplierReached;
+                end = multiplierReached;
 //                NSLog(@"end = %d", end);
 //                NSLog(@"stringlen = %d", stringlen);
                 if (end > stringlen)
@@ -160,7 +167,7 @@ NSString * convertLeet(int level, NSString* message)
                     found = YES;
                 }
                 
-//                NSLog(@"Substring LAST = %@", last);
+                NSLog(@"Substring LAST = %@", last);
                 for (int j=0; j < 26; j++)
                 {
 //                    NSLog(@"For j = %d",j);
@@ -180,7 +187,7 @@ NSString * convertLeet(int level, NSString* message)
                     found = YES;
                 }
                 
-                if (multiplierReached == multipler && !found)
+                if (multiplierReached == 0 && !found)
                 {
                     // Check if Alpha
                     if ([[last stringByTrimmingCharactersInSet:[NSCharacterSet letterCharacterSet]] isEqualToString:@""])
@@ -192,8 +199,12 @@ NSString * convertLeet(int level, NSString* message)
                 }
             }
             // if not is number and not matching then compare 'aa' instead of 'a' (next index) until you have reachd 'aaa' (index+2)
-            while (!found && multiplierReached <= multipler);
+            while (!found && multiplierReached > 0);
             
+            if (!found)
+            {
+                [ret appendString:[[string substringFromIndex:index] substringToIndex:1]];
+            }
 //			if (i >= levels[level][0] && i <= levels[level][26]) {
 //				[ret appendString:levels[level][i - 'a']];
 //			} else {

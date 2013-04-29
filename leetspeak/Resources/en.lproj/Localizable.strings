@@ -30,3 +30,21 @@
 "Random Second Reminder Title"  = "How are you?";
 "Random Third Reminder Title"   = "Do you miss me?";
 "Random Fourth Reminder Title"   = "Always at your service";
+
+
+// Buttons
+"Clear" = "Clear";
+"Import" = "Import";
+"Switch" = "Switch";
+"Export" = "Export";
+"Mail" = "Mail";
+"Chat" = "Chat";
+"Strength" = "Strength";
+
+"Clear Button AccessibiltyHint" = "Clear Button AccessibiltyHint";
+"Import Button AccessibiltyHint" = "Import Button AccessibiltyHint";
+"Switch Button AccessibiltyHint" = "Switch Button AccessibiltyHint";
+"Export Button AccessibiltyHint" = "Export Button AccessibiltyHint";
+"Mail Button AccessibiltyHint" = "Mail Button AccessibiltyHint";
+"Chat Button AccessibiltyHint" = "Chat Button AccessibiltyHint";
+"Slider Button AccessibiltyHint" = "Slider Button AccessibiltyHint";
