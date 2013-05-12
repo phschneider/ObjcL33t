@@ -52,6 +52,8 @@
 @property (readwrite)   CFURLRef        soundFileURLRef;
 @property (readonly)    SystemSoundID    soundKiss;
 
+@property (nonatomic) int rotationCounter;
+
 - (void)clearButtonTouched:(id)sender;
 - (void)importButtonTouched:(id)sender;
 - (void)exportButtonTouched:(id)sender;

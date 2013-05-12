@@ -51,6 +51,7 @@
         NSURL* url = [NSURL fileURLWithPath:path];
         AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &_soundKiss);
         
+        self.rotationCounter = 1;
         
         int width, height, paddingX, paddingY;
         if (IS_IPAD)
@@ -759,6 +760,11 @@
                      animations:^{
                          self.input.frame = outputFrame;
                          self.output.frame = inputFrame;
+                         
+                         CGAffineTransform xform = CGAffineTransformMakeRotation(M_PI*self.rotationCounter*(-1));
+                         self.switchButton.transform = xform;
+                         [self.switchButton setNeedsDisplay];
+                         self.rotationCounter++;
                      }
                      completion:^(BOOL finished){
                          if (finished)
@@ -778,6 +784,10 @@
                              {
                                  [self.input becomeFirstResponder];
                              }
+                             
+//                             CGAffineTransform xform = CGAffineTransformMakeRotation(M_PI*2);
+//                             self.switchButton.transform = xform;
+//                             [self.switchButton setNeedsDisplay];
                              
                              [self transformInput];
                          }

@@ -29,7 +29,7 @@
 - (void) viewWillLayoutSubviews
 {
     DLogFuncName();
-    if (APPDELEGATE.screenSaverStarted)
+    if (APPDELEGATE.screenSaverStarted || APPDELEGATE.wizzardStarted)
     {
         
         [UIView animateWithDuration:10

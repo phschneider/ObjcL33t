@@ -26,10 +26,14 @@
     if (self)
     {
         CGRect mainScreenRect = [[UIScreen mainScreen] applicationFrame];
+        
+        DLogRect(mainScreenRect);
+        
         int pageControlHeight = 80;
         
-//        self.view.backgroundColor = [UIColor blackColor];
+//        self.view.backgroundColor = [UIColor purpleColor];
         self.view.alpha = 1.0;
+//        self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.view.opaque = YES;
         
 //        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,20,self.view.frame.size.width-40, 60)];
@@ -54,13 +58,21 @@
 //        
 
         CAGradientLayer *gradient = [CAGradientLayer layer];
-        gradient.frame = self.view.bounds;
+        if (IS_IPAD)
+        {
+            gradient.frame = CGRectMake(0,0,1024,1024);
+        }
+        else
+        {
+            gradient.frame = self.view.bounds;
+        }
         gradient.colors = [NSArray arrayWithObjects:
                            (id)[[UIColor colorWithWhite: 0.0 alpha:0.5] CGColor],
                            (id)[[UIColor colorWithWhite: 0.0 alpha:1.0] CGColor], nil];
         gradient.startPoint = CGPointMake(0.5, 0.0); // default; bottom of the view
         gradient.endPoint = CGPointMake(0.5, 1.0);   // default; top of the view
         [self.view.layer insertSublayer:gradient atIndex:0];
+        
         
         self.wizzardArray = @[ [[PSWizzardModel alloc] initWithTitle:NSLocalizedString(@"Clear", @"") subTitle:NSLocalizedString(@"Clear Button AccessibiltyHint", @"") imageName:@"white-298-circlex"],
                                [[PSWizzardModel alloc] initWithTitle:NSLocalizedString(@"Import", @"") subTitle:NSLocalizedString(@"Import Button AccessibiltyHint", @"") imageName:@"white-265-download"],
@@ -75,6 +87,7 @@
         
         
         mainScreenRect = [[UIScreen mainScreen] applicationFrame];
+//        self.view.frame=mainScreenRect;
         DLogRect(mainScreenRect);
         mainScreenRect.origin.y = mainScreenRect.size.height - pageControlHeight;
         mainScreenRect.size.height = pageControlHeight;
@@ -83,6 +96,7 @@
         DLogRect(mainScreenRect);
         
         self.pageControl = [[StyledPageControl alloc] initWithFrame:mainScreenRect];
+        self.pageControl.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin;
         [self.pageControl addTarget:self action:@selector(pageControlValueChanged:) forControlEvents:UIControlEventValueChanged];
 //        self.pageControl.backgroundColor = [UIColor blueColor];
         self.pageControl.pageControlStyle = PageControlStyleDefault;
@@ -94,11 +108,13 @@
         self.pageControl.coreSelectedColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.2 alpha:1];
         [self.view addSubview:self.pageControl];
         
-        mainScreenRect = [[UIScreen mainScreen] applicationFrame];
+        mainScreenRect = self.view.bounds;
+//        mainScreenRect = [[UIScreen mainScreen] applicationFrame];
         mainScreenRect.origin.y = 0;
-        mainScreenRect.size.height -= 50;
+//        mainScreenRect.size.height -= 50;
         
         self.scrollView = [[UIScrollView alloc] initWithFrame:mainScreenRect];
+//        self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.scrollView.opaque = YES;
 //        self.scrollView.backgroundColor = [UIColor redColor];
         self.scrollView.delegate = self;
@@ -108,6 +124,7 @@
         
         [self.view addSubview:self.scrollView];
 
+        DLogFrame(self.scrollView);
 
 //        mainScreenRect = [[UIScreen mainScreen] applicationFrame];
 //        DLogRect(mainScreenRect);
@@ -155,6 +172,7 @@
         {
             i++;
             PSWizzardView * wizzardView = [[PSWizzardView alloc] initWithFrame:CGRectMake(width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) model:model];
+            wizzardView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             width += wizzardView.frame.size.width;
             [self.scrollView addSubview:wizzardView];
             
@@ -164,6 +182,7 @@
         
         // Last Empty Page
         PSWizzardView * wizzardView = [[PSWizzardView alloc] initWithFrame:CGRectMake(width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) model:nil];
+        wizzardView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         width += wizzardView.frame.size.width;
         [self.scrollView addSubview:wizzardView];
 //        
@@ -172,7 +191,8 @@
         
 //        self.scrollView.contentOffset = CGPointMake(width-wizzardView.frame.size.width-wizzardView.frame.size.width,self.scrollView.frame.size.height);
 
-
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
+        [self setInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
     }
     return self;
 }
@@ -322,6 +342,110 @@
 //    {
         [self.scrollView scrollRectToVisible:[self rectForPage:self.pageControl.currentPage] animated:YES];
 //    }
+}
+
+
+#pragma mark - Rotation (iPad)
+- (void) orientationDidChange:(NSNotification*) notification
+{
+    DLogFuncName();
+    [self setInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+}
+
+//- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+//{
+//    [self setInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+//}
+
+
+- (void) setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    DLogSize(self.scrollView.contentSize);
+    DLogFrame(self.view);
+    DLogFrame(self.scrollView);
+    
+    if (IS_IPAD)
+    {
+        CGRect mainScreenRect = [[UIScreen mainScreen] applicationFrame];
+        float width = mainScreenRect.size.width; //self.view.bounds.size.width;
+        float height = mainScreenRect.size.height;  //self.view.bounds.size.height;
+        float x = 0;
+        float y = 0;
+        if (UIInterfaceOrientationIsLandscape(interfaceOrientation))
+        {
+                width = 1024;
+                height = 768;
+        }
+        else
+        {
+                width = 768;
+                height = 1024;
+        }
+        
+        self.scrollView.frame = CGRectMake(x,y, width,height);
+        self.view.frame = CGRectMake(x,y, width,height);
+        [self.scrollView setContentSize:(CGSizeMake(width*(self.pageControl.numberOfPages+1), height))];
+        
+        int i = 0;
+        for (PSWizzardView * wizzardView in self.scrollView.subviews)
+        {
+            wizzardView.frame = CGRectMake(i*width,0, width, height);
+            i++;
+        }
+        
+        [self.scrollView scrollRectToVisible:[self rectForPage:self.pageControl.currentPage] animated:YES];
+        
+//        CAGradientLayer *gradient = [[self.view.layer sublayers] objectAtIndex:0];
+//        gradient.frame = self.view.bounds;
+//        gradient.colors = [NSArray arrayWithObjects:
+//                           (id)[[UIColor colorWithWhite: 0.0 alpha:0.5] CGColor],
+//                           (id)[[UIColor colorWithWhite: 0.0 alpha:1.0] CGColor], nil];
+//        gradient.startPoint = CGPointMake(0.5, 0.0); // default; bottom of the view
+//        gradient.endPoint = CGPointMake(0.5, 1.0);   // default; top of the view
+        
+    }
+}
+
+// iOS 6
+- (BOOL) shouldAutorotate
+{
+    DLogFuncName();
+    return (!IS_IPHONE);
+}
+
+
+//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+//{
+//    DLogFuncName();
+//    [self setInterfaceOrientation:toInterfaceOrientation];
+//}
+
+
+// iOS2 - iOS5
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    DLogFuncName();
+    return (!IS_IPHONE);
+}
+
+
+// iOS 3 >
+//- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+//{
+//    DLogFuncName();
+//    if (IS_IPAD)
+//    {
+//        [self setInterfaceOrientation:toInterfaceOrientation];
+//    }
+//}
+
+// wird auch aufgerufen wenn shrink und expand gemacht wurde ... :(
+- (void) viewWillLayoutSubviews
+{
+    DLogFuncName();
+
+    [self setInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+
 }
 
 

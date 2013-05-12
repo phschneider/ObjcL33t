@@ -17,12 +17,16 @@
     DLogFuncName();
     self = [super initWithFrame:frame];
     if (self) {
+        DLogRect(frame);
+        self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         int padding = 20;
-        self.backgroundColor = [UIColor clearColor];
+//        self.backgroundColor = [UIColor yellowColor];
         
         // Initialization code
         CGRect labelRect = CGRectMake(padding,ceil(frame.size.height /2)+80,frame.size.width-(2*padding), 40);
         self.titleLabel = [[UILabel alloc] initWithFrame:labelRect];
+//        self.titleLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+//        self.titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
         self.titleLabel.font = [UIFont boldSystemFontOfSize:32];
         self.titleLabel.textColor = [UIColor whiteColor];
         self.titleLabel.textAlignment = UITextAlignmentCenter;
@@ -31,6 +35,8 @@
 
         labelRect = CGRectMake(padding,ceil(frame.size.height /2)+120,frame.size.width-(2*padding), 100);
         self.subTitleLabel = [[UILabel alloc] initWithFrame:labelRect];
+//        self.subTitleLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+//        self.subTitleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
         self.subTitleLabel.font = [UIFont systemFontOfSize:16];
         self.subTitleLabel.textAlignment = UITextAlignmentCenter;
         self.subTitleLabel.numberOfLines = 3;
@@ -40,6 +46,7 @@
         [self addSubview:self.subTitleLabel];
         
         self.imageView = [[UIImageView alloc] initWithFrame:frame];
+//        self.subTitleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
         [self addSubview:self.imageView];
     }
     return self;
@@ -92,5 +99,22 @@
     // Drawing code
 }
 */
+
+- (void) layoutSubviews
+{
+    DLogFuncName();
+    self.imageView.center = CGPointMake(ceil(self.bounds.size.width/2), ceil(self.bounds.size.height/2));
+    CGRect imageFrame = self.imageView.frame;
+    imageFrame.origin.y = self.titleLabel.frame.origin.y - imageFrame.size.height - 20;
+    self.imageView.frame = imageFrame;
+    
+    CGPoint center = self.subTitleLabel.center;
+    center.x = self.imageView.center.x;
+    self.subTitleLabel.center = center;
+    
+    center = self.titleLabel.center;
+    center.x = self.imageView.center.x;
+    self.titleLabel.center = center;
+}
 
 @end

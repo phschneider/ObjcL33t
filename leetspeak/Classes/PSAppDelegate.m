@@ -28,7 +28,6 @@
 @synthesize number = _number;
 @synthesize screenSaverStarted = _screenSaverStarted;
 @synthesize screenSaverTimer = _screenSaverTimer;
-
 @synthesize reminderArray = _reminderArray;
 
 
@@ -292,6 +291,74 @@
     }
 }
 
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    DLogFuncName();
+    [self handleUrl:url];
+    return YES;
+}
+
+
+- (void) handleUrl:(NSURL*) url
+{
+    DLogFuncName();
+//    if (self.hiplo24ViewController && self.hiplo24ViewController.view.superview)
+//    {
+//        if ([self.hiplo24ViewController respondsToSelector:@selector(dismissModalViewControllerAnimated:)])
+//        {
+//            [self.hiplo24ViewController dismissModalViewControllerAnimated:YES];
+//        }
+//        else if ( [self.hiplo24ViewController respondsToSelector:@selector(dismissViewControllerAnimated:completion:)])
+//        {
+//            [self.hiplo24ViewController dismissViewControllerAnimated:YES completion:nil];
+//        }
+//    }
+//    
+//    [self showPreviousTab];
+//    
+
+    DLog(@"Url = %@", url);
+}
+
+
+#pragma mark - Wizzard
+- (void) showWizzard
+{
+    DLogFuncName();
+    self.wizzardViewController = nil;
+    self.wizzardStarted = YES;
+    self.wizzardViewController = [[PSWizzardViewController alloc] init];
+    [self.window.rootViewController.view addSubview:self.wizzardViewController.view];
+    [self.wizzardViewController viewDidAppear:YES];
+}
+
+
+- (void) hideWizzard
+{
+    [UIView animateWithDuration:1.0
+                     animations:^{
+                         self.wizzardViewController.view.alpha = 0;
+                     }
+                     completion:^(BOOL finished){
+                         [self.wizzardViewController.view removeFromSuperview];
+                         //                                    self.wizzardViewController = nil;
+                         self.wizzardStarted = NO;
+                         [self.tabBarController.view layoutSubviews];
+                     }];
+    
+}
+
+
+#pragma mark - AppDelegate
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    DLogFuncName();
+    DLog(@"Source Application = %@",sourceApplication);
+    [self handleUrl:url];
+    return YES;
+}
+
 #pragma mark - Application Delegate
 //AppDelegate Initialize Functions
 + (void)initialize
@@ -365,32 +432,6 @@
     return YES;
 }
 
-
-- (void) showWizzard
-{
-    DLogFuncName();
-    self.wizzardViewController = nil;
-    self.wizzardStarted = YES;
-    self.wizzardViewController = [[PSWizzardViewController alloc] init];
-    [self.window.rootViewController.view addSubview:self.wizzardViewController.view];
-    
-    [self.wizzardViewController viewDidAppear:YES];
-}
-
-
-- (void) hideWizzard
-{
-    [UIView animateWithDuration:1.0
-                     animations:^{
-                                    self.wizzardViewController.view.alpha = 0;
-                                }
-                     completion:^(BOOL finished){
-                                    [self.wizzardViewController.view removeFromSuperview];
-//                                    self.wizzardViewController = nil;
-                                    self.wizzardStarted = NO;
-                        }];
-   
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
