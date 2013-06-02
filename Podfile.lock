@@ -1,18 +1,22 @@
 PODS:
+  - CrittercismSDK (3.5.1)
+  - Facebook-iOS-SDK (3.5.1)
   - GoogleAnalytics-iOS-SDK (2.0beta4)
   - HockeyKit (2.0.7)
-  - iRate (1.7)
-  - iVersion (1.9.8)
+  - iRate (1.7.5)
+  - iVersion (1.10.6)
   - OCHamcrest (1.9)
   - OCMockito (0.23):
     - OCHamcrest (= 1.9)
-  - Parse (1.1.10)
-  - QuincyKit (2.1.9)
+  - Parse (1.2.9):
+    - Facebook-iOS-SDK (~> 3.5.1)
   - StyledPageControl (1.0)
-  - SVProgressHUD (0.8)
-  - TestFlightSDK (1.3.0.beta2)
+  - SVProgressHUD (0.9)
+  - TestFlightSDK (1.3.0-beta.5)
+  - uservoice-iphone-sdk (2.0.10)
 
 DEPENDENCIES:
+  - CrittercismSDK
   - GoogleAnalytics-iOS-SDK
   - HockeyKit
   - iRate
@@ -20,22 +24,24 @@ DEPENDENCIES:
   - OCHamcrest
   - OCMockito
   - Parse
-  - QuincyKit
   - StyledPageControl
   - SVProgressHUD
   - TestFlightSDK
+  - uservoice-iphone-sdk
 
 SPEC CHECKSUMS:
+  CrittercismSDK: 1cd30b0bb1448494da29539a1cf490475288d1d1
+  Facebook-iOS-SDK: 0dbd897e842cefeb012ec2eb8eba659ba6b96b12
   GoogleAnalytics-iOS-SDK: ae8e58e771b6dec84c0047154cc0e550a15e6f54
   HockeyKit: df5e71674550a3f8a4cb52dfa606c2af34dbfe12
-  iRate: e4a0bd887cf39a1cd389a2112c0edc87fb8f7c0a
-  iVersion: 38f8ed9140e0ba35b09932e067fad803759f1f07
+  iRate: 8de5eaeca627c7708c8aec279eeb8daf2551c774
+  iVersion: 36b392de6d86425f4a82439fd120c7753b52ea39
   OCHamcrest: f8393efd5a49d91879be573635d6183effacc0ab
   OCMockito: 2223021dd82697fc536c403d6850d2ed8ffae578
-  Parse: 7d7c49595ed5871a5358f5e218f2435611af68a1
-  QuincyKit: 3c1a3d8aff99ad03fc0afe302b1194eb6f2ddf69
+  Parse: 9d763110e8cebe319243ee38dc3c34d3475b98d6
   StyledPageControl: c63d0d5eed3151241ac2ee10f3dc01305c3ae421
-  SVProgressHUD: 51042a14e3a716efdbdd73cbb2181fb23ee94389
-  TestFlightSDK: 185b9bfd710bfb85ce5f57bcb89651330081090f
+  SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
+  TestFlightSDK: 6c97c15d0fb4735bac761ec563ba7dfe11541cbf
+  uservoice-iphone-sdk: 806238f9e392c04d72865d942459fc31bf8da940
 
-COCOAPODS: 0.18.1
+COCOAPODS: 0.20.2

@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "leetspeak/Classes/PSInputViewController.m"
-         timestampString = "390083741.530698"
+         timestampString = "391779669.467168"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "742"
-         endingLineNumber = "742"
+         startingLineNumber = "630"
+         endingLineNumber = "630"
          landmarkName = "@implementation PSInputViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -47,64 +47,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "leetspeak/Classes/PSWizzardViewController.m"
-         timestampString = "390083976.956508"
+         timestampString = "391773591.460993"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "279"
-         endingLineNumber = "279"
+         startingLineNumber = "229"
+         endingLineNumber = "229"
          landmarkName = "-scrollViewDidScroll:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "leetspeak/Classes/PSWizzardViewController.m"
-         timestampString = "390083976.956508"
+         timestampString = "391773591.460993"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "361"
-         endingLineNumber = "361"
-         landmarkName = "-setInterfaceOrientation:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "leetspeak/Classes/PSWizzardViewController.m"
-         timestampString = "390083976.956508"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "375"
-         endingLineNumber = "375"
-         landmarkName = "-setInterfaceOrientation:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "leetspeak/Classes/PSWizzardViewController.m"
-         timestampString = "390083976.956508"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "380"
-         endingLineNumber = "380"
-         landmarkName = "-setInterfaceOrientation:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "leetspeak/Classes/PSWizzardViewController.m"
-         timestampString = "390083976.956508"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "271"
-         endingLineNumber = "271"
-         landmarkName = "-scrollViewDidScroll:"
+         startingLineNumber = "214"
+         endingLineNumber = "214"
+         landmarkName = "-scrollViewWillBeginDragging:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

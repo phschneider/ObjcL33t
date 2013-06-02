@@ -87,9 +87,154 @@
             self.imageView.frame = imageFrame;
             
             DLogFrame(self.imageView);
+            self.clipsToBounds = YES;
+
+            self.imageFrame = self.imageView.frame;
         }
     }
     return self;
+}
+
+
+- (void) showBadge
+{
+    DLogFuncName();
+    self.badge = [[UIView alloc] initWithFrame:CGRectZero];
+    self.badge.backgroundColor = [UIColor clearColor];
+    self.badge.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    
+//    self.badge.autoresizesSubviews = YES;
+    
+    if (IS_IPHONE)
+    {
+        int width = 300;
+        int height = 50;
+        int offset_1 = 160;
+        int offset = 60;
+        
+        self.badgeView = [[UIView alloc] initWithFrame:CGRectMake(160,60,width,height)];
+        self.badgeView.backgroundColor = [UIColor redColor];
+        
+        self.badgeLabel = [[UILabel alloc] initWithFrame:CGRectMake(offset,0,width-180-(offset),height)];
+        self.badgeLabel.font = [UIFont boldSystemFontOfSize:20];
+        self.badgeLabel.textColor =  [UIColor whiteColor];
+        self.badgeLabel.text = NSLocalizedString(@"Badge Title New",nil);
+        self.badgeLabel.backgroundColor = [UIColor clearColor];
+        self.badgeLabel.textAlignment = UITextAlignmentCenter;
+
+        
+        
+        CAGradientLayer *gradient = [CAGradientLayer layer];
+        if (IS_IPAD)
+        {
+            gradient.frame = CGRectMake(0,0,1024,1024);
+        }
+        else
+        {
+            gradient.frame = self.badgeView.bounds;
+        }
+
+        UIColor * color1 = [UIColor colorWithWhite: 0.0 alpha:0.0];
+        UIColor * color2 = [UIColor colorWithWhite: 0.0 alpha:0.2];
+        
+        NSMutableArray * gradientColors = [[NSMutableArray alloc] init];
+        for (int i = 0; i < 100; i++)
+        {
+            [gradientColors addObject:(id)[color1 CGColor]];
+            [gradientColors addObject:(id)[color2 CGColor]];
+        }
+        
+        gradient.colors = gradientColors;
+        gradient.startPoint = CGPointMake(0.0, 0.0); // default; bottom of the view
+        gradient.endPoint = CGPointMake(1.0, 0.0);   // default; top of the view
+        [self.badgeView.layer insertSublayer:gradient atIndex:0];
+        
+        
+        [self.badgeView addSubview:self.badgeLabel];
+
+        CGAffineTransform rotationTransform = CGAffineTransformIdentity;
+        rotationTransform = CGAffineTransformRotate(rotationTransform, 45 * M_PI / 180);
+        self.badgeView.transform = rotationTransform;
+        
+        self.badgeView.layer.shadowOffset = CGSizeMake(0,0);
+        self.badgeView.layer.shadowOpacity = 0.5;
+        self.badgeView.layer.shadowColor = [[UIColor darkGrayColor] CGColor];
+        self.badgeView.layer.shadowRadius = 2;
+        
+        [self.badge addSubview:self.badgeView];
+    }
+    else
+    {
+        int width = 400;
+        int height = 50;
+        int offset_1 = 160;
+        int offset = 60;
+        
+        if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
+        {
+            self.badgeView = [[UIView alloc] initWithFrame:CGRectMake(500,90,width,height)];
+            self.badgeLabel = [[UILabel alloc] initWithFrame:CGRectMake(offset,0,width-120-(offset),height)];
+        }
+        else
+        {
+//            self.badgeView = [[UIView alloc] initWithFrame:CGRectMake(780,70,width,height)];
+//            self.badgeLabel = [[UILabel alloc] initWithFrame:CGRectMake(offset,0,width-120-(offset),height)];
+//
+            self.badgeView = [[UIView alloc] initWithFrame:CGRectMake(500,90,width,height)];
+            self.badgeLabel = [[UILabel alloc] initWithFrame:CGRectMake(offset,0,width-120-(offset),height)];
+        }
+        self.badgeView.backgroundColor = [UIColor redColor];
+        
+        self.badgeLabel = [[UILabel alloc] initWithFrame:CGRectMake(offset,0,width-120-(offset),height)];
+        self.badgeLabel.font = [UIFont boldSystemFontOfSize:20];
+        self.badgeLabel.textColor =  [UIColor whiteColor];
+        self.badgeLabel.text = NSLocalizedString(@"Badge Title New",nil);
+        self.badgeLabel.backgroundColor = [UIColor clearColor];
+        self.badgeLabel.textAlignment = UITextAlignmentCenter;
+        
+                
+        CAGradientLayer *gradient = [CAGradientLayer layer];
+        if (IS_IPAD)
+        {
+            gradient.frame = self.badgeView.bounds;
+        }
+        else
+        {
+            gradient.frame = self.badgeView.bounds;
+        }
+        
+        UIColor * color1 = [UIColor colorWithWhite: 0.0 alpha:0.0];
+        UIColor * color2 = [UIColor colorWithWhite: 0.0 alpha:0.2];
+        
+        NSMutableArray * gradientColors = [[NSMutableArray alloc] init];
+        for (int i = 0; i < 100; i++)
+        {
+            [gradientColors addObject:(id)[color1 CGColor]];
+            [gradientColors addObject:(id)[color2 CGColor]];
+        }
+        
+        gradient.colors = gradientColors;
+        gradient.startPoint = CGPointMake(0.0, 0.0); // default; bottom of the view
+        gradient.endPoint = CGPointMake(1.0, 0.0);   // default; top of the view
+        [self.badgeView.layer insertSublayer:gradient atIndex:0];
+        
+        
+        [self.badgeView addSubview:self.badgeLabel];
+        
+        CGAffineTransform rotationTransform = CGAffineTransformIdentity;
+        rotationTransform = CGAffineTransformRotate(rotationTransform, 45 * M_PI / 180);
+        self.badgeView.transform = rotationTransform;
+        
+        self.badgeView.layer.shadowOffset = CGSizeMake(0,0);
+        self.badgeView.layer.shadowOpacity = 0.5;
+        self.badgeView.layer.shadowColor = [[UIColor darkGrayColor] CGColor];
+        self.badgeView.layer.shadowRadius = 2;
+        self.badgeView.layer.masksToBounds = NO;
+
+        [self.badge addSubview:self.badgeView];
+    }
+    
+    [self addSubview:self.badge];
 }
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -115,6 +260,8 @@
     center = self.titleLabel.center;
     center.x = self.imageView.center.x;
     self.titleLabel.center = center;
+    
+    self.imageFrame = self.imageView.frame;
 }
 
 @end

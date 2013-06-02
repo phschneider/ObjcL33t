@@ -10,16 +10,16 @@
     #import "BWHockeyManager.h"
 #endif
 
-#import "BWQuincyManager.h"
+//#import "BWQuincyManager.h"
 #import <UIKit/UIKit.h>
 
 @class PSScreenSaverViewController;
 @class PSWizzardViewController;
 
 #ifndef CONFIGURATION_AppStore
-    @interface PSAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, BWHockeyManagerDelegate, BWQuincyManagerDelegate> {
+    @interface PSAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, BWHockeyManagerDelegate> {
 #else
-    @interface PSAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, BWQuincyManagerDelegate> {
+    @interface PSAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate> {
 #endif
 
 }

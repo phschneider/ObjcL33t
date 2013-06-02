@@ -13,8 +13,6 @@
 #import "SVProgressHUD.h"
 #import "iRate.h"
 
-#import <NTUIToolTipView.h>
-
 @implementation PSInputViewController
 
 @synthesize toolTips                    = _toolTips;
@@ -227,7 +225,6 @@
 - (void) screenSaverStarted
 {
     DLogFuncName();
-    [self hideToolTips];
     if ([self.topTextField isFirstResponder])
     {
         [self.topTextField resignFirstResponder];
@@ -318,7 +315,6 @@
 {
     DLogFuncName();
     [super viewWillDisappear:animated];
-    [self hideToolTips:NO];
 }
 
 - (void) setConvertToLeet:(BOOL)convertToLeet
@@ -383,114 +379,6 @@
                              
                          }];
     }
-}
-
-
-- (void) horizontalToolTipForButton:(UIButton*) button
-{
-    DLogFuncName();
-    NTUIToolTipView * toolTip = [[NTUIToolTipView alloc] initWithMessage:button.accessibilityHint];
-	CGPoint center = [self.view convertPoint:button.center toView:self.view];
-	[toolTip setPointAt:CGRectMake(center.x -15, center.y, button.frame.size.width, button.frame.size.height)];
-    [toolTip setOrientation:NTUIToolTipViewOrientationLeft];
-    [toolTip setFillColor:[UIColor blackColor]];
-    
-    [toolTip show];
-    [self.toolTips addObject:toolTip];
-    
-//    return toolTip;
-}
-
-- (void) verticallToolTipForButton:(UIButton*) button
-{
-    DLogFuncName();
-    NTUIToolTipView * toolTip = [[NTUIToolTipView alloc] initWithMessage:button.accessibilityHint];
-	CGPoint center = [self.view convertPoint:button.center toView:self.view];
-	[toolTip setPointAt:CGRectMake(center.x, center.y, 1, 1)];
-    [toolTip setOrientation:NTUIToolTipViewOrientationTop];
-    [toolTip setFillColor:[UIColor blackColor]];
-    
-    [toolTip show];
-    [self.toolTips addObject:toolTip];
-    
-    //    return toolTip;
-}
-
-- (void) showHorizontalToolTips
-{
-    DLogFuncName();
-    [self hideToolTips];
-    [self darkenGui];
-    
-    [self horizontalToolTipForButton:self.clearButton];
-    [self horizontalToolTipForButton:self.importButton];
-    [self horizontalToolTipForButton:self.chatButton];
-    [self horizontalToolTipForButton:self.mailButton];
-    [self horizontalToolTipForButton:self.exportButton];
-}
-
-
-- (void) showVerticalToolTips
-{
-    DLogFuncName();
-    
-    NTUIToolTipView * toolTip;
-	CGPoint center;
-  
-    [self hideToolTips];
-    
-    if ([self.darkViews count] == 0)
-    {
-        [self darkenGui];
-    }
-    
-    [self verticallToolTipForButton:self.switchButton];
-    [self verticallToolTipForButton:self.slider];
-}
-
-- (void) hideToolTips
-{
-    DLogFuncName();
-    [self hideToolTips:YES];
-}
-
-- (void) hideToolTips:(BOOL)animated
-{
-    DLogFuncName();
-    for (NTUIToolTipView * toolTip in self.toolTips)
-    {
-        if (animated)
-        {
-        [UIView animateWithDuration:1
-                              delay:0
-                            options: UIViewAnimationCurveEaseInOut
-                         animations:^{
-                             toolTip.alpha = 0.0;
-                         }
-                         completion:^(BOOL finished){
-                             [toolTip dismiss];
-                         }];
-        }
-        else
-        {
-            [toolTip dismiss];
-        }
-    }
-    
-    [self lightenGui];
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    DLogFuncName();
-    [self hideToolTips];
-}
-
-- (void) showToolTips
-{
-    DLogFuncName();
-//    [self showHorizontalToolTips];
-    [self showVerticalToolTips];
 }
 
 
@@ -844,7 +732,7 @@
             //        self.mailcomposerViewController.modalPresentationStyle = UIModalPresentationFormSheet;
             
 
-            [self.mailComposeViewController addAttachmentData:[self.bottomTextField.text dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"l33t" fileName:@"Open With l33t-App"];
+//            [self.mailComposeViewController addAttachmentData:[self.bottomTextField.text dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"l33t" fileName:@"Open With l33t-App"];
             [self presentViewController:self.mailComposeViewController animated:YES completion:nil];
             
             
@@ -870,42 +758,47 @@
         }
         else
         {
-            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send mail",nil) duration:APP_ERROR_DURATION_TIMERINTERVAL];
+//            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send mail",nil) duration:APP_ERROR_DURATION_TIMERINTERVAL];
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send mail",nil)];
         }
     }
     else
     {
-        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send mail",nil) duration:APP_ERROR_DURATION_TIMERINTERVAL];
+//        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send mail",nil) duration:APP_ERROR_DURATION_TIMERINTERVAL];
+        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send mail",nil)];
     }
 
+    [[PSUserDefaults sharedPSUserDefaults] incrementMailButtonTouches];
 }
 
 // Dismisses the email composition interface when users tap Cancel or Send. Proceeds to update the
 // message field with the result of the operation.
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     DLogFuncName();
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Result:" message:@"" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Result:" message:@"" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
 
     switch (result) {
         case MFMailComposeResultCancelled:
-            alert.message = @"Result: Mail sending canceled";
+//            alert.message = @"Result: Mail sending canceled";
             break;
         case MFMailComposeResultSaved:
-            alert.message = @"Result: Mail saved";
+//            alert.message = @"Result: Mail saved";
             break;
         case MFMailComposeResultSent:
-            alert.message = @"Result: Mail sent";
+//            alert.message = @"Result: Mail sent";
+            [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Mail sent",nil)];
             break;
         case MFMailComposeResultFailed:
-            alert.message = @"Result: Mail sending failed";
+//            alert.message = @"Result: Mail sending failed";
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Mail sending failed",nil)];
             break;
         default:
-            alert.message = @"Result: Mail not sent";
+//            alert.message = @"Result: Mail not sent";
             break;
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
-    [alert show];
+//    [alert show];
 }
 
 
@@ -943,13 +836,17 @@
         }
         else
         {
-            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send SMS",nil) duration:APP_ERROR_DURATION_TIMERINTERVAL];
+//            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send SMS",nil) duration:APP_ERROR_DURATION_TIMERINTERVAL];
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send SMS",nil)];
         }
     }
     else
     {
-        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send SMS",nil) duration:APP_ERROR_DURATION_TIMERINTERVAL];
+//        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send SMS",nil) duration:APP_ERROR_DURATION_TIMERINTERVAL];
+        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Device not configured to send SMS",nil)];
     }
+    
+    [[PSUserDefaults sharedPSUserDefaults] incrementChatButtonTouches];
 }
 
 
@@ -958,27 +855,29 @@
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
     DLogFuncName();
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Result:" message:@"" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Result:" message:@"" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
 
 	// Notifies users about errors associated with the interface
 	switch (result)
 	{
 		case MessageComposeResultCancelled:
-			alert.message = @"Result: SMS sending canceled";
+//			alert.message = @"Result: SMS sending canceled";
 			break;
 		case MessageComposeResultSent:
-			alert.message = @"Result: SMS sent";
+            [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Message sent",nil)];
+//			alert.message = @"Result: SMS sent";
 			break;
 		case MessageComposeResultFailed:
-			alert.message = @"Result: SMS sending failed";
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Message sending failed",nil)];
+//			alert.message = @"Result: SMS sending failed";
 			break;
 		default:
-			alert.message = @"Result: SMS not sent";
+//			alert.message = @"Result: SMS not sent";
 			break;
 	}
 //	[self dismissModalViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
-    [alert show];
+//    [alert show];
 }
 
 

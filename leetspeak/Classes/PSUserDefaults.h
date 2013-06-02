@@ -12,9 +12,21 @@
 
 + (PSUserDefaults*) sharedPSUserDefaults;
 
+- (BOOL) isFirstStart;
+- (BOOL) isFirstVersionStart;
+
 - (void)incrementClearButtonTouches;
 - (void)incrementImportButtonTouches;
 - (void)incrementExportButtonTouches;
 - (void)incrementSwitchButtonTouches;
+
+- (void)incrementChatButtonTouches;
+- (void)incrementMailButtonTouches;
+
+- (void)wizzaredStarted;
+- (void)wizzardFinished;
+
+- (void)incrementAppDidFinishLaunchingCount;
+- (void)incrementAppDidReceiveLocalNotification;
 
 @end

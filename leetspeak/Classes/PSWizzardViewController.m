@@ -11,7 +11,7 @@
 #import "PSWizzardViewController.h"
 #import "PSWizzardModel.h"
 #import "PSWizzardView.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 @interface PSWizzardViewController ()
 
@@ -31,31 +31,9 @@
         
         int pageControlHeight = 80;
         
-//        self.view.backgroundColor = [UIColor purpleColor];
         self.view.alpha = 1.0;
-//        self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.view.opaque = YES;
-        
-//        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,20,self.view.frame.size.width-40, 60)];
-//        self.titleLabel.font = [UIFont boldSystemFontOfSize:40];
-//        self.titleLabel.textAlignment = UITextAlignmentCenter;
-//        self.titleLabel.text = @"Einführung";
-//        self.titleLabel.textColor = [UIColor whiteColor];
-//        self.titleLabel.backgroundColor = [UIColor clearColor];
-//        self.titleLabel.layer.shadowColor = [[UIColor darkGrayColor] CGColor];
-//        self.titleLabel.layer.shadowOffset = CGSizeMake(5,5);
-//        self.titleLabel.layer.masksToBounds = NO;
-//        self.titleLabel.layer.opacity = YES;
-//        self.titleLabel.layer.shouldRasterize = YES;
-//        self.titleLabel.layer.shadowOpacity = 1.0;
-//        [self.view addSubview:self.titleLabel];
-        
-        
-//        CAGradientLayer *gradient = [CAGradientLayer layer];
-//        gradient.frame = self.view.bounds;
-//        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
-//        [self.view.layer insertSublayer:gradient atIndex:0];
-//        
+    
 
         CAGradientLayer *gradient = [CAGradientLayer layer];
         if (IS_IPAD)
@@ -78,8 +56,8 @@
                                [[PSWizzardModel alloc] initWithTitle:NSLocalizedString(@"Import", @"") subTitle:NSLocalizedString(@"Import Button AccessibiltyHint", @"") imageName:@"white-265-download"],
                                [[PSWizzardModel alloc] initWithTitle:NSLocalizedString(@"Switch", @"") subTitle:NSLocalizedString(@"Switch Button AccessibiltyHint", @"") imageName:@"white-288-retweet"],
                                [[PSWizzardModel alloc] initWithTitle:NSLocalizedString(@"Export", @"") subTitle:NSLocalizedString(@"Export Button AccessibiltyHint", @"") imageName:@"white-266-upload"],
-                               [[PSWizzardModel alloc] initWithTitle:NSLocalizedString(@"Mail", @"") subTitle:NSLocalizedString(@"Mail Button AccessibiltyHint", @"") imageName:@"white-18-envelope"],
-                               [[PSWizzardModel alloc] initWithTitle:NSLocalizedString(@"Chat", @"") subTitle:NSLocalizedString(@"Chat Button AccessibiltyHint", @"") imageName:@"white-08-chat"],
+                               [[PSWizzardModel alloc] initWithTitle:NSLocalizedString(@"Mail", @"") subTitle:NSLocalizedString(@"Mail Button AccessibiltyHint", @"") imageName:@"white-18-envelope" isNew:YES],
+                               [[PSWizzardModel alloc] initWithTitle:NSLocalizedString(@"Chat", @"") subTitle:NSLocalizedString(@"Chat Button AccessibiltyHint", @"") imageName:@"white-08-chat" isNew:YES],
                                [[PSWizzardModel alloc] initWithTitle:NSLocalizedString(@"Strength", @"") subTitle:NSLocalizedString(@"Slider Button AccessibiltyHint", @"") imageName:@"white-89-dumbells"]
                                ];
         
@@ -87,7 +65,6 @@
         
         
         mainScreenRect = [[UIScreen mainScreen] applicationFrame];
-//        self.view.frame=mainScreenRect;
         DLogRect(mainScreenRect);
         mainScreenRect.origin.y = mainScreenRect.size.height - pageControlHeight;
         mainScreenRect.size.height = pageControlHeight;
@@ -98,25 +75,19 @@
         self.pageControl = [[StyledPageControl alloc] initWithFrame:mainScreenRect];
         self.pageControl.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin;
         [self.pageControl addTarget:self action:@selector(pageControlValueChanged:) forControlEvents:UIControlEventValueChanged];
-//        self.pageControl.backgroundColor = [UIColor blueColor];
         self.pageControl.pageControlStyle = PageControlStyleDefault;
         self.pageControl.diameter = 14;
         self.pageControl.numberOfPages = [self.wizzardArray count];
         self.pageControl.currentPage = 0;
         self.pageControl.backgroundColor = [UIColor clearColor];
-//        self.pageControl.userInteractionEnabled = NO;
         self.pageControl.coreSelectedColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.2 alpha:1];
         [self.view addSubview:self.pageControl];
         
         mainScreenRect = self.view.bounds;
-//        mainScreenRect = [[UIScreen mainScreen] applicationFrame];
         mainScreenRect.origin.y = 0;
-//        mainScreenRect.size.height -= 50;
         
         self.scrollView = [[UIScrollView alloc] initWithFrame:mainScreenRect];
-//        self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.scrollView.opaque = YES;
-//        self.scrollView.backgroundColor = [UIColor redColor];
         self.scrollView.delegate = self;
         self.scrollView.pagingEnabled = YES;
         self.scrollView.showsVerticalScrollIndicator = NO;
@@ -125,36 +96,6 @@
         [self.view addSubview:self.scrollView];
 
         DLogFrame(self.scrollView);
-
-//        mainScreenRect = [[UIScreen mainScreen] applicationFrame];
-//        DLogRect(mainScreenRect);
-//        mainScreenRect.origin.y = mainScreenRect.size.height - 44;
-//        DLogRect(mainScreenRect);
-//        
-//        self.toolbar = [[UIToolbar alloc] initWithFrame:mainScreenRect];
-//        self.toolbar.barStyle = UIBarStyleBlack;
-//        self.toolbar.tintColor = [UIColor darkGrayColor];
-//        
-//        UIBarButtonItem * nextButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"next" style:UIBarButtonItemStyleDone target:self action:@selector(next:)];
-//        UIBarButtonItem * flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-//        UIBarButtonItem * prevButton = [[UIBarButtonItem alloc] initWithTitle:@"back" style:UIBarButtonItemStyleDone target:self action:@selector(prev:)];
-//        prevButton.enabled = NO;
-//        
-//        [self.toolbar setItems:@[prevButton, flexibleSpace, nextButtonItem]];
-//        
-//        [self.toolbar sizeToFit];
-//        [self.view addSubview:self.toolbar];
-//        
-//        [self checkButtons];
-        
-        
-//        self.nextButton =  [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//        [self.nextButton addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
-//        self.nextButton.frame = mainScreenRect;
-//        self.nextButton.titleLabel.text = @"weiter";
-//        self.nextButton.backgroundColor = [UIColor blueColor];
-//        self.nextButton.center = CGPointMake(self.scrollView.frame.size.width - ceil((self.scrollView.frame.size.width - self.pageControl.frame.size.width)/2)  , self.pageControl.center.y);
-           
         
         if (self.toolbar)
         {
@@ -174,10 +115,13 @@
             PSWizzardView * wizzardView = [[PSWizzardView alloc] initWithFrame:CGRectMake(width, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) model:model];
             wizzardView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             width += wizzardView.frame.size.width;
+            wizzardView.tag = i*100;
+            if ([model isNew])
+            {
+                [wizzardView showBadge];
+            }
+        
             [self.scrollView addSubview:wizzardView];
-            
-//            [self.scrollView setContentSize:(CGSizeMake(width, self.scrollView.frame.size.height))];
-//            [self.scrollView scrollRectToVisible:[self rectForPage:i] animated:NO];
         }
         
         // Last Empty Page
@@ -267,10 +211,16 @@
 }
 
 
+- (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    DLogFuncName();
+}
+
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
     DLogFuncName();
-    
+    DLog(@"offset x = %f", self.scrollView.contentOffset.x);
+
     // Update the page when more than 50% of the previous/next page is visible
     CGFloat pageWidth = self.scrollView.frame.size.width;
     int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
@@ -284,6 +234,33 @@
     {
         [self checkButtons];
     }
+
+    
+#warning todo
+    // animate image icon
+    if (0)
+    {
+        PSWizzardView * wizzardView = [self.scrollView viewWithTag: ((self.pageControl.currentPage+1)*100)];
+        CGRect frame = wizzardView.imageView.frame;
+        frame.origin.y = wizzardView.imageFrame.origin.y - ((self.scrollView.contentOffset.x-(page*pageWidth))*1.1);
+        wizzardView.imageView.frame = frame;
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    DLogFuncName();
+//    CGFloat pageWidth = self.scrollView.frame.size.width;
+//
+//    PSWizzardView * wizzardView = [self.scrollView viewWithTag: ((self.pageControl.currentPage+1)*100)];
+//    CGRect frame = wizzardView.imageView.frame;
+//    frame.origin.y = wizzardView.imageFrame.origin.y - ((self.scrollView.contentOffset.x-pageWidth)*1.1);
+//    wizzardView.imageView.frame = frame;
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    DLogFuncName();
 }
 
 - (void) checkButtons

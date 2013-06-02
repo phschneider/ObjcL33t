@@ -19,9 +19,21 @@
         _titleString = title;
         _subTitleString = subtitle;
         _imageName = imageName;
+        _isNew = NO;
     }
     return self;
 }
 
+
+- (id) initWithTitle:(NSString*)title subTitle:(NSString*)subtitle imageName:(NSString*)imageName isNew:(BOOL)isNew
+{
+    DLogFuncName();
+    self = [self initWithTitle:title subTitle:subtitle imageName:imageName];
+    if (self)
+    {
+        self.isNew = isNew;
+    }
+    return self;
+}
 
 @end

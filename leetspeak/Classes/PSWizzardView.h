@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 
 @class PSWizzardModel;
 @interface PSWizzardView : UIView
@@ -17,6 +19,14 @@
 @property (nonatomic, strong) UILabel * subTitleLabel;
 @property (nonatomic, strong) UIImageView * imageView;
 
+@property (nonatomic) CGRect imageFrame;
+
+@property (nonatomic, strong) UIView * badge;
+@property (nonatomic, strong) UIView * badgeView;
+@property (nonatomic, strong) UILabel * badgeLabel;
+
 - (id) initWithFrame:(CGRect)frame model:(PSWizzardModel*)model;
+
+- (void) showBadge;
 
 @end

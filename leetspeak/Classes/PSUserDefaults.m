@@ -45,6 +45,52 @@ static PSUserDefaults * instance = nil;
 }
 
 
+- (BOOL) isFirstStart
+{
+    DLogFuncName();
+    NSString *currentVersion = (NSString*)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    NSArray *prevStartupVersions = [[NSUserDefaults standardUserDefaults] arrayForKey:@"prevStartupVersions"];
+    if (prevStartupVersions == nil)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObject:currentVersion] forKey:@"prevStartupVersions"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    return (prevStartupVersions == nil);
+}
+
+
+- (BOOL) isFirstVersionStart
+{
+    DLogFuncName();
+    
+    BOOL isFirstVersionStart = NO;
+    // Get current version ("Bundle Version") from the default Info.plist file
+    NSString *currentVersion = (NSString*)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    NSArray *prevStartupVersions = [[NSUserDefaults standardUserDefaults] arrayForKey:@"prevStartupVersions"];
+    if (prevStartupVersions == nil)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObject:currentVersion] forKey:@"prevStartupVersions"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        isFirstVersionStart = YES;
+    }
+    else
+    {
+        if (![prevStartupVersions containsObject:currentVersion])
+        {
+            NSMutableArray *updatedPrevStartVersions = [NSMutableArray arrayWithArray:prevStartupVersions];
+            [updatedPrevStartVersions addObject:currentVersion];
+            [[NSUserDefaults standardUserDefaults] setObject:updatedPrevStartVersions forKey:@"prevStartupVersions"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            isFirstVersionStart = YES;
+        }
+    }
+
+    // Save changes to disk
+    return isFirstVersionStart;
+}
+
+#pragma mark - Logging / Analytics
+
 - (void)incrementClearButtonTouches
 {
     DLogFuncName();
@@ -53,7 +99,7 @@ static PSUserDefaults * instance = nil;
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker trackEventWithCategory:@"uiAction"
+    [tracker sendEventWithCategory:@"uiAction"
                          withAction:@"buttonPress"
                           withLabel:@"clear"
                           withValue:[NSNumber numberWithInt:touches]];
@@ -68,7 +114,7 @@ static PSUserDefaults * instance = nil;
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker trackEventWithCategory:@"uiAction"
+    [tracker sendEventWithCategory:@"uiAction"
                          withAction:@"buttonPress"
                           withLabel:@"import"
                           withValue:[NSNumber numberWithInt:touches]];
@@ -84,7 +130,7 @@ static PSUserDefaults * instance = nil;
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker trackEventWithCategory:@"uiAction"
+    [tracker sendEventWithCategory:@"uiAction"
                          withAction:@"buttonPress"
                           withLabel:@"export"
                           withValue:[NSNumber numberWithInt:touches]];
@@ -99,9 +145,95 @@ static PSUserDefaults * instance = nil;
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker trackEventWithCategory:@"uiAction"
+    [tracker sendEventWithCategory:@"uiAction"
                          withAction:@"buttonPress"
                           withLabel:@"switch"
                           withValue:[NSNumber numberWithInt:touches]];
 }
+
+
+- (void)incrementChatButtonTouches
+{
+    DLogFuncName();
+    int touches = [[NSUserDefaults standardUserDefaults] integerForKey:@"CHATBUTTONTOUCHED"];
+    [[NSUserDefaults standardUserDefaults] setInteger:++touches forKey:@"CHATBUTTONTOUCHED"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker sendEventWithCategory:@"uiAction"
+                        withAction:@"buttonPress"
+                         withLabel:@"chat"
+                         withValue:[NSNumber numberWithInt:touches]];
+}
+
+
+- (void)incrementMailButtonTouches
+{
+    DLogFuncName();
+    int touches = [[NSUserDefaults standardUserDefaults] integerForKey:@"MAILBUTTONTOUCHED"];
+    [[NSUserDefaults standardUserDefaults] setInteger:++touches forKey:@"MAILBUTTONTOUCHED"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker sendEventWithCategory:@"uiAction"
+                        withAction:@"buttonPress"
+                         withLabel:@"mail"
+                         withValue:[NSNumber numberWithInt:touches]];
+}
+
+
+#pragma mark - AppDelegate
+- (void)wizzaredStarted
+{
+    [[NSUserDefaults standardUserDefaults] setDouble:NSTimeIntervalSince1970 forKey:@"WIZZARDSTARTTIME"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+#warning todo
+- (void)wizzardFinished
+{
+
+    [[NSUserDefaults standardUserDefaults] setDouble:NSTimeIntervalSince1970 forKey:@"WIZZARDENDTIME"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSTimeInterval end = [[NSUserDefaults standardUserDefaults] doubleForKey:@"WIZZARDENDTIME"];
+    NSTimeInterval start = [[NSUserDefaults standardUserDefaults] doubleForKey:@"WIZZARDSTARTTIME"];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker sendTimingWithCategory:@"uiAction"
+                          withValue:end-start
+                           withName:@"wizzardBrowsingTime"
+                          withLabel:@"wizzard"];
+}
+
+#warning todo
+- (void)incrementAppDidReceiveLocalNotification;
+{
+    DLogFuncName();
+    int touches = [[NSUserDefaults standardUserDefaults] integerForKey:@"APPDIDRECEIVELOCALNOTIFICATION"];
+    [[NSUserDefaults standardUserDefaults] setInteger:++touches forKey:@"APPDIDRECEIVELOCALNOTIFICATION"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker sendEventWithCategory:@"uiAction"
+                         withAction:@"buttonPress"
+                          withLabel:@"switch"
+                          withValue:[NSNumber numberWithInt:touches]];
+}
+
+#warning todo
+- (void)incrementAppDidFinishLaunchingCount
+{
+    DLogFuncName();
+    int touches = [[NSUserDefaults standardUserDefaults] integerForKey:@"APPDIDFINISHLAUNCHING"];
+    [[NSUserDefaults standardUserDefaults] setInteger:++touches forKey:@"APPDIDFINISHLAUNCHING"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker sendEventWithCategory:@"uiAction"
+                         withAction:@"buttonPress"
+                          withLabel:@"switch"
+                          withValue:[NSNumber numberWithInt:touches]];
+}
+
 @end

@@ -30,6 +30,18 @@
 "Random Second Reminder Title"  = "How are you?";
 "Random Third Reminder Title"   = "Do you miss me?";
 "Random Fourth Reminder Title"   = "Always at your service";
+"Random Fifth Reminder Title"   = "Knock, knock";
+
+
+// Mail
+"Mail sent" = "E-Mail gesendet.";
+"Mail sending failed" = "Senden der E-Mail fehlgeschlagen.";
+
+// Message
+"Message sent" = "Nachricht gesendet.";
+"Message sending failed" = "Senden der Nachricht fehlgeschlagen.";
+
+
 
 
 // Buttons
@@ -39,12 +51,18 @@
 "Export" = "Export";
 "Mail" = "Mail";
 "Chat" = "Chat";
-"Strength" = "Strength";
+"Strength" = "Thickness";
 
-"Clear Button AccessibiltyHint" = "Clear Button AccessibiltyHint";
-"Import Button AccessibiltyHint" = "Import Button AccessibiltyHint";
-"Switch Button AccessibiltyHint" = "Switch Button AccessibiltyHint";
-"Export Button AccessibiltyHint" = "Export Button AccessibiltyHint";
-"Mail Button AccessibiltyHint" = "Mail Button AccessibiltyHint";
-"Chat Button AccessibiltyHint" = "Chat Button AccessibiltyHint";
-"Slider Button AccessibiltyHint" = "Slider Button AccessibiltyHint";
+
+// Walkthrough
+"Clear Button AccessibiltyHint" = "Clear the content of the input field.";
+"Import Button AccessibiltyHint" = "Paste from the clipboard \n into the input field \n(Copy & Paste).";
+"Switch Button AccessibiltyHint" = "Switch conversion \n (Text to Leet, Leet to Text).";
+"Export Button AccessibiltyHint" = "Copy contents of the output field \n to the clipboard \n (Copy & Paste).";
+"Mail Button AccessibiltyHint" = "Send content of the output field \n as email.";
+"Chat Button AccessibiltyHint" = "Send contents of the output field \n as an SMS or iMessage.";
+"Slider Button AccessibiltyHint" = "Adjust thickness of the conversion.";
+
+
+// Badge
+"Badge Title New" = "New";

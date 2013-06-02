@@ -13,8 +13,10 @@
 @property (nonatomic, strong) NSString * titleString;
 @property (nonatomic, strong) NSString * imageName;
 @property (nonatomic, strong) NSString * subTitleString;
+@property (nonatomic) BOOL isNew;
 
 - (id) initWithTitle:(NSString*)title subTitle:(NSString*)subtitle imageName:(NSString*)imageName;
+- (id) initWithTitle:(NSString*)title subTitle:(NSString*)subtitle imageName:(NSString*)imageName isNew:(BOOL)isNew;
 
 
 @end

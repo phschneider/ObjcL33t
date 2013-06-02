@@ -29,7 +29,18 @@
 "Random First Reminder Title"   = "Hi";
 "Random Second Reminder Title"  = "Wie geht's?";
 "Random Third Reminder Title"   = "Vermisst Du mich?";
-"Random Fourth Reminder Title"   = "Stets zu Diensten";
+"Random Fourth Reminder Title"  = "Stets zu Diensten";
+"Random Fifth Reminder Title"   = "Klopf, klopf";
+
+
+// Mail
+"Mail sent" = "E-Mail gesendet.";
+"Mail sending failed" = "Senden der E-Mail fehlgeschlagen.";
+
+// Message
+"Message sent" = "Nachricht gesendet.";
+"Message sending failed" = "Senden der Nachricht fehlgeschlagen.";
+
 
 
 // Buttons
@@ -42,10 +53,14 @@
 "Strength" = "Stärke";
 
 
-"Clear Button AccessibiltyHint" = "Inhalt der Eingabefelder leeren.";
+// Walkthrough
+"Clear Button AccessibiltyHint" = "Inhalt des Eingabefeldes leeren.";
 "Import Button AccessibiltyHint" = "Inhalte aus der Zwischenablage in das Eingabefeld einfügen \n(Copy & Paste).";
 "Switch Button AccessibiltyHint" = "Konvertierung umschalten \n(Text zu Leet, Leet zu Text).";
 "Export Button AccessibiltyHint" = "Inhalt des Ausgabefeldes in die Zwischenablage kopieren \n(Copy & Paste).";
 "Mail Button AccessibiltyHint" = "Inhalt des Ausgabefeldes als E-Mail senden.";
-"Chat Button AccessibiltyHint" = "Inhalt der Ausgabefeldes als SMS oder iMessage senden.";
+"Chat Button AccessibiltyHint" = "Inhalt des Ausgabefeldes als SMS oder iMessage senden.";
 "Slider Button AccessibiltyHint" = "Stärke der Konvertierung anpassen.";
+
+// Badge
+"Badge Title New" = "Neu";

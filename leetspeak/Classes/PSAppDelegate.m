@@ -18,8 +18,11 @@
 #import "PSWikiViewController.h"
 #import "PSMoreViewController.h"
 #import "PSWizzardViewController.h"
+#import "PSUserDefaults.h"
 
+#import "Crittercism.h"
 #import "TestFlight.h"
+#import "UserVoice.h"
 
 @implementation PSAppDelegate
 
@@ -142,8 +145,11 @@
 {
     DLogFuncName();
     // Kill old notification
+    DLog(@"Notifications are = %@",[[[UIApplication sharedApplication] scheduledLocalNotifications] copy]);
+    
     for (UILocalNotification * notification in [[[UIApplication sharedApplication] scheduledLocalNotifications] copy])
     {
+        DLog(@"Kill notifications %@",notification);
         [[UIApplication sharedApplication] cancelLocalNotification:notification];
     }
 }
@@ -158,7 +164,8 @@
         return;
     }
     
-    int r = arc4random() % [self.reminderArray count] + 1;
+    // random von 0 bis 3
+    int r = arc4random() % [self.reminderArray count];
     // Erinnere mich in 14 Tagen
     localNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow: 60 * 60 * 24 * 14];
 #ifdef DEBUG
@@ -195,14 +202,26 @@
 - (void) startCrashReporter
 {
     DLogFuncName();
-    NSLog(@"Init BWQuincyManager");
-    if (!IS_SIMULATOR)
-    {
-        [[BWQuincyManager sharedQuincyManager] setSubmissionURL:@"http://crash.phschneider.net/crash_v200.php"];
-        [[BWQuincyManager sharedQuincyManager] setAutoSubmitCrashReport:YES];
-        [[BWQuincyManager sharedQuincyManager] setFeedbackActivated:YES];
-        [[BWQuincyManager sharedQuincyManager] setDelegate:self];
-    }
+    NSLog(@"Init Crittercism");
+    UVConfig *config = [UVConfig configWithSite:@"phschneider.uservoice.com"
+                                         andKey:@"1JvcH5Qx7INYHhEH3Wyhew"
+                                      andSecret:@"fRjBfLRyUbuOIuj9A6mISs4zYmMftKkPRsR2HNdnc0"];
+//    [UserVoice presentUserVoiceInterfaceForParentViewController:self.window.rootViewController andConfig:config];
+    
+    [Crittercism enableWithAppID: @"51a9c284c463c259ca000009"];
+    
+
+    
+
+    
+//    NSLog(@"Init BWQuincyManager");
+//    if (!IS_SIMULATOR)
+//    {
+//        [[BWQuincyManager sharedQuincyManager] setSubmissionURL:@"http://crash.phschneider.net/crash_v200.php"];
+//        [[BWQuincyManager sharedQuincyManager] setAutoSubmitCrashReport:YES];
+//        [[BWQuincyManager sharedQuincyManager] setFeedbackActivated:YES];
+//        [[BWQuincyManager sharedQuincyManager] setDelegate:self];
+//    }
 }
 
 
@@ -246,7 +265,7 @@
 {
     DLogFuncName();
     #ifdef CONFIGURATION_AppStore
-    if (!IS_SIMULATOR && !DEBUG)
+    if (!IS_SIMULATOR)
     {
         // Optional: automatically track uncaught exceptions with Google Analytics.
         [GAI sharedInstance].trackUncaughtExceptions = YES;
@@ -292,35 +311,6 @@
 }
 
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-    DLogFuncName();
-    [self handleUrl:url];
-    return YES;
-}
-
-
-- (void) handleUrl:(NSURL*) url
-{
-    DLogFuncName();
-//    if (self.hiplo24ViewController && self.hiplo24ViewController.view.superview)
-//    {
-//        if ([self.hiplo24ViewController respondsToSelector:@selector(dismissModalViewControllerAnimated:)])
-//        {
-//            [self.hiplo24ViewController dismissModalViewControllerAnimated:YES];
-//        }
-//        else if ( [self.hiplo24ViewController respondsToSelector:@selector(dismissViewControllerAnimated:completion:)])
-//        {
-//            [self.hiplo24ViewController dismissViewControllerAnimated:YES completion:nil];
-//        }
-//    }
-//    
-//    [self showPreviousTab];
-//    
-
-    DLog(@"Url = %@", url);
-}
-
 
 #pragma mark - Wizzard
 - (void) showWizzard
@@ -331,11 +321,19 @@
     self.wizzardViewController = [[PSWizzardViewController alloc] init];
     [self.window.rootViewController.view addSubview:self.wizzardViewController.view];
     [self.wizzardViewController viewDidAppear:YES];
+    
+    [[PSUserDefaults sharedPSUserDefaults] wizzaredStarted];
 }
 
 
 - (void) hideWizzard
 {
+    [[PSUserDefaults sharedPSUserDefaults] wizzardFinished];
+    
+    // Teste des Cristercism
+//    [NSException raise:NSInvalidArgumentException
+//                format:@"Foo must not be nil"];
+    
     [UIView animateWithDuration:1.0
                      animations:^{
                          self.wizzardViewController.view.alpha = 0;
@@ -359,7 +357,37 @@
     return YES;
 }
 
-#pragma mark - Application Delegate
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    DLogFuncName();
+    [self handleUrl:url];
+    return YES;
+}
+
+
+- (void) handleUrl:(NSURL*) url
+{
+    DLogFuncName();
+    //    if (self.hiplo24ViewController && self.hiplo24ViewController.view.superview)
+    //    {
+    //        if ([self.hiplo24ViewController respondsToSelector:@selector(dismissModalViewControllerAnimated:)])
+    //        {
+    //            [self.hiplo24ViewController dismissModalViewControllerAnimated:YES];
+    //        }
+    //        else if ( [self.hiplo24ViewController respondsToSelector:@selector(dismissViewControllerAnimated:completion:)])
+    //        {
+    //            [self.hiplo24ViewController dismissViewControllerAnimated:YES completion:nil];
+    //        }
+    //    }
+    //
+    //    [self showPreviousTab];
+    //    
+    
+    DLog(@"Url = %@", url);
+}
+
+#pragma mark - Application Delegate - URL
 //AppDelegate Initialize Functions
 + (void)initialize
 {
@@ -389,13 +417,68 @@
 }
 
 
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    DLogFuncName();
+    if (application.applicationState == UIApplicationStateInactive )
+    {
+        DLog(@"app not running");
+    }
+    else if(application.applicationState == UIApplicationStateActive )
+    {
+        DLog(@"app running");
+    }
+}
+
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    DLogFuncName();
+    DLog(@"Notification = %@", notification);
+    
+    [[PSUserDefaults sharedPSUserDefaults] incrementAppDidReceiveLocalNotification];
+    
+    if ( [notification.alertAction isEqualToString:@"open app"] )
+    {
+    }
+    
+    if ( [notification.alertAction isEqualToString:@"rate the app"] ) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=546965677"]];
+    }
+    
+    NSString * state = @"Unknown";
+    
+    if ( application.applicationState == UIApplicationStateInactive ) {
+        //The application received the notification from an inactive state, i.e. the user tapped the "View" button for the alert.
+        //If the visible view controller in your view controller stack isn't the one you need then show the right one.
+        state = @"UIApplicationStateInactive";
+    }
+    
+    if( application.applicationState == UIApplicationStateActive ) {
+        //The application received a notification in the active state, so you can display an alert view or do something appropriate.
+        state = @"UIApplicationStateActive";
+    }
+    
+    DLog(@"State: %@, Notification: %@",state, notification.alertAction);
+}
+
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     DLogFuncName();
+    DLog(@"launchOptions = %@",launchOptions);
+    UILocalNotification *notif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (notif)
+    {
+        DLog(@"Launched with notifications");
+    }
+    
+    
     [self startCrashReporter];
     [self startBetaUpdateChecker];
     [self startGoogleAnalytics];
-    
+
     [self startTestFlight];
     
     [self setAppearance];
@@ -404,7 +487,7 @@
     NSLog(@"isiOS6 = %d", IS_IOS6);
     NSLog(@"isSimulator = %d", IS_SIMULATOR);
     
-    self.reminderArray = [NSArray arrayWithObjects:@"Random First Reminder Title",@"Random Second Reminder Title", @"Random Third Reminder Title", @"Random Fourth Reminder Title", nil];
+    self.reminderArray = [NSArray arrayWithObjects:@"Random First Reminder Title",@"Random Second Reminder Title", @"Random Third Reminder Title", @"Random Fourth Reminder Title", @"Random Fifth Reminder Title", nil];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -423,11 +506,16 @@
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
 
-    
+    [[PSUserDefaults sharedPSUserDefaults] incrementAppDidFinishLaunchingCount];
+
 #warning umbauen
     [self startScreenSaverTimer];
     
-    [self showWizzard];
+    
+    if( [[PSUserDefaults sharedPSUserDefaults] isFirstStart] || [[PSUserDefaults sharedPSUserDefaults] isFirstVersionStart] )
+    {
+        [self showWizzard];
+    }
     
     return YES;
 }
@@ -445,6 +533,7 @@
 {
     DLogFuncName();
     [self updateReminder];
+    
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -466,7 +555,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     DLogFuncName();
-    [self updateReminder];
+//    [self updateReminder];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
