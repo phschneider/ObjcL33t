@@ -1,1 +1,0 @@
-../../HockeyKit/client/iOS/BWHockeyViewController.h

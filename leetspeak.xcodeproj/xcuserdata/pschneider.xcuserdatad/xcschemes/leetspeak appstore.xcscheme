@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "22147EFF16441E33001DED95"
-               BuildableName = "l33t.app"
+               BuildableName = "l33t-debug.app"
                BlueprintName = "leetspeak"
                ReferencedContainer = "container:leetspeak.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "22147EFF16441E33001DED95"
-            BuildableName = "l33t.app"
+            BuildableName = "l33t-debug.app"
             BlueprintName = "leetspeak"
             ReferencedContainer = "container:leetspeak.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "22147EFF16441E33001DED95"
-            BuildableName = "l33t.app"
+            BuildableName = "l33t-debug.app"
             BlueprintName = "leetspeak"
             ReferencedContainer = "container:leetspeak.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "22147EFF16441E33001DED95"
-            BuildableName = "l33t.app"
+            BuildableName = "l33t-debug.app"
             BlueprintName = "leetspeak"
             ReferencedContainer = "container:leetspeak.xcodeproj">
          </BuildableReference>

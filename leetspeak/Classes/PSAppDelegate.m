@@ -21,7 +21,12 @@
 #import "PSUserDefaults.h"
 
 #import "Crittercism.h"
-#import "TestFlight.h"
+
+#ifndef CONFIGURATION_AppStore
+    #import "TestFlight.h"
+#endif
+
+
 #import "UserVoice.h"
 
 @implementation PSAppDelegate
@@ -32,31 +37,6 @@
 @synthesize screenSaverStarted = _screenSaverStarted;
 @synthesize screenSaverTimer = _screenSaverTimer;
 @synthesize reminderArray = _reminderArray;
-
-
-#pragma mark -
-#pragma mark BWHockeyControllerDelegate
-
--(NSString *)customDeviceIdentifier {
-    DLogFuncName();
-#if !defined (CONFIGURATION_AppStore_Distribution)
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(uniqueIdentifier)])
-        return [[UIDevice currentDevice] performSelector:@selector(uniqueIdentifier)];
-#endif
-    
-    return nil;
-}
-
-#pragma mark - BWQuincyManagerDelegate & BWHockeyControllerDelegate
-- (void)connectionOpened {
-    DLogFuncName();
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-}
-
-- (void)connectionClosed {
-    DLogFuncName();
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-}
 
 
 

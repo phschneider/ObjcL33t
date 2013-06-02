@@ -250,16 +250,36 @@
     DLogFuncName();
     self.imageView.center = CGPointMake(ceil(self.bounds.size.width/2), ceil(self.bounds.size.height/2));
     CGRect imageFrame = self.imageView.frame;
-    imageFrame.origin.y = self.titleLabel.frame.origin.y - imageFrame.size.height - 20;
+    if (IS_IPHONE && !IS_IPHONE_5)
+    {
+        imageFrame.origin.y = self.titleLabel.frame.origin.y - imageFrame.size.height - 80;
+       
+        CGRect frame = self.titleLabel.frame;
+        frame.origin.y -= 40;
+        self.titleLabel.frame = frame;
+
+        frame = self.subTitleLabel.frame;
+        frame.origin.y -= 40;
+        self.subTitleLabel.frame = frame;
+    }
+    else
+    {
+        imageFrame.origin.y = self.titleLabel.frame.origin.y - imageFrame.size.height - 20;
+    }
+    
     self.imageView.frame = imageFrame;
     
     CGPoint center = self.subTitleLabel.center;
     center.x = self.imageView.center.x;
+    
+    
     self.subTitleLabel.center = center;
     
     center = self.titleLabel.center;
     center.x = self.imageView.center.x;
     self.titleLabel.center = center;
+    
+
     
     self.imageFrame = self.imageView.frame;
 }

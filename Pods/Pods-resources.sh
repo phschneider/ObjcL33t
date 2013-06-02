@@ -28,9 +28,6 @@ install_resource()
       ;;
   esac
 }
-install_resource 'Facebook-iOS-SDK/src/FacebookSDKResources.bundle'
-install_resource 'Facebook-iOS-SDK/src/FBUserSettingsViewResources.bundle'
-install_resource 'HockeyKit/client/iOS/Hockey.bundle'
 install_resource 'SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle'
 install_resource 'StyledPageControl/StyledPageControlDemo/PageControlDemo/Resources/pagecontrol-thumb-normal.png'
 install_resource 'StyledPageControl/StyledPageControlDemo/PageControlDemo/Resources/pagecontrol-thumb-normal@2x.png'

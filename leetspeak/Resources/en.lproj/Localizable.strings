@@ -34,12 +34,12 @@
 
 
 // Mail
-"Mail sent" = "E-Mail gesendet.";
-"Mail sending failed" = "Senden der E-Mail fehlgeschlagen.";
+"Mail sent" = "Mail sent.";
+"Mail sending failed" = "Message sending failed.";
 
 // Message
-"Message sent" = "Nachricht gesendet.";
-"Message sending failed" = "Senden der Nachricht fehlgeschlagen.";
+"Message sent" = "Message sent.";
+"Message sending failed" = "Message sending failed.";
 
 
 
@@ -59,7 +59,7 @@
 "Import Button AccessibiltyHint" = "Paste from the clipboard \n into the input field \n(Copy & Paste).";
 "Switch Button AccessibiltyHint" = "Switch conversion \n (Text to Leet, Leet to Text).";
 "Export Button AccessibiltyHint" = "Copy contents of the output field \n to the clipboard \n (Copy & Paste).";
-"Mail Button AccessibiltyHint" = "Send content of the output field \n as email.";
+"Mail Button AccessibiltyHint" = "Send content of the output field \n as E-mail.";
 "Chat Button AccessibiltyHint" = "Send contents of the output field \n as an SMS or iMessage.";
 "Slider Button AccessibiltyHint" = "Adjust thickness of the conversion.";
 

@@ -39,8 +39,16 @@
                              self.tabBar.alpha = .0;
                          }
                          completion:^(BOOL finished){
-                             self.tabBar.hidden = YES;
-                             self.tabBar.alpha = 1.0;
+                             if (APPDELEGATE.screenSaverStarted || APPDELEGATE.wizzardStarted)
+                             {
+                                 self.tabBar.hidden = YES;
+                                 self.tabBar.alpha = 1.0;
+                             }
+                             else
+                             {
+                                 self.tabBar.hidden = NO;
+                                 self.tabBar.alpha = 1.0;
+                             }
                          }];
 
     }
