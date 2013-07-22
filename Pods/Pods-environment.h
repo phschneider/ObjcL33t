@@ -43,6 +43,18 @@
 #define COCOAPODS_VERSION_MINOR_StyledPageControl 0
 #define COCOAPODS_VERSION_PATCH_StyledPageControl 0
 
+// TestFlightSDK
+#define COCOAPODS_POD_AVAILABLE_TestFlightSDK
+#define COCOAPODS_VERSION_MAJOR_TestFlightSDK 1
+#define COCOAPODS_VERSION_MINOR_TestFlightSDK 3
+#define COCOAPODS_VERSION_PATCH_TestFlightSDK 0
+
+// apptentive-ios
+#define COCOAPODS_POD_AVAILABLE_apptentive_ios
+#define COCOAPODS_VERSION_MAJOR_apptentive_ios 0
+#define COCOAPODS_VERSION_MINOR_apptentive_ios 4
+#define COCOAPODS_VERSION_PATCH_apptentive_ios 9
+
 // iRate
 #define COCOAPODS_POD_AVAILABLE_iRate
 #define COCOAPODS_VERSION_MAJOR_iRate 1

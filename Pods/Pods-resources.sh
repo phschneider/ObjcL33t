@@ -33,6 +33,7 @@ install_resource 'StyledPageControl/StyledPageControlDemo/PageControlDemo/Resour
 install_resource 'StyledPageControl/StyledPageControlDemo/PageControlDemo/Resources/pagecontrol-thumb-normal@2x.png'
 install_resource 'StyledPageControl/StyledPageControlDemo/PageControlDemo/Resources/pagecontrol-thumb-selected.png'
 install_resource 'StyledPageControl/StyledPageControlDemo/PageControlDemo/Resources/pagecontrol-thumb-selected@2x.png'
+install_resource 'apptentive-ios/ApptentiveResources.bundle'
 install_resource 'iRate/iRate/iRate.bundle'
 install_resource 'uservoice-iphone-sdk/Resources/uv_article.png'
 install_resource 'uservoice-iphone-sdk/Resources/uv_article@2x.png'

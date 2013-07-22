@@ -6,9 +6,6 @@
 //  Copyright (c) 2012 Philip Schneider (phschneider.net). All rights reserved.
 //
 
-#ifndef CONFIGURATION_AppStore
-    #import "BWHockeyManager.h"
-#endif
 
 //#import "BWQuincyManager.h"
 #import <UIKit/UIKit.h>
@@ -16,11 +13,8 @@
 @class PSScreenSaverViewController;
 @class PSWizzardViewController;
 
-#ifndef CONFIGURATION_AppStore
-    @interface PSAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, BWHockeyManagerDelegate> {
-#else
-    @interface PSAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate> {
-#endif
+@interface PSAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate> {
+
 
 }
 @property (nonatomic, strong) UIWindow *window;

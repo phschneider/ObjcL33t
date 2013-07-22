@@ -20,6 +20,9 @@
 #import "PSWizzardViewController.h"
 #import "PSUserDefaults.h"
 
+#include "ATConnect.h"
+#import "ATAppRatingFlow.h"
+
 #import "Crittercism.h"
 
 #ifndef CONFIGURATION_AppStore
@@ -218,27 +221,7 @@
 #endif
 }
 
-- (void) startBetaUpdateChecker
-{
-    DLogFuncName();
-    #ifndef CONFIGURATION_AppStore
-        #ifdef CONFIGURATION_Beta
-        if (!IS_SIMULATOR)
-        {
-            // Add these two lines if you want to activate the authorization feature
-            //    [BWHockeyManager sharedHockeyManager].requireAuthorization = YES;
-            //    [BWHockeyManager sharedHockeyManager].authenticationSecret = @"ChangeThisToYourOwnSecretString";
-            
-            NSLog(@"Init BWHockeyManager");
-            [BWHockeyManager sharedHockeyManager].updateURL = @"http://beta.phschneider.net";
-            [BWHockeyManager sharedHockeyManager].delegate = self;
-            
-            // optionally enable logging to get more information about states.
-            [BWHockeyManager sharedHockeyManager].loggingEnabled = YES;
-        }
-        #endif
-    #endif
-}
+
 
 
 - (void) startGoogleAnalytics
@@ -257,6 +240,20 @@
         id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-37082737-1"];
     }
     #endif
+}
+
+- (void) startApptentive
+{
+    DLogFuncName();
+    NSString *kApptentiveAPIKey =
+    @"4b3c5f4c2ced2b2ee16a00b1d4c5c53f3079f79690f0f091eaea268e663cd742";
+    ATConnect *connection = [ATConnect sharedConnection];
+    connection.apiKey = kApptentiveAPIKey;
+
+    ATAppRatingFlow *sharedFlow =
+    [ATAppRatingFlow sharedRatingFlowWithAppID:APP_STORE_ID];
+    
+    [sharedFlow appDidLaunch:YES viewController:self.window.rootViewController];
 }
 
 
@@ -456,7 +453,6 @@
     
     
     [self startCrashReporter];
-    [self startBetaUpdateChecker];
     [self startGoogleAnalytics];
 
     [self startTestFlight];
@@ -476,6 +472,7 @@
     viewController1 = [[PSAlphaBetViewController alloc] init];
     viewController2 = [[PSInputViewController alloc] init];
     viewController3 = [[UINavigationController alloc] initWithRootViewController:[[PSWikiViewController alloc] init]];
+
     
     self.tabBarController = [[PSTabBarController alloc] init];
     self.tabBarController.viewControllers = @[viewController1, viewController2, viewController3];
@@ -530,6 +527,10 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 //    [self updateReminder];
     [self clearReminder];
+    
+    ATAppRatingFlow *sharedFlow =
+    [ATAppRatingFlow sharedRatingFlowWithAppID:APP_STORE_ID];
+    [sharedFlow appDidEnterForeground:YES viewController:self.window.rootViewController];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

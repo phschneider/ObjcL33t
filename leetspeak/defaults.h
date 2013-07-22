@@ -10,6 +10,7 @@
 #define leetspeak_defaults_h
 
 
+#define     APP_STORE_ID    @"584092014"
 
 #ifdef DEBUG
 

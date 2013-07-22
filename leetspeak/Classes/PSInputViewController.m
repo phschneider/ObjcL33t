@@ -13,6 +13,8 @@
 #import "SVProgressHUD.h"
 #import "iRate.h"
 
+#import "ATConnect.h"
+
 @implementation PSInputViewController
 
 @synthesize toolTips                    = _toolTips;
@@ -804,6 +806,11 @@
 
 -(void)chatButtonTouched:(id)sender
 {
+    ATConnect *connection = [ATConnect sharedConnection];
+    connection.shouldTakeScreenshot = YES;
+    [connection presentFeedbackControllerFromViewController:self];
+    
+    return;
     DLogFuncName();
     Class messageClass = (NSClassFromString(@"MFMessageComposeViewController"));
 	
@@ -1075,10 +1082,10 @@
     
     CGRect tmpButtonFrame = oldExportButtonFrame;
 //    tmpButtonFrame.origin.y = oldExportButtonFrame.origin.y - self.exportButton.frame.size.height - 10;
-    tmpButtonFrame.origin.y = self.output.frame.origin.y  + (ceil(self.output.frame.size.height / 2)) - ceil(self.exportButton.frame.size.height / 2);
+    tmpButtonFrame.origin.y = self.bottomTextField.frame.origin.y  + (ceil(self.bottomTextField.frame.size.height / 2)) - ceil(self.exportButton.frame.size.height / 2);
     self.mailButton.frame = tmpButtonFrame;
     
-    tmpButtonFrame.origin.y = self.output.frame.origin.y - 8; // - self.mailButton.frame.size.height - 10;
+    tmpButtonFrame.origin.y = self.bottomTextField.frame.origin.y - 8; // - self.mailButton.frame.size.height - 10;
     self.chatButton.frame = tmpButtonFrame;
 }
 
@@ -1161,10 +1168,10 @@
     
     CGRect tmpButtonFrame = oldExportButtonFrame;
 //    tmpButtonFrame.origin.y = oldExportButtonFrame.origin.y - self.exportButton.frame.size.height - 10;
-    tmpButtonFrame.origin.y = self.output.frame.origin.y  + (ceil(self.output.frame.size.height / 2)) - ceil(self.exportButton.frame.size.height / 2);
+    tmpButtonFrame.origin.y = self.bottomTextField.frame.origin.y  + (ceil(self.bottomTextField.frame.size.height / 2)) - ceil(self.exportButton.frame.size.height / 2);
     self.mailButton.frame = tmpButtonFrame;
     
-    tmpButtonFrame.origin.y = self.output.frame.origin.y - 8; // - self.mailButton.frame.size.height - 10;
+    tmpButtonFrame.origin.y = self.bottomTextField.frame.origin.y - 8; // - self.mailButton.frame.size.height - 10;
     self.chatButton.frame = tmpButtonFrame;
 }
 
