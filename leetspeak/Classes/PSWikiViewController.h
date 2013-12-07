@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Philip Schneider (phschneider.net). All rights reserved.
 //
 
-#import "GAITrackedViewController.h"
+#import "PSViewController.h"
 #import <UIKit/UIKit.h>
 
-@interface PSWikiViewController : GAITrackedViewController <UIWebViewDelegate, UIScrollViewDelegate>
+@interface PSWikiViewController : PSViewController <UIWebViewDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) UIWebView *webView;
 

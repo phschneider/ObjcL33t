@@ -155,7 +155,8 @@ debugIOS.textAlignment = UITextAlignmentLeft;\
 #define IS_IPHONE       UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone
 #define IS_IPHONE_5     ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
-#define IS_IOS6         ([[[UIView alloc] init] respondsToSelector:@selector(constraints)])
+#define IS_IOS7         ([[[UITabBar alloc] init] respondsToSelector:@selector(barTintColor)])
+#define IS_IOS6         ([[[UIView alloc] init] respondsToSelector:@selector(constraints)] && !IS_IOS7)
 
 #define APPDELEGATE     ((PSAppDelegate*)[[UIApplication sharedApplication] delegate])
 
@@ -173,7 +174,14 @@ debugIOS.textAlignment = UITextAlignmentLeft;\
 #define USERDEFAULTS_LEET_STRENGTH          @"LeetStrength"
 #define USERDEFAULTS_LEET_STRENGTH_CHANGES  @"LeetStrengthChanged"
 
-#define NOTIFICATION_SCREENSAVER_STARTED    @"notificationScreenSaverStarted"
+
+#define NOTIFICATION_WIZZARD_HIDE               @"NOTIFICATION_WIZZARD_HIDE"
+
+#define NOTIFICATION_SCREENSAVER_SHOW           @"NOTIFICATION_SCREENSAVER_SHOW"
+#define NOTIFICATION_SCREENSAVER_DID_SHOW       @"NOTIFICATION_SCREENSAVER_DID_SHOW"
+#define NOTIFICATION_SCREENSAVER_RESET_TIMER    @"NOTIFICATION_SCREENSAVER_RESET_TIMER"
+#define NOTIFICATION_SCREENSAVER_HIDE           @"NOTIFICATION_SCREENSAVER_HIDE"
+#define NOTIFICATION_SCREENSAVER_DID_HIDE       @"NOTIFICATION_SCREENSAVER_DID_HIDE"
 
 /// SIZES 
 #define BUTTON_WIDTH    40

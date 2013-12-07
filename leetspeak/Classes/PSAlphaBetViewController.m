@@ -46,14 +46,10 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
 - (id)init
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
     self = [super init];
     if (self) {
-        self.trackedViewName = @"Alphabet Screen";
         self.title = NSLocalizedString(@"A-Z TabBar Title", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"white-40-dialpad"];
-
-//        self.view.backgroundColor = APP_BACKGROUND_COLOR;
         
         int width, height, paddingX, paddingY;
         if (IS_IPAD)
@@ -63,7 +59,6 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
             paddingY = paddingX;
             
 //            width = 768-(2*padding);
-
             height = 500;
         }
         else if (IS_IPHONE_5)
@@ -80,13 +75,31 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
             height = width;
         }
 
+        if (IS_IOS7)
+        {
+            paddingY += 20;
+        }
+        
         CGRect tableViewFrame = CGRectMake(paddingX,paddingY,width,height);
         self.tableView = [[UITableView alloc] initWithFrame:tableViewFrame];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         self.tableView.userInteractionEnabled = NO;
+        self.tableView.backgroundColor = [UIColor clearColor];
+//        self.tableView.layer.borderColor = [[UIColor whiteColor] CGColor];
+//        self.tableView.layer.masksToBounds = YES;
         [self.view addSubview:self.tableView];
 
+        // iOS7
+        if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)])
+        {
+            [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+        }
+        
+        if (IS_IOS7)
+        {
+            paddingY += 20;
+        }
         
         CGRect sliderFrame = CGRectMake(paddingX, self.view.frame.size.height - 24 - paddingY, width, 24);
         
@@ -124,16 +137,19 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
     return self;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleBlackOpaque;
+}
+
 
 - (void)viewDidLoad
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
     [super viewDidLoad];
-        
-    self.tableView.rowHeight = floor(self.tableView.frame.size.height / kNUMBER_OF_ROWS)-1;
+    
     self.tableView.backgroundColor = self.view.backgroundColor;
-    self.tableView.contentInset = UIEdgeInsetsMake(1,0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(2.0,0, 0, 0);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -142,10 +158,10 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
    
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
     DLogFuncName();
     [super viewDidAppear:animated];
-    [APPDELEGATE resetScreenSaverTimer];
     [self updateSliderValue];
 }
 
@@ -239,7 +255,7 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
 - (void)updateSliderValue
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_RESET_TIMER object:nil];
     self.slider.value = [[NSUserDefaults standardUserDefaults] integerForKey:USERDEFAULTS_LEET_STRENGTH];
     [self.tableView reloadData];
 }
@@ -248,7 +264,7 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
 
 -(void)valueChanged:(id)sender {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_RESET_TIMER object:nil];
     
     // This determines which "step" the slider should be on. Here we're taking
     //   the current position of the slider and dividing by the `self.stepValue`
@@ -269,6 +285,15 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
 
 
 #pragma mark - Table view data source
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int height = floor(self.tableView.frame.size.height / kNUMBER_OF_ROWS)-1;
+    if (indexPath.row == 0 || indexPath.row == kNUMBER_OF_ROWS-1)
+    {
+        height += 1;
+    }
+    return height;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -288,6 +313,7 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
     NSString *MyIdentifier = [NSString stringWithFormat:@"MyIdentifier %i", indexPath.row];
     
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    cell.backgroundColor = [UIColor clearColor];
     int c = 0;
     int level = self.slider.value;
     UILabel *label;
@@ -297,6 +323,7 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
     
     
     if (cell == nil) {
+   
         ///////////////////////////////////////first
         cell = [[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier];
         [cell.contentView addSubview: [self sep:0]];
@@ -357,100 +384,60 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
 
     }
     
+    // iOS7
+    if (indexPath.row == 0)
+    {
+        DLogFuncName();
+        UIView *sep = [[UIView alloc] initWithFrame: CGRectMake(0, 0,  self.tableView.frame.size.width, 1)];
+        sep.backgroundColor = kSEPERATOR_COLOR;
+        [cell.contentView addSubview:sep];
+    }
+    else if (indexPath.row == kNUMBER_OF_ROWS-1)
+    {
+        UIView *sep = [[UIView alloc] initWithFrame: CGRectMake(0, self.tableView.rowHeight-1,  self.tableView.frame.size.width, 1)];
+        sep.backgroundColor = kSEPERATOR_COLOR;
+        [cell.contentView addSubview:sep];
+    }
+
+    
     if (indexPath.row < kNUMBER_OF_OBJECTS)
     {
         label = (UILabel*)[cell.contentView viewWithTag:1];
         string = alphabet[indexPath.row];
         label.text = string;
-        label = nil;
         
+        label = nil;
         label = (UILabel*)[cell.contentView viewWithTag:2];
-        label.opaque = YES;
-        label.alpha = 0;
+
 
         dispatch_async(tableQueue, ^{
             
             NSString * leet = leetConvert(level, string);
             dispatch_async(dispatch_get_main_queue(), ^{
                 label.text = leet;
+                [self glowLabel:label];
             });
         });
-        [UIView animateWithDuration:0.25
-                              delay:0.0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             
-                             label.alpha = 1.0;
-                          
-                             UIColor *color = [UIColor whiteColor];
-                             label.layer.shadowColor = [color CGColor];
-                             label.layer.shadowRadius = 4.0f;
-                             label.layer.shadowOpacity = .9;
-                             label.layer.shadowOffset = CGSizeZero;
-                             label.layer.masksToBounds = NO;
-
-                         }
-                         completion:^(BOOL finished){
-                             label.alpha = 1;
-//                             UIColor *color = [UIColor whiteColor];
-//                             label.layer.shadowColor = [color CGColor];
-//                             label.layer.shadowRadius = .0f;
-//                             label.layer.shadowOpacity = .0;
-//                             label.layer.shadowOffset = CGSizeZero;
-//                             label.layer.masksToBounds = NO;
-                             
-                         }];
     }
 
+    
     if (indexPath.row + kNUMBER_OF_ROWS < kNUMBER_OF_OBJECTS)
     {
         label = (UILabel*)[cell.contentView viewWithTag:3];
         string = alphabet[indexPath.row+kNUMBER_OF_ROWS];
+        
         label.text = string;
         label = nil;
-        
         label = (UILabel*)[cell.contentView viewWithTag:4];
-        label.opaque = YES;
-        label.alpha = 0;
-//        UIColor *color = [UIColor whiteColor];
-//        label.layer.shadowColor = [color CGColor];
-//        label.layer.shadowRadius = 4.0f;
-//        label.layer.shadowOpacity = .9;
-//        label.layer.shadowOffset = CGSizeZero;
-//        label.layer.masksToBounds = NO;
-
+        
         dispatch_async(tableQueue, ^{
             
             NSString * leet = leetConvert(level, string);
             dispatch_async(dispatch_get_main_queue(), ^{
                 label.text = leet;
+                [self glowLabel:label];
             });
         });
-        [UIView animateWithDuration:0.25
-                              delay:0.0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                            
-                             label.alpha = 1.0;
-
-                             UIColor *color = [UIColor whiteColor];
-                             label.layer.shadowColor = [color CGColor];
-                             label.layer.shadowRadius = 4.0f;
-                             label.layer.shadowOpacity = .9;
-                             label.layer.shadowOffset = CGSizeZero;
-                             label.layer.masksToBounds = NO;
-
-                         }
-                         completion:^(BOOL finished){
-                             label.alpha = 1;
-//                             UIColor *color = [UIColor whiteColor];
-//                             label.layer.shadowColor = [color CGColor];
-//                             label.layer.shadowRadius = .0f;
-//                             label.layer.shadowOpacity = .0;
-//                             label.layer.shadowOffset = CGSizeZero;
-//                             label.layer.masksToBounds = NO;
-                             
-                         }];
     }
     
     
@@ -459,45 +446,32 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
         label = (UILabel*)[cell.contentView viewWithTag:5];
         string = alphabet[indexPath.row+kNUMBER_OF_ROWS+kNUMBER_OF_ROWS];
         label.text = string;
-        label = nil;
         
+        label = nil;
         label = (UILabel*)[cell.contentView viewWithTag:6];
-        label.opaque = YES;
-        label.alpha = 0;
   
         dispatch_async(tableQueue, ^{
             
             NSString * leet = leetConvert(level, string);
             dispatch_async(dispatch_get_main_queue(), ^{
                 label.text = leet;
+                [self glowLabel:label];
             });
         });
-        
-        [UIView animateWithDuration:0.25
-                              delay:0.0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             
-                             label.alpha = 1.0;
-                             
-
-
-                             
-                             
-                             UIColor *color = [UIColor whiteColor];
-                             label.layer.shadowColor = [color CGColor];
-                             label.layer.shadowRadius = 4.0f;
-                             label.layer.shadowOpacity = .9;
-                             label.layer.shadowOffset = CGSizeZero;
-                             label.layer.masksToBounds = NO;
-                         }
-                         completion:^(BOOL finished){
-                             label.alpha = 1;
-                                                          
-                         }];
     }
 
     return cell;
+}
+
+
+- (void) glowLabel:(UILabel*)glowLabel
+{
+    DLogFuncName();
+    glowLabel.opaque = YES;
+    glowLabel.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    glowLabel.layer.shadowRadius = 4.0f;
+    glowLabel.layer.shadowOpacity = .9;
+    glowLabel.layer.masksToBounds = NO;
 }
 
 
@@ -505,6 +479,7 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
 {
     DLog(@"WillDisplay %@",indexPath);
 }
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     DLogFuncName();
@@ -559,7 +534,7 @@ static NSString* alphabet[kNUMBER_OF_OBJECTS] =
 - (UIView *) sep: (int) x tag: (int) tag
 {
     DLogFuncName();
-	UIView *sep = [[UIView alloc] initWithFrame: CGRectMake(x, 0, 1, self.tableView.rowHeight - 1)];
+	UIView *sep = [[UIView alloc] initWithFrame: CGRectMake(x, 0, 1, self.tableView.rowHeight)];
 	sep.backgroundColor = kSEPERATOR_COLOR;
 	if (tag != -1) sep.tag = tag;
 	return sep;

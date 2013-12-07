@@ -13,6 +13,8 @@
 #import "SVProgressHUD.h"
 #import "iRate.h"
 
+
+#import "PSLeetAlphabet.h"
 #import "ATConnect.h"
 
 @implementation PSInputViewController
@@ -34,13 +36,10 @@
 - (id) init
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
     self = [super init];
     if (self) {
-        self.trackedViewName = @"Input Screen";
         self.title = NSLocalizedString(@"Input TabBar Title", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"white-187-pencil"];
-        self.view.backgroundColor = APP_BACKGROUND_COLOR;
         
         self.toolTips = [[NSMutableArray alloc] initWithCapacity:10];
         self.darkViews = [[NSMutableArray alloc] initWithCapacity:100];
@@ -72,6 +71,11 @@
             paddingX = paddingY = 20;
             width = INPUT_WIDTH_IPHONE-(3*paddingX);
             height = INPUT_HEIGHT_IPHONE_MAX;
+        }
+
+        if (IS_IOS7)
+        {
+            paddingY += 20;
         }
         
         CGRect textViewFrame = CGRectMake(paddingX,paddingY,width,height);
@@ -163,6 +167,10 @@
         [self.chatButton addTarget:self action:@selector(chatButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.chatButton];
                 
+        if (IS_IOS7)
+        {
+            paddingY += 20;
+        }
         
         CGRect sliderFrame = CGRectMake(paddingX, self.view.frame.size.height - SLIDER_HEIGHT - paddingY, width, SLIDER_HEIGHT);
         
@@ -216,11 +224,16 @@
 #endif
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSliderValue) name:USERDEFAULTS_LEET_STRENGTH_CHANGES object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(screenSaverStarted) name:NOTIFICATION_SCREENSAVER_STARTED object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(screenSaverStarted) name:NOTIFICATION_SCREENSAVER_DID_SHOW object:nil];
         
     }
     return self;
+}
+
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleBlackOpaque;
 }
 
 
@@ -287,7 +300,7 @@
 {
     DLogFuncName();
     [super viewDidAppear:animated];
-    [APPDELEGATE resetScreenSaverTimer];
+
     [self expandTextViewsWithAnimation:NO];
     
     self.input.font = [UIFont fontWithName:@"Bookman Old Style" size:16];
@@ -322,7 +335,7 @@
 - (void) setConvertToLeet:(BOOL)convertToLeet
 {
     _convertToLeet = convertToLeet;
-    if (self.convertToLeet)
+    if (_convertToLeet)
     {
         self.topTextField = self.input;
         self.bottomTextField = self.output;
@@ -489,7 +502,7 @@
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_RESET_TIMER object:nil];
     if (buttonIndex != alertView.cancelButtonIndex)
     {
         if (alertView == self.clipboardAlertView)
@@ -548,6 +561,7 @@
                      }];
 }
 
+
 #pragma mark - Slider
 /**
  Slider weakness
@@ -585,12 +599,33 @@
 - (void)updateSliderValue
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_RESET_TIMER object:nil];
     self.slider.value = [[NSUserDefaults standardUserDefaults] integerForKey:USERDEFAULTS_LEET_STRENGTH];
     
     [self updateStrengthImage];
     [self transformInput];
 }
+
+
+-(void)valueChanged:(id)sender {
+    DLogFuncName();
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_RESET_TIMER object:nil];
+    // This determines which "step" the slider should be on. Here we're taking
+    //   the current position of the slider and dividing by the `self.stepValue`
+    //   to determine approximately which step we are on. Then we round to get to
+    //   find which step we are closest to.
+    int newStep = ceil(self.slider.value);
+    
+    // Convert "steps" back to the context of the sliders values.
+    self.slider.value = newStep;
+    
+
+    [[PSUserDefaults sharedPSUserDefaults] setLevel:self.slider.value];
+    
+    [self updateStrengthImage];
+    [self transformInput];
+}
+
 
 - (void) updateStrengthImage
 {
@@ -607,26 +642,6 @@
     //    }
 }
 
--(void)valueChanged:(id)sender {
-    DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
-    // This determines which "step" the slider should be on. Here we're taking
-    //   the current position of the slider and dividing by the `self.stepValue`
-    //   to determine approximately which step we are on. Then we round to get to
-    //   find which step we are closest to.
-    int newStep = ceil(self.slider.value);
-    
-    // Convert "steps" back to the context of the sliders values.
-    self.slider.value = newStep;
-    
-    [[NSUserDefaults standardUserDefaults] setInteger:newStep forKey:USERDEFAULTS_LEET_STRENGTH];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:USERDEFAULTS_LEET_STRENGTH_CHANGES object:nil];
-    
-    [self updateStrengthImage];
-    [self transformInput];
-}
 
 
 #pragma mark - Button Actions
@@ -635,7 +650,7 @@
     DLogFuncName();
     [[PSUserDefaults sharedPSUserDefaults] incrementSwitchButtonTouches];
     
-    self.convertToLeet = !self.convertToLeet;
+    [self setConvertToLeet:!_convertToLeet];
     
     CGRect inputFrame = self.input.frame;
     
@@ -643,6 +658,8 @@
     
     BOOL inputWasActive = (self.editingTextView != nil && self.editingTextView == self.input);
     BOOL outputWasActive = (self.editingTextView != nil && self.editingTextView == self.output);
+    
+    DLog(@"inputWasActive = %d, outputWasActive = %d",inputWasActive,outputWasActive);
     
     [UIView animateWithDuration:0.5
                           delay:0.0
@@ -682,6 +699,7 @@
                              [self transformInput];
                          }
                      }];
+    
 }
 
 // This is the "valueChanged" method for the UISlider. Hook this up in
@@ -806,9 +824,9 @@
 
 -(void)chatButtonTouched:(id)sender
 {
-    ATConnect *connection = [ATConnect sharedConnection];
-    connection.shouldTakeScreenshot = YES;
-    [connection presentFeedbackControllerFromViewController:self];
+//    ATConnect *connection = [ATConnect sharedConnection];
+//    connection.shouldTakeScreenshot = YES;
+//    [connection presentFeedbackControllerFromViewController:self];
     
     return;
     DLogFuncName();
@@ -898,7 +916,7 @@
 - (void) textViewDidBeginEditing:(UITextView *)textView
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_RESET_TIMER object:nil];
     [textView becomeFirstResponder];
     
     self.editingTextView = (PSTextView*)textView;
@@ -917,7 +935,7 @@
 - (void) textViewDidEndEditing:(UITextView *)textView
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_RESET_TIMER object:nil];
     [textView resignFirstResponder];
     
     self.editingTextView = nil;
@@ -945,7 +963,7 @@
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_RESET_TIMER object:nil];
     if([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         return NO;
@@ -988,8 +1006,10 @@
     
 
     
-    
+    DLog(@"Input = %@",text);
+    NSLog(@"Change = %d",change);
     [self transformInput:text withRange:range];
+    
     if (change)
     {
         return NO;
@@ -997,9 +1017,9 @@
 //    self.input.text = [self.input.text lowercaseString];
 //    textView.text = [textView.text lowercaseString];
     self.input.text = [[self.input.text stringByReplacingCharactersInRange:range withString:text] lowercaseString];
-
+    NSLog(@"Input Text = |%@|",self.input.text);
     
-    return NO;
+    return YES;
 }
 
 #pragma mark - UITextView Optic
@@ -1185,27 +1205,27 @@
     NSString * output;
     NSMutableString * string;
     NSMutableString * input;
-    if (self.convertToLeet)
-    {
-        string = [NSMutableString stringWithString:self.output.text];
-        input = [NSMutableString stringWithString:self.input.text];
-    }
-    else
-    {
-        string = [NSMutableString stringWithString:self.input.text];
-        input = [NSMutableString stringWithString:self.output.text];
-    }
+//    if (_convertToLeet)
+//    {
+        string = [NSMutableString stringWithString:self.bottomTextField.text];
+        input = [NSMutableString stringWithString:self.topTextField.text];
+//    }
+//    else
+//    {
+//        string = [NSMutableString stringWithString:self.input.text];
+//        input = [NSMutableString stringWithString:self.output.text];
+//    }
     
     [input replaceCharactersInRange:range withString:text];
     
     
-    if (self.convertToLeet)
+    if (_convertToLeet)
     {
-        output = leetConvert(self.slider.value, input);
+        output = leetConvert([[PSUserDefaults sharedPSUserDefaults] level], input);
     }
     else
     {
-        output = convertLeet(self.slider.value, input);
+        output = convertLeet([[PSUserDefaults sharedPSUserDefaults] level], input);
     }
     
     [self setOutputText:output];
@@ -1216,14 +1236,14 @@
 - (void) transformInput
 {
     DLogFuncName();
-    NSString * output;
-    if (self.convertToLeet)
+    NSString * output = @"";
+    if (_convertToLeet)
     {
-        output = leetConvert(self.slider.value, self.input.text);
+        output = leetConvert([[PSUserDefaults sharedPSUserDefaults] level], self.topTextField.text);
     }
     else
     {
-        output = convertLeet(self.slider.value, self.output.text);
+        output = convertLeet([[PSUserDefaults sharedPSUserDefaults] level], self.topTextField.text);
     }
     
     [self setOutputText:output];

@@ -13,9 +13,8 @@
 #import "UVUser.h"
 #import "UVForum.h"
 #import "UVCategory.h"
-#import "UVUIColorAdditions.h"
 #import "UVSuggestionDetailsViewController.h"
-#import "NSString+HTMLEntities.h"
+#import "UVUtils.h"
 
 @implementation UVSuggestion
 
@@ -75,7 +74,7 @@
                 title:(NSString *)title
                  text:(NSString *)text
                 votes:(NSInteger)votes
-             delegate:(id)delegate {
+             callback:(UVCallback *)callback {
     NSString *path = [self apiPath:[NSString stringWithFormat:@"/forums/%d/suggestions.json", forum.forumId]];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             [[NSNumber numberWithInteger:votes] stringValue], @"suggestion[votes]",
@@ -85,8 +84,8 @@
                             nil];
     return [[self class] postPath:path
                        withParams:params
-                           target:delegate
-                         selector:@selector(didCreateSuggestion:)
+                           target:callback
+                         selector:@selector(invokeCallback:)
                           rootKey:@"suggestion"];
 }
 
@@ -106,17 +105,8 @@
                           rootKey:@"suggestion"];
 }
 
-+ (void)processModels:(NSArray *)models {
-    if ([models count] > 0) {
-        // Votes remaining are returned as part of the nested forum element for each
-        // invividual suggestion, even though they're all the same. We'll arbitrarily
-        // grab it from the first one.
-        [self processModel:[models objectAtIndex:0]];
-    }
-}
-
 - (UIColor *)statusColor {
-    return self.statusHexColor ? [UIColor colorWithHexString:self.statusHexColor] : [UIColor clearColor];
+    return self.statusHexColor ? [UVUtils parseHexColor:self.statusHexColor] : [UIColor clearColor];
 }
 
 - (NSString *)categoryString {
@@ -135,7 +125,7 @@
         self.votesFor = [(NSNumber *)[dict objectForKey:@"votes_for"] integerValue];
         self.title = [self objectOrNilForDict:dict key:@"title"];
         self.abstract = [self objectOrNilForDict:dict key:@"abstract"];
-        self.text = [[self objectOrNilForDict:dict key:@"text"] stringByDecodingHTMLEntities];
+        self.text = [UVUtils decodeHTMLEntities:[self objectOrNilForDict:dict key:@"text"]];
         self.createdAt = [self parseJsonDate:[dict objectForKey:@"created_at"]];
         NSDictionary *statusDict = [self objectOrNilForDict:dict key:@"status"];
         if (statusDict)
@@ -151,7 +141,7 @@
         }
         NSDictionary *response = [self objectOrNilForDict:dict key:@"response"];
         if (response) {
-            self.responseText = [[self objectOrNilForDict:response key:@"text"] stringByDecodingHTMLEntities];
+            self.responseText = [UVUtils decodeHTMLEntities:[self objectOrNilForDict:response key:@"text"]];
             NSDictionary *responseCreator = [self objectOrNilForDict:response key:@"creator"];
             if (responseCreator) {
                 self.responseUserName = [self objectOrNilForDict:responseCreator key:@"name"];
@@ -167,7 +157,7 @@
             NSDictionary *forum = [self objectOrNilForDict:topic key:@"forum"];
             if (forum) {
                 self.forumId = [(NSNumber *)[forum objectForKey:@"id"] integerValue];
-                self.forumName = [[self objectOrNilForDict:forum key:@"name"] stringByDecodingHTMLEntities];
+                self.forumName = [UVUtils decodeHTMLEntities:[self objectOrNilForDict:forum key:@"name"]];
             }
 
             self.votesRemaining = [(NSNumber *)[topic objectForKey:@"votes_remaining"] integerValue];

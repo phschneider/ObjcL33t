@@ -1,0 +1,5 @@
+#include "Pods-OCHamcrest.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/OCHamcrest" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/CrittercismSDK" "${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/OCHamcrest" "${PODS_ROOT}/Headers/OCMockito" "${PODS_ROOT}/Headers/SVProgressHUD" "${PODS_ROOT}/Headers/SparkInspector" "${PODS_ROOT}/Headers/StyledPageControl" "${PODS_ROOT}/Headers/TestFlightSDK" "${PODS_ROOT}/Headers/apptentive-ios" "${PODS_ROOT}/Headers/iRate" "${PODS_ROOT}/Headers/iVersion" "${PODS_ROOT}/Headers/uservoice-iphone-sdk"
+OTHER_LDFLAGS = -ObjC
+PODS_ROOT = ${SRCROOT}

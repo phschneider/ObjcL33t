@@ -236,4 +236,21 @@ static PSUserDefaults * instance = nil;
                           withValue:[NSNumber numberWithInt:touches]];
 }
 
+
+#pragma mark - Level
+- (void) setLevel:(int)level
+{
+    DLogFuncName();
+    [[NSUserDefaults standardUserDefaults] setInteger:level forKey:USERDEFAULTS_LEET_STRENGTH];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:USERDEFAULTS_LEET_STRENGTH_CHANGES object:nil];
+}
+
+
+- (int) level
+{
+    DLogFuncName();
+    return [[NSUserDefaults standardUserDefaults] integerForKey:USERDEFAULTS_LEET_STRENGTH];
+}
 @end

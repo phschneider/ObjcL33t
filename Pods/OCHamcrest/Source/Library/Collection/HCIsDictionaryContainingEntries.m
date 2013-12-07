@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsDictionaryContainingEntries.m
-//  Copyright 2012 hamcrest.org. See LICENSE.txt
+//  Copyright 2013 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid, http://qualitycoding.org/
 //  Docs: http://hamcrest.github.com/OCHamcrest/
@@ -15,14 +15,14 @@
 
 @implementation HCIsDictionaryContainingEntries
 
-+ (id)isDictionaryContainingKeys:(NSArray *)theKeys
-                   valueMatchers:(NSArray *)theValueMatchers
++ (instancetype)isDictionaryContainingKeys:(NSArray *)theKeys
+                             valueMatchers:(NSArray *)theValueMatchers
 {
     return [[self alloc] initWithKeys:theKeys valueMatchers:theValueMatchers];
 }
 
-- (id)initWithKeys:(NSArray *)theKeys
-     valueMatchers:(NSArray *)theValueMatchers
+- (instancetype)initWithKeys:(NSArray *)theKeys
+               valueMatchers:(NSArray *)theValueMatchers
 {
     self = [super init];
     if (self)
@@ -102,8 +102,6 @@
 @end
 
 
-#pragma mark -
-
 static void requirePairedObject(id obj)
 {
     if (obj == nil)
@@ -115,7 +113,7 @@ static void requirePairedObject(id obj)
 }
 
 
-id<HCMatcher> HC_hasEntries(id keysAndValueMatch, ...)
+id HC_hasEntries(id keysAndValueMatch, ...)
 {
     va_list args;
     va_start(args, keysAndValueMatch);

@@ -7,15 +7,18 @@
 //
 
 #include <AudioToolbox/AudioToolbox.h>
-#import "GAITrackedViewController.h"
 #import <UIKit/UIKit.h>
+
 #import "leet.h"
+#import "PSViewController.h"
+
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import <MessageUI/MFMessageComposeViewController.h>
 
+
 @class PSTextView;
-@interface PSInputViewController : GAITrackedViewController <UITextInputDelegate, UITextViewDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
+@interface PSInputViewController : PSViewController <UITextInputDelegate, UITextViewDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
 
 @property (nonatomic) BOOL convertToLeet;

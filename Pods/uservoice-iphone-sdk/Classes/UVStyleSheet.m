@@ -89,6 +89,22 @@ static UVStyleSheet *styleSheet;
     return [[self styleSheet] navigationBarTintColor];
 }
 
++ (UIImage *)navigationBarBackgroundImage {
+    return [[self styleSheet] navigationBarBackgroundImage];
+}
+
++ (UIColor *)navigationBarTextColor {
+    return [[self styleSheet] navigationBarTextColor];
+}
+
++ (UIColor *)navigationBarTextShadowColor {
+    return [[self styleSheet] navigationBarTextShadowColor];
+}
+
++ (UIFont *)navigationBarFont {
+    return [[self styleSheet] navigationBarFont];
+}
+
 + (UIColor *)tableViewHeaderColor {
     return [[self styleSheet] tableViewHeaderColor];
 }
@@ -150,6 +166,22 @@ static UVStyleSheet *styleSheet;
 }
 
 - (UIColor *)navigationBarTintColor {
+    return nil;
+}
+
+- (UIImage *)navigationBarBackgroundImage {
+    return nil;
+}
+
+- (UIColor *)navigationBarTextColor {
+    return nil;
+}
+
+- (UIColor *)navigationBarTextShadowColor {
+    return nil;
+}
+
+- (UIFont *)navigationBarFont {
     return nil;
 }
 

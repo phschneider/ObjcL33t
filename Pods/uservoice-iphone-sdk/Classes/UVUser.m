@@ -14,7 +14,7 @@
 #import "UVConfig.h"
 #import "UVClientConfig.h"
 #import "UVForum.h"
-#import "NSString+HTMLEntities.h"
+#import "UVUtils.h"
 
 @implementation UVUser
 
@@ -132,7 +132,7 @@
 - (id)initWithDictionary:(NSDictionary *)dict {
     if (self = [super init]) {
         self.userId = [(NSNumber *)[dict objectForKey:@"id"] integerValue];
-        self.name = [[self objectOrNilForDict:dict key:@"name"] stringByDecodingHTMLEntities];
+        self.name = [UVUtils decodeHTMLEntities:[self objectOrNilForDict:dict key:@"name"]];
         self.displayName = [self objectOrNilForDict:dict key:@"name"];
         self.email = [self objectOrNilForDict:dict key:@"email"];
         self.ideaScore = [(NSNumber *)[dict objectForKey:@"idea_score"] integerValue];
@@ -155,7 +155,7 @@
         self.supportedSuggestions = [NSMutableArray array];
         
         self.visibleForumsDict = [self objectOrNilForDict:dict key:@"visible_forums"];
-        if ([UVSession currentSession].clientConfig.forum)
+        if ([UVSession currentSession].forum)
           [self updateVotesRemaining];
     }
     return self;
@@ -163,12 +163,11 @@
 
 - (void)updateVotesRemaining {
     for (NSDictionary *forum in self.visibleForumsDict) {
-        if ([(NSNumber *)[forum valueForKey:@"id"] integerValue] == [UVSession currentSession].clientConfig.forum.forumId) {
+        if ([(NSNumber *)[forum valueForKey:@"id"] integerValue] == [UVSession currentSession].forum.forumId) {
             NSDictionary *activity = [self objectOrNilForDict:forum key:@"forum_activity"];
             self.votesRemaining = [(NSNumber *)[activity valueForKey:@"votes_available"] integerValue];
         }
     }
-    self.visibleForumsDict = nil;
 }
 
 - (NSInteger)supportedSuggestionsCount {

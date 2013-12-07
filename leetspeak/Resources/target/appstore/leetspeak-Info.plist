@@ -10,10 +10,8 @@
 	<string>l33t</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Icon-72@2x.png</string>
-		<string>Icon-72.png</string>
-		<string>Icon@2x.png</string>
-		<string>Icon.png</string>
+        <string>Icon-72</string>
+        <string>Icon</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -21,10 +19,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>Icon-72@2x.png</string>
-				<string>Icon-72.png</string>
-				<string>Icon@2x.png</string>
-				<string>Icon.png</string>
+				<string>Icon-72</string>
+				<string>Icon</string>
 			</array>
 		</dict>
 	</dict>
@@ -41,23 +37,33 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleURLName</key>
+			<string>net.phschneider.1337</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>l33t</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>net.phschneider.l33t</string>
+				<string>1337</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>leet</string>
+			<string>net.phschneider.l33t</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>net.phschneider.leet</string>
+				<string>l33t</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>net.phschneider.leet</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>leet</string>
 			</array>
 		</dict>
 	</array>
@@ -79,6 +85,8 @@
 	<false/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackTranslucent</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

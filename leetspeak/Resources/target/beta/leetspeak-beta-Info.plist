@@ -10,14 +10,10 @@
 	<string>l33t-beta</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Beta-Icon-72.png</string>
-		<string>Beta-Icon-72@2x.png</string>
-		<string>Beta-Icon.png</string>
-		<string>Beta-Icon@2x.png</string>
-		<string>Beta-Icon-Small-50.png</string>
-		<string>Beta-Icon-Small-50@2x.png</string>
-		<string>Beta-Icon-Small.png</string>
-		<string>Beta-Icon-Small@2x.png</string>
+        <string>Beta-Icon-72</string>
+        <string>Beta-Icon</string>
+        <string>Beta-Icon-Small-50</string>
+        <string>Beta-Icon-Small</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -25,14 +21,10 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>Beta-Icon-72.png</string>
-				<string>Beta-Icon-72@2x.png</string>
-				<string>Beta-Icon.png</string>
-				<string>Beta-Icon@2x.png</string>
-				<string>Beta-Icon-Small-50.png</string>
-				<string>Beta-Icon-Small-50@2x.png</string>
-				<string>Beta-Icon-Small.png</string>
-				<string>Beta-Icon-Small@2x.png</string>
+				<string>Beta-Icon-72</string>
+				<string>Beta-Icon</string>
+				<string>Beta-Icon-Small-50</string>
+				<string>Beta-Icon-Small</string>
 			</array>
 		</dict>
 	</dict>
@@ -46,26 +38,36 @@
 	<string>1.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleURLTypes</key>
+    <key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleURLName</key>
+			<string>net.phschneider.1337</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>l33t</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>net.phschneider.l33t</string>
+				<string>1337</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>leet</string>
+			<string>net.phschneider.l33t</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>net.phschneider.leet</string>
+				<string>l33t</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>net.phschneider.leet</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>leet</string>
 			</array>
 		</dict>
 	</array>

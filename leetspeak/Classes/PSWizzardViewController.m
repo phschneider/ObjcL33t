@@ -228,7 +228,7 @@
     self.pageControl.currentPage = page;
     if (page +1 > [self.wizzardArray count])
     {
-        [APPDELEGATE hideWizzard];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_WIZZARD_HIDE object:nil];
     }
     else
     {

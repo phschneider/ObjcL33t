@@ -12,11 +12,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
-    #import "GAI.h"
-    #import "GAITracker.h"
-    #import "GAITrackedViewController.h"
-    #import "GAITransaction.h"
-    #import "GAITransactionItem.h"
+    #import <GoogleAnalytics-iOS-SDK/GAI.h>
 
     #import "PSAppDelegate.h"
     #import "defaults.h"

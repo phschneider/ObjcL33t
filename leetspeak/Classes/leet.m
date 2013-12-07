@@ -90,6 +90,7 @@ static NSString* levels[][kNUMBER_OF_OBJECTS] = {
  */
 NSString* leetConvert(int level, NSString* message)
 {
+    // Übersetzt immer komplett!!
     DLogFuncName();
 	if (level > -1 && level < 9) {
 		NSInteger multipler = ( level > 6 ? 3 : level >= 5 ? 2 : 1 ) ;
@@ -115,105 +116,182 @@ NSString* leetConvert(int level, NSString* message)
 NSString * convertLeet(int level, NSString* message)
 {
     DLogFuncName();
-    if (level > -1 && level < 9) {
-		NSInteger multipler = ( level > 6 ? 3 : level >= 5 ? 2 : 1 ) ;
-		NSMutableString* ret = [[NSMutableString alloc] initWithCapacity:[message length]*multipler] ;
-		NSString* string = [message lowercaseString] ;
-		NSInteger stringlen = [message length] ;
+    if (level > -1 && level < 9)
+    {
+        // Initialisierung
+		NSInteger multipler = ( level > 6 ? 3 : level >= 5 ? 2 : 1 );
+        if (multipler == 1)
+        {
+            return convertLeetSimple(multipler, level, message);
+        }
+//        else
+//        {
+//            return convertLeetComplex(multipler, level, message);
+//        }
+    }
+	return message;
+}
 
-        BOOL found = NO;
-        int multiplierReached = 0;
-        int end = 0;
-		for ( NSInteger index = 0; index < stringlen; index++ ) {
-            multiplierReached = multipler+1;
-            if (found && end > 0 && end != index)
+
+
+NSString * convertLeetSimple(int multiplier, int level, NSString* message)
+{
+    DLogFuncName();
+    
+    NSMutableString* ret = [[NSMutableString alloc] initWithCapacity:[message length]*multiplier] ;
+    NSString *string = [message lowercaseString] ;
+    NSInteger stringlen = [message length] ;
+    NSString *helper = nil;
+    
+    BOOL found = NO;
+#warning betrachte multiplier größer 1
+    for ( NSInteger index = 1; index <= stringlen; index++ )
+    {
+        found = NO;
+        if (index > 1)
+        {
+            helper = [string substringFromIndex:index-1];
+        }
+        else
+        {
+            helper = string;
+        }
+        NSString * first  = [helper substringToIndex:1];
+        
+        if ([[first stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""])
+        {
+            [ret appendString:first];
+            found = YES;
+            NSLog(@"([[last stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]) => ret = %@", ret);
+        }
+        else
+        {
+            NSLog(@"Suche Leet für LAST = %@", first);
+            // Wandle Char um
+            for (int j=0; j < 26; j++)
             {
-                NSLog(@"Reset Found index %d, end %d ", index, end);
-                index = end;
-                found = NO;
-            }
-
-            do {
-                NSLog(@"Level = %d", level);
-                NSLog(@"Index = %d", index);
-                                multiplierReached--;
-                NSLog(@"multiplierReached = %d", multiplierReached);
-
-                
-                end = multiplierReached;
-//                NSLog(@"end = %d", end);
-//                NSLog(@"stringlen = %d", stringlen);
-                if (end > stringlen)
+                NSLog(@"For j = %d",j);
+                if ([(levels[level][j]) isEqualToString:first])
                 {
-                    end = stringlen - 1;
-//                    NSLog(@"NEw end = %d", end);
-                }
-                NSString * first = [string substringFromIndex:index];
-//                NSLog(@"Substring FIRST = %@", first);
-                NSString * last;
-                if ([first length] >= end)
-                {
-                    last = [first substringToIndex:end];
-                }
-                else
-                {
-                    last = [first substringToIndex:1];
-                }
-                
-                if ([[last stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""])
-                {
-//                    NSLog(@"Whitespace");
-                    [ret appendString:last];
+                    [ret appendString:alphabet[j]];
                     found = YES;
-                }
-                
-                NSLog(@"Substring LAST = %@", last);
-                for (int j=0; j < 26; j++)
-                {
-//                    NSLog(@"For j = %d",j);
-                    if ([(levels[level][j]) isEqualToString:last])
-                    {
-//                        NSLog(@"Found");
-                        [ret appendString:alphabet[j]];
-                        found = YES;
-                        break;
-                    }
-                }
-                
-                if (!found && multiplierReached < multipler && [[last stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]] isEqualToString:@""])
-                {
-//                    NSLog(@"Not Found - Using Number");
-                    [ret appendString:last];
-                    found = YES;
-                }
-                
-                if (multiplierReached == 0 && !found)
-                {
-                    // Check if Alpha
-                    if ([[last stringByTrimmingCharactersInSet:[NSCharacterSet letterCharacterSet]] isEqualToString:@""])
-                    {
-//                        NSLog(@"Not Found - Using LETTER");
-                        [ret appendString:last];
-                        found = YES;
-                    }
+                    NSLog(@"([(levels[level][j]) isEqualToString:last]) => Found => ret = %@",ret);
+                    break;
                 }
             }
-            // if not is number and not matching then compare 'aa' instead of 'a' (next index) until you have reachd 'aaa' (index+2)
-            while (!found && multiplierReached > 0);
             
             if (!found)
             {
-                [ret appendString:[[string substringFromIndex:index] substringToIndex:1]];
+                [ret appendString:[[string substringFromIndex:index-1] substringToIndex:1]];
+                NSLog(@"NOT FOUND => ret = %@", ret);
             }
-//			if (i >= levels[level][0] && i <= levels[level][26]) {
-//				[ret appendString:levels[level][i - 'a']];
-//			} else {
-//				[ret appendFormat:@"%c", i];
-//			}
-		}
-		NSString* toret = [NSString stringWithString:ret] ;
+        }
+    }
+    
+    NSString* toret = [NSString stringWithString:ret] ;
+    return toret;
+}
+
+
+
+NSString * convertLeetComplex(int multiplier, int level, NSString* message)
+{
+    DLogFuncName();
+	NSMutableString* ret = [[NSMutableString alloc] initWithCapacity:[message length]*multiplier] ;
+    NSString* string = [message lowercaseString] ;
+    NSInteger stringlen = [message length] ;
+    
+    BOOL found = NO;
+    int multiplierReached = 0;
+    int end = 0;
+    for ( NSInteger index = 0; index < stringlen; index++ ) {
+        multiplierReached = multiplier+1;
+        if (found && end > 0 && end != index)
+        {
+            NSLog(@"Reset Found index %d, end %d ", index, end);
+            index = end;
+            found = NO;
+        }
         
-		return toret ;
-	}
-	return message;
+        do {
+            NSLog(@"Level = %d", level);
+            NSLog(@"Index = %d", index);
+            multiplierReached--;
+            NSLog(@"multiplierReached = %d", multiplierReached);
+            
+            
+            end = multiplierReached;
+            //                NSLog(@"end = %d", end);
+            //                NSLog(@"stringlen = %d", stringlen);
+            if (end > stringlen)
+            {
+                end = stringlen - 1;
+                //                    NSLog(@"NEw end = %d", end);
+            }
+            NSString * first = [string substringFromIndex:index];
+            //                NSLog(@"Substring FIRST = %@", first);
+            NSString * last;
+            if ([first length] >= end)
+            {
+                last = [first substringToIndex:end];
+            }
+            else
+            {
+                last = [first substringToIndex:1];
+            }
+            
+            if ([[last stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""])
+            {
+                //                    NSLog(@"Whitespace");
+                [ret appendString:last];
+                found = YES;
+            }
+            
+            NSLog(@"Substring LAST = %@", last);
+            for (int j=0; j < 26; j++)
+            {
+                //                    NSLog(@"For j = %d",j);
+                if ([(levels[level][j]) isEqualToString:last])
+                {
+                    //                        NSLog(@"Found");
+                    [ret appendString:alphabet[j]];
+                    found = YES;
+                    break;
+                }
+            }
+            
+            if (!found && multiplierReached < multiplier && [[last stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]] isEqualToString:@""])
+            {
+                //                    NSLog(@"Not Found - Using Number");
+                [ret appendString:last];
+                found = YES;
+            }
+            
+            if (multiplierReached == 0 && !found)
+            {
+                // Check if Alpha
+                if ([[last stringByTrimmingCharactersInSet:[NSCharacterSet letterCharacterSet]] isEqualToString:@""])
+                {
+                    //                        NSLog(@"Not Found - Using LETTER");
+                    [ret appendString:last];
+                    found = YES;
+                }
+            }
+        }
+        // if not is number and not matching then compare 'aa' instead of 'a' (next index) until you have reachd 'aaa' (index+2)
+        while (!found && multiplierReached > 0);
+        
+        if (!found)
+        {
+            [ret appendString:[[string substringFromIndex:index] substringToIndex:1]];
+        }
+        //			if (i >= levels[level][0] && i <= levels[level][26]) {
+        //				[ret appendString:levels[level][i - 'a']];
+        //			} else {
+        //				[ret appendFormat:@"%c", i];
+        //			}
+    }
+    NSString* toret = [NSString stringWithString:ret] ;
+    
+    return toret ;
 }

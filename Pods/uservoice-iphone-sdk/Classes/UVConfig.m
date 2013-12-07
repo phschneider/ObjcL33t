@@ -21,11 +21,17 @@
 @synthesize guid;
 @synthesize customFields;
 @synthesize topicId;
+@synthesize forumId;
 @synthesize showForum;
 @synthesize showPostIdea;
 @synthesize showContactUs;
 @synthesize showKnowledgeBase;
 @synthesize extraTicketInfo;
+@synthesize userTraits;
+
++ (UVConfig *)configWithSite:(NSString *)site {
+    return [[[UVConfig alloc] initWithSite:site andKey:nil andSecret:nil] autorelease];
+}
 
 + (UVConfig *)configWithSite:(NSString *)site andKey:(NSString *)key andSecret:(NSString *)secret {
     return [[[UVConfig alloc] initWithSite:site andKey:key andSecret:secret] autorelease];
@@ -60,6 +66,23 @@
     return self;
 }
 
+- (int)forumId {
+    return forumId == 0 ? [UVSession currentSession].clientConfig.defaultForumId : forumId;
+}
+
+- (NSDictionary *)traits {
+    NSMutableDictionary *traits = [NSMutableDictionary dictionary];
+    NSDictionary *accountTraits = [userTraits objectForKey:@"account"];
+    for (NSString *k in userTraits) {
+        if ([k isEqualToString:@"account"]) continue;
+        [traits setObject:[NSString stringWithFormat:@"%@", [userTraits objectForKey:k]] forKey:k];
+    }
+    for (NSString *k in accountTraits) {
+        [traits setObject:[NSString stringWithFormat:@"%@", [accountTraits objectForKey:k]] forKey:[NSString stringWithFormat:@"account_%@", k]];
+    }
+    return traits;
+}
+
 - (BOOL)showForum {
     if ([UVSession currentSession].clientConfig && ![UVSession currentSession].clientConfig.feedbackEnabled)
         return NO;
@@ -88,6 +111,12 @@
         return showKnowledgeBase;
 }
 
+- (void)identifyUserWithEmail:(NSString *)theEmail name:(NSString *)name guid:(NSString *)theGuid {
+    self.email = theEmail;
+    self.displayName = name;
+    self.guid = theGuid;
+}
+
 - (id)initWithSite:(NSString *)theSite andKey:(NSString *)theKey andSecret:(NSString *)theSecret andSSOToken:(NSString *)theToken {
     if (self = [self initWithSite:theSite andKey:theKey andSecret:theSecret]) {
         self.ssoToken = theToken;
@@ -102,10 +131,6 @@
         self.guid = theGuid;
     }
     return self;
-}
-
-- (BOOL)wasSignedInBySDK {
-    return (self.ssoToken != nil || self.guid != nil);
 }
 
 - (void)dealloc {

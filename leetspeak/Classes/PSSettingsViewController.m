@@ -19,7 +19,6 @@
 -(id) init
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self)
     {
@@ -117,7 +116,7 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_RESET_TIMER object:nil];
 }
 
 

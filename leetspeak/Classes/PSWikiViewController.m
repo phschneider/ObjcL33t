@@ -21,12 +21,9 @@
     self = [super init];
     if (self)
     {
-        self.trackedViewName = @"Wiki Screen";
         self.title = NSLocalizedString(@"Wiki TabBar Title",nil);
         self.tabBarItem.image = [UIImage imageNamed:@"white-42-info"];
 
-        self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        
         self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
         self.webView.scalesPageToFit = YES;
         self.webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -35,10 +32,10 @@
     return self;
 }
 
+
 - (void)viewDidAppear:(BOOL)animated
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
     [super viewDidAppear:animated];
     // Do any additional setup after loading the view from its nib.
     
@@ -77,22 +74,11 @@
     }
 }
 
-- (BOOL) shouldAutorotate
-{
-    DLogFuncName();
-    return (!IS_IPHONE);
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    DLogFuncName();
-    return (!IS_IPHONE);
-}
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_RESET_TIMER object:nil];
     DLog(@"didFailLoadWithError %@",error);
 
 }
@@ -100,14 +86,14 @@
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_RESET_TIMER object:nil];
     DLog(@"webViewDidStartLoad");
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_RESET_TIMER object:nil];
     DLog(@"webViewDidFinishLoad");
 }
 
@@ -115,7 +101,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_RESET_TIMER object:nil];
     return YES;
 }
 

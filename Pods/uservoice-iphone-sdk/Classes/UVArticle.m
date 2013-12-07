@@ -22,8 +22,9 @@
 
 + (id)getArticlesWithTopicId:(int)topicId delegate:(id)delegate {
     NSString *path = [self apiPath:[NSString stringWithFormat:@"/topics/%d/articles.json", topicId]];
+    NSDictionary *params = @{ @"sort" : @"ordered" };
     return [self getPath:path
-              withParams:nil
+              withParams:params
                   target:delegate
                 selector:@selector(didRetrieveArticles:)
                  rootKey:@"articles"];
@@ -31,8 +32,9 @@
 
 + (id)getArticlesWithDelegate:(id)delegate {
     NSString *path = [self apiPath:@"/articles.json"];
+    NSDictionary *params = @{ @"sort" : @"ordered" };
     return [self getPath:path
-              withParams:nil
+              withParams:params
                   target:delegate
                 selector:@selector(didRetrieveArticles:)
                  rootKey:@"articles"];
@@ -41,7 +43,7 @@
 + (NSArray *)getInstantAnswers:(NSString *)query delegate:(id)delegate {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{
         @"per_page" : @"3",
-        @"forum_id" : [NSString stringWithFormat:@"%d", [UVSession currentSession].clientConfig.forum.forumId],
+        @"forum_id" : [NSString stringWithFormat:@"%d", [UVSession currentSession].forum.forumId],
            @"query" : query
     }];
 

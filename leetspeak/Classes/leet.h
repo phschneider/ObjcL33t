@@ -30,3 +30,5 @@
 // convert message to l33t-speak
 NSString* leetConvert(int level, NSString* message);
 NSString * convertLeet(int level, NSString* message);
+NSString * convertLeetSimple(int multiplier, int level, NSString* message);
+NSString * convertLeetComplex(int multiplier, int level, NSString* message);

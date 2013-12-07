@@ -14,11 +14,12 @@
 #import "PSTabBarController.h"
 #import "PSAlphaBetViewController.h"
 #import "PSInputViewController.h"
-#import "PSScreenSaverViewController.h"
 #import "PSWikiViewController.h"
 #import "PSMoreViewController.h"
-#import "PSWizzardViewController.h"
 #import "PSUserDefaults.h"
+
+#import "PSScreenSaverManager.h"
+#import "PSWizzardManager.h"
 
 #include "ATConnect.h"
 #import "ATAppRatingFlow.h"
@@ -29,98 +30,14 @@
     #import "TestFlight.h"
 #endif
 
-
+#import <GoogleAnalytics-iOS-SDK/GAI.h>
 #import "UserVoice.h"
 
 @implementation PSAppDelegate
 
-@synthesize screenSaverViewController = _screenSaverViewController;
 
-@synthesize number = _number;
-@synthesize screenSaverStarted = _screenSaverStarted;
-@synthesize screenSaverTimer = _screenSaverTimer;
 @synthesize reminderArray = _reminderArray;
 
-
-
-#pragma mark - Timer
-
-- (void)startScreenSaverTimer
-{
-//    DLogFuncName();
-    if (!self.screenSaverTimer)
-    {
-        self.screenSaverTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
-    }
-    else if ([self.screenSaverTimer isValid])
-    {
-        
-    }
-    else if (![self.screenSaverTimer isValid])
-    {
-        self.screenSaverTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
-    }
-
-}
-
-
-- (void)resetScreenSaverTimer
-{
-//    DLogFuncName();
-    self.number = 0;
-    [self.screenSaverTimer invalidate];
-    self.screenSaverStarted = NO;
-    [self startScreenSaverTimer];
-}
-
-
-- (void)updateTimer
-{
-//    DLogFuncName();
-    if (!self.screenSaverStarted)
-    {
-        self.number++;
-
-//        NSLog(@"Number = %d",self.number);
-        if (self.number == (1*APP_SCREENSAVER_TIMER))
-        {
-            self.number = 0;
-            if (!self.screenSaverStarted)
-            {
-                [self showScreenSaver];
-
-            }
-        }
-    }
-    else
-    {
-        [self.screenSaverTimer invalidate];
-    }
-}
-
-- (void) showScreenSaver
-{
-    DLogFuncName();
-    if (!self.wizzardStarted)
-    {
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_STARTED object:nil];
-
-        self.screenSaverStarted = YES;
-        [self.screenSaverTimer invalidate];
-        
-        self.screenSaverViewController = [[PSScreenSaverViewController alloc] init];
-        //[self.window.rootViewController presentModalViewController:screenSaver animated:NO];
-        [self.window.rootViewController.view addSubview:self.screenSaverViewController.view];
-    }
-}
-
-- (void) hideScreenSaver
-{
-    DLogFuncName();
-    self.screenSaverStarted = NO;
-    [self.tabBarController.view layoutSubviews];
-    [self.screenSaverViewController.view removeFromSuperview];
-}
 
 
 #pragma mark - LocalNotifications
@@ -136,6 +53,7 @@
         [[UIApplication sharedApplication] cancelLocalNotification:notification];
     }
 }
+
 
 - (void) updateReminder
 {
@@ -235,9 +153,10 @@
         // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
         [GAI sharedInstance].dispatchInterval = 20;
         // Optional: set debug to YES for extra debugging information.
-        [GAI sharedInstance].debug = YES;
+        [GAI sharedInstance].debug = NO;
         // Create tracker instance.
         id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-37082737-1"];
+        [tracker setAnonymize:YES];
     }
     #endif
 }
@@ -245,15 +164,15 @@
 - (void) startApptentive
 {
     DLogFuncName();
-    NSString *kApptentiveAPIKey =
-    @"4b3c5f4c2ced2b2ee16a00b1d4c5c53f3079f79690f0f091eaea268e663cd742";
-    ATConnect *connection = [ATConnect sharedConnection];
-    connection.apiKey = kApptentiveAPIKey;
-
-    ATAppRatingFlow *sharedFlow =
-    [ATAppRatingFlow sharedRatingFlowWithAppID:APP_STORE_ID];
-    
-    [sharedFlow appDidLaunch:YES viewController:self.window.rootViewController];
+//    NSString *kApptentiveAPIKey =
+//    @"4b3c5f4c2ced2b2ee16a00b1d4c5c53f3079f79690f0f091eaea268e663cd742";
+//    ATConnect *connection = [ATConnect sharedConnection];
+//    connection.apiKey = kApptentiveAPIKey;
+//
+//    ATAppRatingFlow *sharedFlow =
+//    [ATAppRatingFlow sharedRatingFlowWithAppID:APP_STORE_ID];
+//    
+//    [sharedFlow appDidLaunch:YES viewController:self.window.rootViewController];
 }
 
 
@@ -265,6 +184,8 @@
 //    [[UIView appearance] setBackgroundColor:backgroundColor];
 //    [[UILabel appearance] setTextColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+    [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
 }
 
 
@@ -287,42 +208,6 @@
     }
 }
 
-
-
-#pragma mark - Wizzard
-- (void) showWizzard
-{
-    DLogFuncName();
-    self.wizzardViewController = nil;
-    self.wizzardStarted = YES;
-    self.wizzardViewController = [[PSWizzardViewController alloc] init];
-    [self.window.rootViewController.view addSubview:self.wizzardViewController.view];
-    [self.wizzardViewController viewDidAppear:YES];
-    
-    [[PSUserDefaults sharedPSUserDefaults] wizzaredStarted];
-}
-
-
-- (void) hideWizzard
-{
-    [[PSUserDefaults sharedPSUserDefaults] wizzardFinished];
-    
-    // Teste des Cristercism
-//    [NSException raise:NSInvalidArgumentException
-//                format:@"Foo must not be nil"];
-    
-    [UIView animateWithDuration:1.0
-                     animations:^{
-                         self.wizzardViewController.view.alpha = 0;
-                     }
-                     completion:^(BOOL finished){
-                         [self.wizzardViewController.view removeFromSuperview];
-                         //                                    self.wizzardViewController = nil;
-                         self.wizzardStarted = NO;
-                         [self.tabBarController.view layoutSubviews];
-                     }];
-    
-}
 
 
 #pragma mark - AppDelegate
@@ -451,7 +336,6 @@
         DLog(@"Launched with notifications");
     }
     
-    
     [self startCrashReporter];
     [self startGoogleAnalytics];
 
@@ -461,22 +345,16 @@
     [self initUserDefaults];
     
     NSLog(@"isiOS6 = %d", IS_IOS6);
+    NSLog(@"isiOS7 = %d", IS_IOS7);
     NSLog(@"isSimulator = %d", IS_SIMULATOR);
     
     self.reminderArray = [NSArray arrayWithObjects:@"Random First Reminder Title",@"Random Second Reminder Title", @"Random Third Reminder Title", @"Random Fourth Reminder Title", @"Random Fifth Reminder Title", nil];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    // Override point for customization after application launch.
-    UIViewController *viewController1, *viewController2, *viewController3;
-    viewController1 = [[PSAlphaBetViewController alloc] init];
-    viewController2 = [[PSInputViewController alloc] init];
-    viewController3 = [[UINavigationController alloc] initWithRootViewController:[[PSWikiViewController alloc] init]];
-
-    
     self.tabBarController = [[PSTabBarController alloc] init];
-    self.tabBarController.viewControllers = @[viewController1, viewController2, viewController3];
-    self.tabBarController.selectedViewController = viewController2;
+    self.tabBarController.viewControllers = @[[[PSAlphaBetViewController alloc] init], [[PSInputViewController alloc] init], [[UINavigationController alloc] initWithRootViewController:[[PSWikiViewController alloc] init]]];
+    self.tabBarController.selectedViewController = [[self.tabBarController viewControllers] objectAtIndex:1];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:USERDEFAULTS_LEET_STRENGTH_CHANGES object:nil];
 
@@ -484,14 +362,11 @@
     [self.window makeKeyAndVisible];
 
     [[PSUserDefaults sharedPSUserDefaults] incrementAppDidFinishLaunchingCount];
+    [[PSScreenSaverManager sharedInstance] startScreenSaverTimer];
 
-#warning umbauen
-    [self startScreenSaverTimer];
-    
-    
     if( [[PSUserDefaults sharedPSUserDefaults] isFirstStart] || [[PSUserDefaults sharedPSUserDefaults] isFirstVersionStart] )
     {
-        [self showWizzard];
+        [[PSWizzardManager sharedInstance] showWizzard];
     }
     
     return YES;
@@ -528,9 +403,9 @@
 //    [self updateReminder];
     [self clearReminder];
     
-    ATAppRatingFlow *sharedFlow =
-    [ATAppRatingFlow sharedRatingFlowWithAppID:APP_STORE_ID];
-    [sharedFlow appDidEnterForeground:YES viewController:self.window.rootViewController];
+//    ATAppRatingFlow *sharedFlow =
+//    [ATAppRatingFlow sharedRatingFlowWithAppID:APP_STORE_ID];
+//    [sharedFlow appDidEnterForeground:YES viewController:self.window.rootViewController];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

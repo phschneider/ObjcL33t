@@ -89,6 +89,7 @@
                          self.backgroundView.alpha = 1.0;
                      }
                      completion:^(BOOL finished){
+                         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_DID_SHOW object:nil];
                          [self blinkBackgroundAnimation];
                      }];
 
@@ -109,6 +110,7 @@
                      }];
 
 }
+
 
 - (void)orientationChanged:(NSNotification *)notification
 {
@@ -152,6 +154,7 @@
     self.backgroundView.frame = self.backgroundImageView.frame;
 }
 
+
 - (void) viewWillLayoutSubviews
 {
     DLogFuncName();
@@ -191,8 +194,9 @@
     DLogFuncName();
     [super touchesBegan:touches withEvent:event];
     
-    [APPDELEGATE resetScreenSaverTimer];
-    [APPDELEGATE hideScreenSaver];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_RESET_TIMER object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SCREENSAVER_HIDE object:nil];
+
 	//[self dismissViewControllerAnimated:YES completion:NULL];
 }
 @end

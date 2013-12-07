@@ -10,14 +10,10 @@
 	<string>l33t-debug</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Debug-Icon-72.png</string>
-		<string>Debug-Icon-72@2x.png</string>
-		<string>Debug-Icon.png</string>
-		<string>Debug-Icon@2x.png</string>
-		<string>Debug-Icon-Small-50.png</string>
-		<string>Debug-Icon-Small-50@2x.png</string>
-		<string>Debug-Icon-Small.png</string>
-		<string>Debug-Icon-Small@2x.png</string>
+        <string>Debug-Icon-72</string>
+        <string>Debug-Icon</string>
+        <string>Debug-Icon-Small-50</string>
+        <string>Debug-Icon-Small</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -25,14 +21,10 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>Debug-Icon-72.png</string>
-				<string>Debug-Icon-72@2x.png</string>
-				<string>Debug-Icon.png</string>
-				<string>Debug-Icon@2x.png</string>
-				<string>Debug-Icon-Small-50.png</string>
-				<string>Debug-Icon-Small-50@2x.png</string>
-				<string>Debug-Icon-Small.png</string>
-				<string>Debug-Icon-Small@2x.png</string>
+				<string>Debug-Icon-72</string>
+				<string>Debug-Icon</string>
+				<string>Debug-Icon-Small-50</string>
+				<string>Debug-Icon-Small</string>
 			</array>
 		</dict>
 	</dict>

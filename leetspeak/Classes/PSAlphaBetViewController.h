@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Philip Schneider (phschneider.net). All rights reserved.
 //
 
-#import "GAITrackedViewController.h"
 #import <UIKit/UIKit.h>
+#import "PSViewController.h"
 
-@interface PSAlphaBetViewController : GAITrackedViewController <UITableViewDataSource, UITableViewDelegate>
+@interface PSAlphaBetViewController : PSViewController <UITableViewDataSource, UITableViewDelegate>
 {
     dispatch_queue_t tableQueue;
 }

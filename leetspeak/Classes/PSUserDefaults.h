@@ -29,4 +29,8 @@
 - (void)incrementAppDidFinishLaunchingCount;
 - (void)incrementAppDidReceiveLocalNotification;
 
+
+- (void) setLevel:(int)level;
+- (int) level;
+
 @end

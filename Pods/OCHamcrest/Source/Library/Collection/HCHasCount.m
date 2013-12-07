@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCHasCount.m
-//  Copyright 2012 hamcrest.org. See LICENSE.txt
+//  Copyright 2013 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid, http://qualitycoding.org/
 //  Docs: http://hamcrest.github.com/OCHamcrest/
@@ -15,12 +15,12 @@
 
 @implementation HCHasCount
 
-+ (id)hasCount:(id<HCMatcher>)matcher
++ (instancetype)hasCount:(id <HCMatcher>)matcher
 {
     return [[self alloc] initWithCount:matcher];
 }
 
-- (id)initWithCount:(id<HCMatcher>)matcher
+- (instancetype)initWithCount:(id <HCMatcher>)matcher
 {
     self = [super init];
     if (self)
@@ -57,14 +57,12 @@
 @end
 
 
-#pragma mark -
-
-id<HCMatcher> HC_hasCount(id<HCMatcher> matcher)
+id HC_hasCount(id <HCMatcher> matcher)
 {
     return [HCHasCount hasCount:matcher];
 }
 
-id<HCMatcher> HC_hasCountOf(NSUInteger value)
+id HC_hasCountOf(NSUInteger value)
 {
     return HC_hasCount(HC_equalToUnsignedInteger(value));
 }

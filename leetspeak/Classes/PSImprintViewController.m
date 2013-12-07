@@ -19,7 +19,6 @@
 - (id) init
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
     self = [super init];
     if (self)
     {
@@ -34,7 +33,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     DLogFuncName();
-    [APPDELEGATE resetScreenSaverTimer];
     [super viewDidAppear:animated];
     // Do any additional setup after loading the view from its nib.
     

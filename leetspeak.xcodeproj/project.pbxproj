@@ -24,6 +24,10 @@
 		2250CB85167D607500B56038 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2250CB87167D607500B56038 /* Localizable.strings */; };
 		225FEFA316AC5AC300280670 /* PSWizzardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 225FEFA216AC5AC300280670 /* PSWizzardViewController.m */; };
 		226B324A166BC87200E0B8CC /* PSScreenSaverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 226B3249166BC87200E0B8CC /* PSScreenSaverViewController.m */; };
+		227F861417C0D9DD00666339 /* PSLeetAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CF179216DC059D00E71BD7 /* PSLeetAlphabet.m */; };
+		22A29CF8182FE7160019F302 /* PSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A29CF7182FE7160019F302 /* PSViewController.m */; };
+		22A29CFB182FE7790019F302 /* PSAnalyticsTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A29CFA182FE7790019F302 /* PSAnalyticsTracker.m */; };
+		22A29CFF182FE8220019F302 /* PSScreenSaverManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A29CFE182FE8220019F302 /* PSScreenSaverManager.m */; };
 		22A6F23B167D5E3600849D4B /* PSInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A6F23A167D5E3600849D4B /* PSInputViewController.m */; };
 		22B6624C175B915E0064ADA8 /* Debug-Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22B66239175B8F3F0064ADA8 /* Debug-Default-568h@2x.png */; };
 		22B6624D175B91620064ADA8 /* Debug-Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 22B6623A175B8F3F0064ADA8 /* Debug-Default-Landscape@2x~ipad.png */; };
@@ -1536,7 +1540,9 @@
 		22F7CC0616DC0AA900ADF5D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22147F0616441E33001DED95 /* Foundation.framework */; };
 		22F7CC0C16DC0AA900ADF5D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22F7CC0A16DC0AA900ADF5D4 /* InfoPlist.strings */; };
 		22F7CC1716DC0AC600ADF5D4 /* leetspeakLeetAlphabetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F7CC1616DC0AC600ADF5D4 /* leetspeakLeetAlphabetTest.m */; };
+		695FE33371D54F3095B46F8B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D17BB39A74E4E85AB50ACF8 /* libPods.a */; };
 		C1D1B024BCC14D3FAD2D64E9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8EC6D37B3F402D9FC72C58 /* libPods.a */; };
+		E5F16707030175885D40C876 /* PSWizzardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F167BB7B09ACCB70A4BC68 /* PSWizzardManager.m */; };
 		E5F16D0B1E0AA4317A134092 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F16B399268E8B83B7C6AD7 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -1575,6 +1581,12 @@
 		225FEFA216AC5AC300280670 /* PSWizzardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSWizzardViewController.m; sourceTree = "<group>"; };
 		226B3248166BC87200E0B8CC /* PSScreenSaverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSScreenSaverViewController.h; sourceTree = "<group>"; };
 		226B3249166BC87200E0B8CC /* PSScreenSaverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSScreenSaverViewController.m; sourceTree = "<group>"; };
+		22A29CF6182FE7160019F302 /* PSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSViewController.h; sourceTree = "<group>"; };
+		22A29CF7182FE7160019F302 /* PSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSViewController.m; sourceTree = "<group>"; };
+		22A29CF9182FE7790019F302 /* PSAnalyticsTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAnalyticsTracker.h; sourceTree = "<group>"; };
+		22A29CFA182FE7790019F302 /* PSAnalyticsTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAnalyticsTracker.m; sourceTree = "<group>"; };
+		22A29CFD182FE8220019F302 /* PSScreenSaverManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSScreenSaverManager.h; sourceTree = "<group>"; };
+		22A29CFE182FE8220019F302 /* PSScreenSaverManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSScreenSaverManager.m; sourceTree = "<group>"; };
 		22A6F23A167D5E3600849D4B /* PSInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSInputViewController.m; sourceTree = "<group>"; };
 		22B6620F175B8F3F0064ADA8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		22B66210175B8F3F0064ADA8 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
@@ -3097,6 +3109,10 @@
 		22F7CC1016DC0AA900ADF5D4 /* leetspeakTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "leetspeakTest-Prefix.pch"; sourceTree = "<group>"; };
 		22F7CC1616DC0AC600ADF5D4 /* leetspeakLeetAlphabetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = leetspeakLeetAlphabetTest.m; sourceTree = "<group>"; };
 		8C8EC6D37B3F402D9FC72C58 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D17BB39A74E4E85AB50ACF8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A87B577E578944F2BC4BA65B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		E5F16678975EBF9D4533F2FD /* PSWizzardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSWizzardManager.h; sourceTree = "<group>"; };
+		E5F167BB7B09ACCB70A4BC68 /* PSWizzardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSWizzardManager.m; sourceTree = "<group>"; };
 		E5F16B399268E8B83B7C6AD7 /* QuartzCore.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -3124,6 +3140,7 @@
 				22F7CC0416DC0AA900ADF5D4 /* SenTestingKit.framework in Frameworks */,
 				22F7CC0516DC0AA900ADF5D4 /* UIKit.framework in Frameworks */,
 				22F7CC0616DC0AA900ADF5D4 /* Foundation.framework in Frameworks */,
+				695FE33371D54F3095B46F8B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3139,6 +3156,8 @@
 				220E96FA172E8C4E00C0294B /* PSWizzardModel.m */,
 				220E96FD172E91C300C0294B /* PSWizzardView.h */,
 				220E96FE172E91C300C0294B /* PSWizzardView.m */,
+				E5F167BB7B09ACCB70A4BC68 /* PSWizzardManager.m */,
+				E5F16678975EBF9D4533F2FD /* PSWizzardManager.h */,
 			);
 			name = Wizzard;
 			sourceTree = "<group>";
@@ -3151,6 +3170,7 @@
 				22147F0316441E33001DED95 /* Frameworks */,
 				22147F0116441E33001DED95 /* Products */,
 				0F6E1145887F4B88ADE08AB3 /* Pods.xcconfig */,
+				A87B577E578944F2BC4BA65B /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3176,6 +3196,7 @@
 				22147F3C16441E34001DED95 /* SenTestingKit.framework */,
 				E5F16B399268E8B83B7C6AD7 /* QuartzCore.framework */,
 				8C8EC6D37B3F402D9FC72C58 /* libPods.a */,
+				8D17BB39A74E4E85AB50ACF8 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3208,13 +3229,11 @@
 				220F2C741644678D003CC37A /* leet.m */,
 				22147F5416441ED5001DED95 /* PSAppDelegate.h */,
 				22147F5516441ED5001DED95 /* PSAppDelegate.m */,
-				22147F5616441ED5001DED95 /* PSInputViewController.h */,
-				22A6F23A167D5E3600849D4B /* PSInputViewController.m */,
+				22A29CFC182FE77F0019F302 /* Analytics */,
+				22A29CF3182FE6A80019F302 /* Input */,
 				22CF179416DC05A900E71BD7 /* Alphabet */,
-				226B3248166BC87200E0B8CC /* PSScreenSaverViewController.h */,
-				226B3249166BC87200E0B8CC /* PSScreenSaverViewController.m */,
-				220F2C78164473F8003CC37A /* PSWikiViewController.h */,
-				220F2C79164473F8003CC37A /* PSWikiViewController.m */,
+				22A29CF5182FE6B50019F302 /* ScreenSaver */,
+				22A29CF4182FE6AF0019F302 /* Wiki */,
 				220E96FC172E91B300C0294B /* Wizzard */,
 				22D90240167D305A00ED74CF /* PSUserDefaults.h */,
 				22D90241167D305A00ED74CF /* PSUserDefaults.m */,
@@ -3262,6 +3281,44 @@
 				22D370D1166C2B1F00B5CE53 /* EN-Leetspeak-Wikipedia.webarchive */,
 			);
 			path = Wiki;
+			sourceTree = "<group>";
+		};
+		22A29CF3182FE6A80019F302 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				22147F5616441ED5001DED95 /* PSInputViewController.h */,
+				22A6F23A167D5E3600849D4B /* PSInputViewController.m */,
+			);
+			name = Input;
+			sourceTree = "<group>";
+		};
+		22A29CF4182FE6AF0019F302 /* Wiki */ = {
+			isa = PBXGroup;
+			children = (
+				220F2C78164473F8003CC37A /* PSWikiViewController.h */,
+				220F2C79164473F8003CC37A /* PSWikiViewController.m */,
+			);
+			name = Wiki;
+			sourceTree = "<group>";
+		};
+		22A29CF5182FE6B50019F302 /* ScreenSaver */ = {
+			isa = PBXGroup;
+			children = (
+				226B3248166BC87200E0B8CC /* PSScreenSaverViewController.h */,
+				226B3249166BC87200E0B8CC /* PSScreenSaverViewController.m */,
+				22A29CFD182FE8220019F302 /* PSScreenSaverManager.h */,
+				22A29CFE182FE8220019F302 /* PSScreenSaverManager.m */,
+			);
+			name = ScreenSaver;
+			sourceTree = "<group>";
+		};
+		22A29CFC182FE77F0019F302 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				22A29CF9182FE7790019F302 /* PSAnalyticsTracker.h */,
+				22A29CFA182FE7790019F302 /* PSAnalyticsTracker.m */,
+			);
+			name = Analytics;
 			sourceTree = "<group>";
 		};
 		22B661D2175B8DF40064ADA8 /* target */ = {
@@ -3431,6 +3488,8 @@
 				22415AD7167A5CAD006712FC /* PSTabBarController.m */,
 				22D9B2AA167BF5F200BAA030 /* PSTextView.h */,
 				22D9B2AB167BF5F200BAA030 /* PSTextView.m */,
+				22A29CF6182FE7160019F302 /* PSViewController.h */,
+				22A29CF7182FE7160019F302 /* PSViewController.m */,
 			);
 			name = Subclasses;
 			sourceTree = "<group>";
@@ -4974,10 +5033,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22F7CC1116DC0AA900ADF5D4 /* Build configuration list for PBXNativeTarget "leetspeakTest" */;
 			buildPhases = (
+				16F7B0B7E17B4E0C8C1AD3D4 /* Check Pods Manifest.lock */,
 				22F7CBFE16DC0AA900ADF5D4 /* Sources */,
 				22F7CBFF16DC0AA900ADF5D4 /* Frameworks */,
 				22F7CC0016DC0AA900ADF5D4 /* Resources */,
 				22F7CC0116DC0AA900ADF5D4 /* ShellScript */,
+				977F74D5D6F64AA58E50724C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -6535,6 +6596,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		16F7B0B7E17B4E0C8C1AD3D4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
 		22F7CC0116DC0AA900ADF5D4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -6547,6 +6622,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		977F74D5D6F64AA58E50724C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 		};
 		F21ED5111701447FB49399F8 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -6570,6 +6659,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22147F1116441E33001DED95 /* main.m in Sources */,
+				22A29CFF182FE8220019F302 /* PSScreenSaverManager.m in Sources */,
 				22147F5A16441ED5001DED95 /* PSAppDelegate.m in Sources */,
 				220F2C77164468E3003CC37A /* leet.m in Sources */,
 				220F2C7B164473F8003CC37A /* PSWikiViewController.m in Sources */,
@@ -6579,6 +6669,7 @@
 				22CC2A7C166C187B00D8B20C /* PSMoreViewController.m in Sources */,
 				22CC2A8E166C1B4600D8B20C /* PSImprintViewController.m in Sources */,
 				22CC2A93166C1E4600D8B20C /* PSSettingsViewController.m in Sources */,
+				22A29CFB182FE7790019F302 /* PSAnalyticsTracker.m in Sources */,
 				22415AD8167A5CAD006712FC /* PSTabBarController.m in Sources */,
 				22D9B2AC167BF5F200BAA030 /* PSTextView.m in Sources */,
 				22D90242167D305A00ED74CF /* PSUserDefaults.m in Sources */,
@@ -6587,6 +6678,8 @@
 				22CF179316DC059D00E71BD7 /* PSLeetAlphabet.m in Sources */,
 				220E96FB172E8C4E00C0294B /* PSWizzardModel.m in Sources */,
 				220E96FF172E91C300C0294B /* PSWizzardView.m in Sources */,
+				22A29CF8182FE7160019F302 /* PSViewController.m in Sources */,
+				E5F16707030175885D40C876 /* PSWizzardManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6595,6 +6688,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22F7CC1716DC0AC600ADF5D4 /* leetspeakLeetAlphabetTest.m in Sources */,
+				227F861417C0D9DD00666339 /* PSLeetAlphabet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6658,19 +6752,23 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0F6E1145887F4B88ADE08AB3 /* Pods.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Philip Schneider (JDL4TRB26V)";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "leetspeak/leetspeak-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
 				HEADER_SEARCH_PATHS = (
 					"${PODS_HEADERS_SEARCH_PATHS}",
 					"./NTiOSLibrary/**",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "leetspeak/Resources/target/debug/leetspeak-debug-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "l33t-debug";
-				PROVISIONING_PROFILE = "0FFB4C4F-70C8-4B5B-8608-0FC92764A9FF";
+				PROVISIONING_PROFILE = "D587FAD8-7CBD-4883-BE1D-CEB826C8DA43";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WARNING_CFLAGS = (
@@ -6712,17 +6810,23 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0F6E1145887F4B88ADE08AB3 /* Pods.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Philip Schneider (JDL4TRB26V)";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "leetspeak/leetspeak-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
 				HEADER_SEARCH_PATHS = (
 					"${PODS_HEADERS_SEARCH_PATHS}",
 					"./NTiOSLibrary/**",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "leetspeak/Resources/target/beta/leetspeak-beta-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "l33t-beta";
+				PROVISIONING_PROFILE = "D587FAD8-7CBD-4883-BE1D-CEB826C8DA43";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -6760,17 +6864,21 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0F6E1145887F4B88ADE08AB3 /* Pods.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Philip Schneider";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "leetspeak/leetspeak-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
 				HEADER_SEARCH_PATHS = (
 					"${PODS_HEADERS_SEARCH_PATHS}",
 					"./NTiOSLibrary/**",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = "leetspeak/Resources/target/appstore/leetspeak-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = l33t;
 				PROVISIONING_PROFILE = "F7F7CD2F-6C90-44E8-B384-6CA11EB737D4";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -6781,6 +6889,7 @@
 		};
 		22F7CC1216DC0AA900ADF5D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A87B577E578944F2BC4BA65B /* Pods.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -6800,6 +6909,7 @@
 		};
 		22F7CC1416DC0AA900ADF5D4 /* Beta */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A87B577E578944F2BC4BA65B /* Pods.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -6819,6 +6929,7 @@
 		};
 		22F7CC1516DC0AA900ADF5D4 /* AppStore */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A87B577E578944F2BC4BA65B /* Pods.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;

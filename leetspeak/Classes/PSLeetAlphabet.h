@@ -13,4 +13,17 @@
 @property (nonatomic, strong) NSArray * alphabet;
 @property (nonatomic, strong) NSDictionary * leetbet;
 
+- (NSString*)convertCharToLeet:(NSString*)character;
+- (NSString*)convertCharToLeet:(NSString*)character level:(int)level;
+
+
+- (NSString*)convertTextToLeet:(NSString*)text;
+- (NSString*)convertTextToLeet:(NSString*)text level:(int)level;
+
+
+
+- (NSString*)convertLeetToText:(NSString*)text;
+- (NSString*)convertLeetToText:(NSString*)text level:(int)level;
+
+
 @end

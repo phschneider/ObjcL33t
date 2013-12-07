@@ -5,4 +5,13 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+    #import "GAI.h"
+    #import "GAITracker.h"
+    #import "GAITrackedViewController.h"
+    #import "GAITransaction.h"
+    #import "GAITransactionItem.h"
+
+    #import "PSAppDelegate.h"
+    #import "defaults.h"
 #endif

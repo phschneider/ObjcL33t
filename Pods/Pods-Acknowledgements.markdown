@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## CrittercismSDK
 
-See http://www.crittercism.com/tos-v3.html
+See http://www.crittercism.com/terms-services/
 
 ## GoogleAnalytics-iOS-SDK
 
@@ -14,7 +14,7 @@ Copyright 2009 - 2012 Google, Inc. All rights reserved.
 
 BSD License
 
-Copyright 2012 hamcrest.org
+Copyright 2013 hamcrest.org
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -43,27 +43,28 @@ DAMAGE.
 
 ## OCMockito
 
-The MIT License
+Copyright 2013 Jonathan M. Reid
+All rights reserved.
 
-Copyright (c) 2007 Mockito contributors
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+(MIT License)
+
 
 ## SVProgressHUD
 
@@ -93,6 +94,10 @@ OTHER DEALINGS IN THE SOFTWARE.
 A different license may apply to other ressources included in this package, 
 including Joseph Wain's Glyphish Icons. Please consult their 
 respective headers for the terms of their individual licenses.
+
+## SparkInspector
+
+
 
 ## StyledPageControl
 
@@ -164,7 +169,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 iRate
 
-Version 1.7.5, April 26th, 2013
+Version 1.8, September 29th, 2013
 
 Copyright (C) 2011 Charcoal Design
 
@@ -224,7 +229,7 @@ UserVoice for iOS allows you to embed UserVoice directly in your iPhone or iPad 
 You will need to have a UserVoice account (free) for it to connect to. Go to [uservoice.com/ios](http://uservoice.com/ios) to sign up.
 
 Binary builds of the SDK are available for download.
-* Current release: [2.0.10](http://sdk-downloads.uservoice.com/ios/UserVoiceSDK-2.0.10.tar.gz)
+* Current release: [2.0.13](http://sdk-downloads.uservoice.com/ios/UserVoiceSDK-2.0.13.tar.gz)
 
 We also have an [example app](https://github.com/uservoice/uservoice-iphone-example) on GitHub that demonstrates how to build and integrate the SDK.
 
@@ -236,20 +241,10 @@ Installation
   * When adding the folders, make sure you have "Create groups for any added folders" selected rather than "Create folder references for any added folders".
 * Note that the `.h` files in  `UVHeaders` do not need to be added to your target.
 * Add QuartzCore and SystemConfiguration frameworks to your project.
-* Add `-ObjC` to `Other Linker Flags` in the Build Settings for your target. (There is also an `Other Linker Flags` setting for your entire project, but that's not the one you want.)
-  * Note: make sure that this flag is set for both Release and Debug builds (you can expand the setting by clicking the arrow on the right).
 
 See [DEV.md](https://github.com/uservoice/uservoice-iphone-sdk/blob/master/DEV.md) if you want to build the SDK yourself.
 
 Note: If you opt to compile pull the UserVoice source into your application rather than using `libUserVoice.a`, and your project uses ARC, you will need to set `-fno-objc-arc` for all of the UserVoice source files. We are not currently using ARC, although we are planning to migrate to it eventually.
-
-Obtain Key And Secret
----------------------
-
-* If you don't already have a UserVoice account then go get one for free at [uservoice.com/ios](http://uservoice.com/ios).
-* Go to the admin console (yourdomain.uservoice.com/admin) of your UserVoice account, navigate to `Settings` and click the `Channels` tab.
-* Add an iOS App (if one doesn't already exist).
-* Copy the generated `Secret` and `API key`.
 
 API
 ---
@@ -260,36 +255,43 @@ following options.
 
 ### Configuration
 
-**1. Standard Login:** This is the most basic option, which will allow users to
-either sign in, or create a UserVoice account, from inside the UserVoice UI.
-This is ideal if your app does not have any information about the user.
+Start by creating a `UVConfig` object like this:
 
-    UVConfig *config = [UVConfig configWithSite:@"YOUR_USERVOICE_URL"
-                                         andKey:@"YOUR_KEY"
-                                      andSecret:@"YOUR_SECRET"];
+    UVConfig *config = [UVConfig configWithSite:@"yoursite.uservoice.com"];
 
-**2. SSO for local users:** This will find or create a new user by passing a
-name, email, and unique id. However, it will only find users that were
-previously created using this method. It will not allow you to log the user in
-as an existing UserVoice account. This is ideal if you only want to use
-UserVoice with your iOS app.
+All other configuration settings are optional. If you want, you can jump
+straight to Invocation.
 
-    UVConfig *config = [UVConfig configWithSite:@"YOUR_USERVOICE_URL"
-                                         andKey:@"YOUR_KEY"
-                                      andSecret:@"YOUR_SECRET"
-                                       andEmail:@"USER_EMAIL"
-                                 andDisplayName:@"USER_DISPLAY_NAME"
-                                        andGUID:@"GUID"];
+### User identification
 
-**3. UserVoice SSO:** This is the most flexible option. It allows you to log
-the user in using a UserVoice SSO token. This is ideal if you are planning to
-use single signon with UserVoice across multiple platforms. We recommend you
-encrypt the token on your servers and pass it to the iOS app.
+If you know who your user is, you can pass in their identity so that they won't
+have to enter their name or email to send tickets or post ideas.
 
-    UVConfig *config = [UVConfig configWithSite:@"YOUR_USERVOICE_URL"
-                                         andKey:@"YOUR_KEY"
-                                      andSecret:@"YOUR_SECRET",
-                                    andSSOToken:@"SOME_BIG_LONG_SSO_TOKEN"];
+    [config identifyUserWithEmail:@"user@example.com" name:@"Example User" guid:@"123"];
+
+GUID can be the same as email, but if you have an internal user id, you can
+pass that so that the user's account will have continuity if they later change
+their email address.
+
+Note: One limitation is that this will not work if the email address matches an
+admin on your UserVoice account (for security reasons). Admins will still be able
+to use the iOS SDK but they will need to sign in the first time they do. If you are
+testing this feature, make sure you are not testing with an admin account.
+
+### Specify a forum
+
+You can specify which forum users will interact with by id.  If you do not
+specify a forum, it will use the default forum for your account.
+
+    config.forumId = 123;
+
+### Specify a help topic
+
+You can also specify a help topic by id. If you don't then it will display a
+list of all topics in your account, as long as they contain at least one
+article.
+
+    config.topicId = 123;
 
 ### Custom Fields
 
@@ -301,17 +303,6 @@ Note: You must first configure these fields in the UserVoice admin console.
 If you pass fields that are not recognized by the server, they will be ignored.
 
     config.customFields = @{@"Key" : @"Value"};
-
-### Specify a help topic (optional)
-
-You can specify a help topic by id, which affects two things:
-
- 1. That topics articles will be displayed directly on the portal screen.
- 2. Only artiles in that topic will show up as instant answers.
-
-<pre>
-config.topicId = 123;
-</pre>
 
 ### Toggle features
 
@@ -358,11 +349,31 @@ There are 4 options for how to launch UserVoice from within your app:
 
     [UserVoice presentUserVoiceNewIdeaFormForParentViewController:self andConfig:config];
 
+
+### Passing user traits
+
+You can optionally pass further information about your users into UserVoice. This
+will allow us to provide you more useful reports about your users.
+
+    config.userTraits = @{
+      @"created_at" : @(1364406966),    // Unix timestamp for the date the user signed up
+      @"type" : @"Owner",               // Optional: segment your users by type
+      @"account" : @{
+        @"id" : @(123),                 // Optional: associate multiple users with a single account
+        @"name" : @"Acme, Co.",         // Account name
+        @"created_at" : @(1364406966),  // Unix timestampe for the date the account was created
+        @"monthly_rate" : @(9.99),      // Decimal; monthly rate of the account
+        @"ltv" : @(1495.00),            // Decimal; lifetime value of the account
+        @"plan" : @"Enhanced"           // Plan name for the account
+      }
+    };
+
 ### Customizing Colors
 
 You can also customize the appearance of the UserVoice user interface by
 creating a custom stylesheet.
 
+```
     #import "UVStyleSheet.h"
 
     @interface MyStyleSheet : UVStyleSheet
@@ -378,6 +389,7 @@ creating a custom stylesheet.
     @end
 
     [UVStyleSheet setStyleSheet:[[MyStyleSheet alloc] init]];
+```
 
 ### User Language
 
@@ -421,29 +433,16 @@ If you have any other questions please contact support@uservoice.com.
 Translations
 ------------
 
-Currently the UI is available in English, French, German, Dutch, Italian, and Traditional Chinese.
-We are using [Twine](https://github.com/mobiata/twine) to manage the translations.
+UserVoice for iOS now has support for the following locales: ca, cs, da, de,
+el, en-GB, en, es, fi, fr, hr, hu, id, it, ja, ko, ms, nb, nl, pl, pt-PT, pt,
+ro, ru, sk, sv, th, tr, uk, vi, zh-Hans, zh-Hant.
 
-To contribute to the translations, follow these steps:
+If you have done an additional translation, we would love to pull it in so that
+everyone can benefit. Just fork the project and submit a pull request.
 
-* Fork the project on Github
-* Edit the `strings.txt` file
-* Commit your changes and open a pull request
-
-If you want to go the extra mile and test your translations, do the following:
-
-* If you are adding a language:
-  * `mkdir Resources/YOURLOCALE.lproj`
-  * `touch Resources/YOURLOCALE.lproj/UserVoice.strings`
-* Install the `twine` gem
-* Run `./update_strings.sh` to generate the strings files
-* Run the example app (or your own app) to see how things look in the UI
-* Make note of any layout issues in your pull request so that we can look at it
-  and figure out what to do.
-
-Some strings that show up in the SDK come directly from the UserVoice API. If a
-translation is missing for a string that does not appear in the SDK codebase,
-you will need to contribute to the main [UserVoice translation
+Some strings that show up in the SDK may come directly from the UserVoice API.
+If a translation is missing for a string that does not appear in the SDK
+codebase, you will need to contribute to the main [UserVoice translation
 site](http://translate.uservoice.com/).
 
 iOS Versions
@@ -465,6 +464,7 @@ Special thanks to:
 * [zetachang](https://github.com/zetachang) for the Traditional Chinese translation
 * [nvh](https://github.com/nvh) for the Dutch translation
 * [vinzenzweber](https://github.com/vinzenzweber) and [Blockhaus Media](http://www.blockhaus-media.com/) for the German translation
+* [hebertialmeida](https://github.com/hebertialmeida) for the Portuguese translation
 * Everyone else who [reported bugs or made pull requests](https://github.com/uservoice/uservoice-iphone-sdk/issues?state=closed)!
 
 License
